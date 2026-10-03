@@ -9,6 +9,7 @@ Reports are selected for material operational impact, sensitive/large-scale data
 | [京王電鉄](2026/keio-electric-ransomware.md) | 2026-09-26 | Ransomware / group system disruption | Investigating |
 | [株式会社ファインズ](2026/fines-reservation-system-breach.md) | 2026-09-25 | Reservation-system unauthorized access / 1.53M records | Investigating |
 | [タイムズモビリティ / パーク２４](2026/times-car-web-breach.md) | 2026-09-25 | Web-system breach / 6.6M accounts / identity documents | Investigating |
+| [JCOM](2026/jcom-dns-external-traffic-outage.md) | 2026-09-23 | External high-volume traffic / DNS overload / up to ~4.08M subscribed households | Restored / cause disclosed |
 | [Helpfeel / Gyazo](2026/helpfeel-gyazo-breach.md) | 2026-09-16 | Unauthorized access / 23.62M users / large-scale image metadata | Service restored / investigating |
 | [イエローハット](2026/yellowhat-web-reservation-breach.md) | 2026-08-28 | Web work-reservation breach / up to 1,801,499 members | Investigating |
 | [さくらインターネット](2026/sakura-internet-unauthorized-access.md) | 2026-08-17 | Unauthorized access / malware / customer-management exposure risk | Monitoring |
