@@ -4,6 +4,7 @@
 * [株式会社ファインズ — reservation-system breach](fines-reservation-system-breach.md)
 * [タイムズモビリティ / パーク２４ — Web system breach and identity-document exposure](times-car-web-breach.md)
 * [Helpfeel / Gyazo — large-scale user and image-metadata breach](helpfeel-gyazo-breach.md)
+* [イエローハット — Web work-reservation system breach](yellowhat-web-reservation-breach.md)
 * [さくらインターネット — unauthorized access and malware](sakura-internet-unauthorized-access.md)
 * [REXT Holdings / REXT — ransomware and retail disruption](rext-ransomware.md)
 * [シーイーシー — data-center ransomware](cec-datacenter-ransomware.md)
@@ -14,3 +15,4 @@
 * [アフラック生命保険 — large-scale personal-data leak](aflac-life-unauthorized-access.md)
 * [ハンズホールディングス — ransomware](hands-holdings-ransomware.md)
 * [フェースグループ — ransomware via VPN](faith-ransomware.md)
+* [２りんかんイエローハット — API-related member-data breach](yellowhat-2rinkan-breach.md)
