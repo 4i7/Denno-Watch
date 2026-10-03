@@ -8,6 +8,7 @@
 * [タイムズモビリティ / パーク２４ — Web system breach and identity-document exposure](times-car-web-breach.md)
 * [JCOM — DNS overload from external high-volume traffic and large-scale outage](jcom-dns-external-traffic-outage.md)
 * [Helpfeel / Gyazo — large-scale user and image-metadata breach](helpfeel-gyazo-breach.md)
+* [LEAN BODY — Metabase vulnerability exploitation and confirmed customer-data acquisition](lean-body-metabase-breach.md)
 * [イエローハット — Web work-reservation system breach](yellowhat-web-reservation-breach.md)
 * [さくらインターネット — unauthorized access and malware](sakura-internet-unauthorized-access.md)
 * [REXT Holdings / REXT — ransomware and retail disruption](rext-ransomware.md)
