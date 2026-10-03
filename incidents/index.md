@@ -23,6 +23,7 @@ Reports are selected for material operational impact, sensitive/large-scale data
 | [ニチレイ](2026/nichirei-cyberattack-logistics-breach.md) | 2026-07-13 | Cyberattack / cold-chain logistics and frozen-food shipment disruption / confirmed personal-data leak | Operations restored / investigation continues |
 | [アフラック生命保険](2026/aflac-life-unauthorized-access.md) | 2026-06-30 | Unauthorized access / large-scale personal-data leak | Monitoring / service recovery |
 | [KDDI](2026/kddi-isp-mail-breach.md) | 2026-06-23 | Shared ISP mail platform / then-unknown software vulnerability / credentials | Public report closed / regulatory follow-up |
+| [名鉄協商](2026/meitetsu-kyosho-multi-server-breach.md) | 2026-06-23 | Multi-server unauthorized access / prolonged multi-service disruption / possible customer-data exposure | Partial recovery / investigating |
 | [ハンズホールディングス](2026/hands-holdings-ransomware.md) | 2026-06-22 | Ransomware / employee and My Number exposure risk | Investigating |
 | [フェースグループ](2026/faith-ransomware.md) | 2026-06-22 | Ransomware via VPN / encryption and deletion | Recovering |
 | [日本資産総研](2026/nihon-shisan-souken-ransomware-leak.md) | 2026-05-14 | Credential-theft ransomware / encryption / confirmed customer-data leak-site publication | Operations restored / remediation continues |
