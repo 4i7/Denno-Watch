@@ -75,6 +75,13 @@ Incident concepts use `type: Cybersecurity Incident` plus a producer-defined `in
 | `availability_impact` | Whether operations/services were disrupted. |
 | `restoration_state` | Latest publicly observable recovery condition. Keep containment, service restoration and investigation closure distinct. |
 | `secondary_abuse` | Publicly reported misuse after the incident. |
+| `downstream_impact` | Observable effects on customers, suppliers, entrusted-data owners or other organizations beyond the primary affected organization. Do not imply their own systems were directly breached unless a source establishes that. |
+| `regulatory_response` | Publicly disclosed reporting, investigation or coordination with regulators, police or other authorities. |
+| `notification_state` | Whether affected populations are still being identified, notified, fully notified, or not publicly disclosed. Keep notification population distinct from confirmed-exposure population. |
+| `business_continuity` | Alternate channels, manual workarounds or unaffected service paths that materially preserved operations while affected systems were restricted. |
+| `data_sensitivity` | High-level sensitivity/context of affected data, including authentication, identity documents, employment, health, financial context or other categories that change defensive significance. Do not add undisclosed data categories. |
+
+The final five fields are additive producer-defined metadata used when the public record supports them. They are intentionally separate from the core impact fields so a consumer can distinguish, for example, a provider compromise from downstream customer exposure, or service restoration from availability through an alternate channel.
 
 Dates in the incident mapping use the precision actually published. Never invent a time. `public_record_checked_at` and OKF-native timestamps such as `generated.at`, `verified[].at` and `stale_after` use ISO 8601 with an explicit offset.[^okf-v02]
 
