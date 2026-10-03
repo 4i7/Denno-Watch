@@ -1,0 +1,115 @@
+---
+type: Cybersecurity Incident
+title: ハンズホールディングス — ランサムウェア侵害と従業員等のマイナンバー閲覧のおそれ
+description: 2026年6月に検知された社内システム侵害について、ランサムウェア確認と人事・労務情報、マイナンバーへの影響可能性を追跡する記録。
+resource: https://www.hands-holdings.co.jp/news/news20260825/
+tags: [japan, ransomware, employee-data, my-number, availability, 2026]
+status: draft
+stale_after: 2026-10-15T00:00:00+09:00
+generated: { by: openai/gpt-5.6-sol, at: 2026-10-03T13:11:00Z }
+incident:
+  organization: ハンズホールディングス株式会社
+  sector: business-services
+  jurisdiction: JP
+  incident_status: investigating
+  attack_type: ransomware
+  earliest_known_activity: unknown
+  detected_at: "2026-06-19 08:50 JST"
+  first_disclosed_at: "2026-06-22"
+  latest_public_update: "2026-08-25"
+  intrusion_vector: not_publicly_disclosed
+  affected_services: "some internal systems, servers and user PCs"
+  data_exposure: possible
+  availability_impact: confirmed
+  restoration_state: "unknown in latest incident-specific disclosure"
+  secondary_abuse: not_observed
+sources:
+  - id: hands-first
+    resource: https://www.hands-holdings.co.jp/news/news20260622/
+    title: 当社システムへの不正アクセス（ウイルス感染）の疑いに関するお知らせ
+  - id: hands-second
+    resource: https://www.hands-holdings.co.jp/news/news20260825/
+    title: 当社システムへの不正アクセスに関するお知らせ（第2報）
+  - id: hands-news
+    resource: https://www.hands-holdings.co.jp/news/
+    title: ハンズホールディングス ニュース一覧
+---
+
+# Executive summary
+
+ハンズホールディングスは2026年6月19日8時50分頃、一部社内システムでウイルス感染の疑いを検知し、疑いのあるサーバーとユーザーPCを外部から遮断した。この措置により一部システムが停止した。[^hands-first]
+
+8月25日の第2報で、外部からの不正アクセスとランサムウェアによる侵害を確認したと公表した。侵害された環境には、従業員・退職者・扶養者に関する氏名、従業員番号、住所、生年月日、入社年月日、メールアドレス、電話番号、その他人事・労務情報があり、漏えいのおそれがある。さらに従業員等のマイナンバーについても閲覧されたおそれがあるとされた。[^hands-second]
+
+一方、8月25日時点でマイナンバーを含む情報の漏えい事実、不正利用、二次被害は確認されていない。外部セキュリティ専門企業と調査を継続していた。[^hands-second]
+
+# Observable timeline
+
+| Date | Observable event |
+| --- | --- |
+| 2026-06-19 08:50頃 | 一部社内システムでウイルス感染の疑いを検知。疑わしいサーバー・ユーザーPCを外部から遮断し、一部システム停止。[^hands-first] |
+| 2026-06-22 | 初報。外部専門家と原因、漏えい有無、安全な復旧を調査中と公表。[^hands-first] |
+| 2026-08-25 | 第2報。外部からの不正アクセスとランサムウェア侵害を確認。従業員等の人事・労務情報に漏えいのおそれ、マイナンバーに閲覧のおそれがあると公表。[^hands-second] |
+| 2026-10-03 review | 公式ニュース一覧で8月25日以後の本件追加報告は確認できない。[^hands-news] |
+
+# Impact
+
+## Availability
+
+初動の隔離により一部社内システムが停止したことが確認されている。停止した業務、停止期間、完全復旧時期は公開されていない。[^hands-first]
+
+## Personal and employment data
+
+漏えいのおそれがある情報として、従業員・退職者・扶養者の氏名、従業員番号、住所、生年月日、入社年月日、メールアドレス、電話番号、その他人事・労務管理情報が挙げられている。[^hands-second]
+
+対象人数は公表されていない。「漏えいのおそれ」であり、実際に持ち出されたことが確認されたデータと同一視しない。
+
+## My Number
+
+従業員、退職者、扶養者のマイナンバーについて、第三者に閲覧されたおそれがある。ただし8月25日時点で漏えいの事実は確認されていない。[^hands-second]
+
+マイナンバーを含むため影響の感度は高いが、Denno Watchでは「閲覧可能性」を「外部持ち出し確認」へ読み替えない。
+
+## Secondary abuse
+
+8月25日時点で不正利用・二次被害は確認されていない。[^hands-second]
+
+# Technical findings
+
+公開情報から確認できるのは、外部から社内システムへ不正アクセスされ、ランサムウェアによる侵害が発生したことまでである。初期侵入経路、ランサムウェアファミリ、侵害開始時刻、認証情報の悪用有無、横展開経路、暗号化・窃取対象は公表されていない。[^hands-second]
+
+初報時点では「ウイルス感染の疑い」、第2報で「ランサムウェアによる侵害」に更新された。調査成熟に伴いインシデント分類が変化した例として履歴を保持する。[^hands-first][^hands-second]
+
+# Response and recovery
+
+- 疑わしいサーバーとユーザーPCを外部から遮断。[^hands-first]
+- 一部システムを停止し、被害拡大防止を優先。[^hands-first]
+- 外部専門企業と事実関係・情報影響を調査。[^hands-second]
+- 不審電話、メール、郵便物等への注意を関係者へ要請。[^hands-second]
+- マイナンバーについて、不正利用のおそれがある場合の変更請求制度を案内。[^hands-second]
+- セキュリティ体制強化と再発防止策の検討を継続。[^hands-second]
+
+# Prognosis / current state
+
+8月25日の第2報では外部専門企業による調査が継続中であり、10月3日時点で公式ニュース一覧に後続の確定報は確認できない。[^hands-second][^hands-news]
+
+対象人数、外部持ち出しの有無、原因、復旧、再発防止策が未確定であるため `investigating` とする。
+
+# Defensive lessons
+
+- **高感度情報は「暗号化/隔離されているはず」ではなく侵害時の実到達性を監査する。** ランサムウェア事案で、業務環境にマイナンバーを含む高感度人事情報が存在したこと自体が重要な影響評価点となった。[^hands-second]
+- **隔離による業務停止を想定した復旧設計が必要。** 感染疑いのサーバー・端末を遮断することで一部システム停止が発生しており、封じ込めと業務継続は同時に設計する必要がある。[^hands-first]
+- **調査中の状態表現を保持する。** 「漏えいのおそれ」「閲覧のおそれ」「漏えい事実は未確認」を分離しないと、影響を過大・過小の両方向に誤認する。[^hands-second]
+
+# Unknowns / withheld details
+
+- 初期侵入経路、侵害開始時刻、ランサムウェアファミリ
+- 影響を受けたサーバー・端末・アカウントの数
+- 対象従業員・退職者・扶養者の人数
+- 実際のデータ窃取・外部送信の有無
+- 暗号化・破壊範囲
+- 完全復旧時期と具体的再発防止策
+
+[^hands-first]: ハンズホールディングス「当社システムへの不正アクセス（ウイルス感染）の疑いに関するお知らせ」2026-06-22.
+[^hands-second]: ハンズホールディングス「当社システムへの不正アクセスに関するお知らせ（第2報）」2026-08-25.
+[^hands-news]: ハンズホールディングス「ニュース」一覧。2026-10-03確認。
