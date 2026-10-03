@@ -5,6 +5,7 @@
 - Added two distinct Yellow Hat group incidents rather than merging them: the 2rinkan member-server breach and the later Yellow Hat Web work-reservation breach.
 - Recorded the confirmed 3,179,454-member exposure in the 2rinkan final report separately from the later maximum 1,801,499-member potential exposure.
 - Captured the defensive effect of payment-data and system separation, and flagged the later incident for follow-up because a final public forensic result has not yet been located.
+- Added the JCOM September 23 availability incident: external high-volume traffic caused DNS overload and a large-scale outage affecting up to about 4.08 million subscribed households; the report deliberately does not label the traffic as DDoS because malicious intent was not established in the public source.
 - Re-synchronized the year and top-level indexes.
 
 ## 2026-10-03
