@@ -4,11 +4,11 @@ title: Denno Watch incident reporting standard
 description: Evidence, provenance, lifecycle and field semantics for public incident records.
 tags: [methodology, incident-response, provenance, okf]
 status: draft
-generated: { by: openai/gpt-5.6-sol, at: 2026-10-03T20:30:00Z }
+generated: { by: openai/gpt-5.6-sol, at: 2026-10-04T06:23:00+09:00 }
 sources:
   - id: okf-v02
-    resource: https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md
-    title: Open Knowledge Format v0.2 specification
+    resource: https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/ad30107c31c06aec8a7d5636e0d1058118604e6f/SPEC.md
+    title: Open Knowledge Format v0.2 specification, pinned revision ad30107c
     author: team:GoogleCloudPlatform
 ---
 
@@ -17,6 +17,8 @@ sources:
 Denno Watch records what can be established from public evidence about major cyber incidents affecting organizations in Japan. The corpus is optimized for later defensive use: understanding what happened, what was affected, how response and recovery progressed, what remained unknown, and which controls can be learned from the disclosed facts.
 
 The bundle follows OKF v0.2: concept documents are Markdown with YAML frontmatter; provenance is stored in `sources`; claim-level citations use matching footnote IDs; machine generation and independent verification are separate signals.[^okf-v02]
+
+Because the upstream OKF v0.2 text has evolved while retaining the same version label, bundle root `index.md` records both `okf_version` and the exact `okf_spec_revision` / `okf_spec_resource` used by Denno Watch. Producer-defined revision keys are additive metadata and do not replace the canonical `okf_version` field.
 
 # Inclusion
 
@@ -71,7 +73,7 @@ Incident concepts use `type: Cybersecurity Incident` plus a producer-defined `in
 | `public_record_checked_at` | Most recent time the maintainer actively checked the organization/regulator public record for a later update, even if none existed. Use an ISO 8601 timestamp with offset. |
 | `intrusion_vector` | Confirmed route, or an explicit unknown/withheld state. |
 | `affected_services` | Material systems/services publicly described as affected. |
-| `data_exposure` | `confirmed`, `possible`, `not_observed`, or `unknown`. |
+| `data_exposure` | `confirmed`, `possible`, `not_observed`, or `unknown`, or a more precise producer state that preserves this distinction. |
 | `availability_impact` | Whether operations/services were disrupted. |
 | `restoration_state` | Latest publicly observable recovery condition. Keep containment, service restoration and investigation closure distinct. |
 | `secondary_abuse` | Publicly reported misuse after the incident. |
@@ -123,9 +125,10 @@ Do not collapse recovery into a single boolean. Track distinct observable checkp
 3. **security-state restoration** - temporary safe defaults or restrictions are lifted, if applicable;
 4. **data-impact determination** - exposure scope is sufficiently established for public reporting;
 5. **investigation closure** - the organization states that investigation/public reporting is complete;
-6. **long-term remediation** - medium/long-term controls are completed, not merely announced.
+6. **long-term remediation** - medium/long-term controls are completed, not merely announced;
+7. **service retirement** - an affected service is intentionally not restored and is permanently terminated or replaced.
 
-A service can therefore be operational while the incident remains `investigating`. Gyazo is an example: service resumed while legacy image visibility remained intentionally restricted and investigation continued. This distinction should be preserved rather than summarized as “recovered.”
+A service can therefore be operational while the incident remains `investigating`, or an incident can end with one service restored and another retired. Recovery state must be recorded per affected service when outcomes diverge.
 
 # Freshness and review
 
@@ -145,4 +148,4 @@ When a follow-up check finds no new primary disclosure:
 
 The corpus is defensive and public-source-only. It may document disclosed intrusion paths and control failures, but should not add unpublished exploit steps, secrets, credentials, personal data samples, or operational details whose only value would be to facilitate abuse.
 
-[^okf-v02]: Open Knowledge Format v0.2 specification.
+[^okf-v02]: Open Knowledge Format v0.2 specification, pinned to `ad30107c31c06aec8a7d5636e0d1058118604e6f` for this bundle revision.
