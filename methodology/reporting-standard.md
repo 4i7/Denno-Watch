@@ -4,7 +4,7 @@ title: Denno Watch incident reporting standard
 description: Evidence, provenance, lifecycle and field semantics for public incident records.
 tags: [methodology, incident-response, provenance, okf]
 status: draft
-generated: { by: openai/gpt-5.6-sol, at: 2026-10-03T13:11:00Z }
+generated: { by: openai/gpt-5.6-sol, at: 2026-10-03T20:30:00Z }
 sources:
   - id: okf-v02
     resource: https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md
@@ -67,15 +67,18 @@ Incident concepts use `type: Cybersecurity Incident` plus a producer-defined `in
 | `earliest_known_activity` | Earliest activity the public investigation ties to the incident. |
 | `detected_at` | Detection time/date if disclosed. |
 | `first_disclosed_at` | First public disclosure date. |
-| `latest_public_update` | Latest primary update incorporated into the record. |
+| `latest_public_update` | Latest primary update incorporated into the record. This is an event/source date, not a review date. |
+| `public_record_checked_at` | Most recent time the maintainer actively checked the organization/regulator public record for a later update, even if none existed. Use an ISO 8601 timestamp with offset. |
 | `intrusion_vector` | Confirmed route, or an explicit unknown/withheld state. |
 | `affected_services` | Material systems/services publicly described as affected. |
 | `data_exposure` | `confirmed`, `possible`, `not_observed`, or `unknown`. |
 | `availability_impact` | Whether operations/services were disrupted. |
-| `restoration_state` | Latest publicly observable recovery condition. |
+| `restoration_state` | Latest publicly observable recovery condition. Keep containment, service restoration and investigation closure distinct. |
 | `secondary_abuse` | Publicly reported misuse after the incident. |
 
-Dates in the incident mapping use the precision actually published. Never invent a time. OKF-native timestamps such as `generated.at`, `verified[].at` and `stale_after` use ISO 8601 with an explicit offset as required by OKF.[^okf-v02]
+Dates in the incident mapping use the precision actually published. Never invent a time. `public_record_checked_at` and OKF-native timestamps such as `generated.at`, `verified[].at` and `stale_after` use ISO 8601 with an explicit offset.[^okf-v02]
+
+`latest_public_update` MUST NOT be changed merely because a later source check found no new disclosure. That observation belongs in `public_record_checked_at`. This makes “no update found as of X” distinguishable from “nobody checked after the last disclosure.”
 
 # Required report sections
 
@@ -92,13 +95,44 @@ Each report should contain:
 
 # Counts and corrections
 
-Preserve the unit used by the source: people, accounts, records, stores, systems, etc. A record count must not be restated as a number of unique people unless the source says so. If an organization corrects a number, the corrected value becomes canonical and the prior value remains in the timeline with the correction noted.
+Preserve the unit used by the source: people, accounts, records, stores, systems, households, files, etc. A record count must not be restated as a number of unique people unless the source says so.
+
+For every material count, preserve its evidence state:
+
+- **maximum / potentially affected**: an upper bound or population that could have been exposed;
+- **confirmed exposed / acquired**: the source confirms access, acquisition or leakage;
+- **notified population**: people/accounts contacted, which may differ from confirmed exposure;
+- **unique people**: use only when the source explicitly establishes deduplication;
+- **records/accounts/items**: do not silently convert to people.
+
+If an organization corrects a number, the corrected value becomes canonical and the prior value remains in the timeline with the correction noted. Do not add overlapping populations unless the source establishes that they are disjoint.
+
+# Recovery semantics
+
+Do not collapse recovery into a single boolean. Track distinct observable checkpoints when the sources support them:
+
+1. **containment** - malicious access/communications were blocked or affected assets isolated;
+2. **service restoration** - users can use the service again;
+3. **security-state restoration** - temporary safe defaults or restrictions are lifted, if applicable;
+4. **data-impact determination** - exposure scope is sufficiently established for public reporting;
+5. **investigation closure** - the organization states that investigation/public reporting is complete;
+6. **long-term remediation** - medium/long-term controls are completed, not merely announced.
+
+A service can therefore be operational while the incident remains `investigating`. Gyazo is an example: service resumed while legacy image visibility remained intentionally restricted and investigation continued. This distinction should be preserved rather than summarized as “recovered.”
 
 # Freshness and review
 
 Machine-authored reports include `generated` and remain `status: draft` until independently checked. Do not add `verified` merely because the same agent reread the source: OKF reserves `verified` for an actual confirmation event distinct from generation.[^okf-v02]
 
-Ongoing incidents should use `stale_after` so consumers can detect when a new source check is due. Closed or mature reports may omit it, but should still record `latest_public_update`.
+Ongoing incidents should use `stale_after` so consumers can detect when a new source check is due. Closed or mature reports may omit it, but should still record `latest_public_update` and SHOULD record `public_record_checked_at` after an active follow-up check.
+
+When a follow-up check finds no new primary disclosure:
+
+- do not manufacture a new event in the incident timeline;
+- update `public_record_checked_at`;
+- keep `latest_public_update` unchanged;
+- move `stale_after` forward only if continued monitoring remains useful;
+- record the no-new-update check in the body only when it materially helps the reader understand the current state.
 
 # Safety and publication boundary
 
