@@ -3,6 +3,7 @@
 * [京王電鉄 — ransomware and group-system disruption](keio-electric-ransomware.md)
 * [株式会社ファインズ — reservation-system breach](fines-reservation-system-breach.md)
 * [タイムズモビリティ / パーク２４ — Web system breach and identity-document exposure](times-car-web-breach.md)
+* [JCOM — DNS overload from external high-volume traffic and large-scale outage](jcom-dns-external-traffic-outage.md)
 * [Helpfeel / Gyazo — large-scale user and image-metadata breach](helpfeel-gyazo-breach.md)
 * [イエローハット — Web work-reservation system breach](yellowhat-web-reservation-breach.md)
 * [さくらインターネット — unauthorized access and malware](sakura-internet-unauthorized-access.md)
