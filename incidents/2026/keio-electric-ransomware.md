@@ -6,7 +6,7 @@ resource: https://www.keio.co.jp/news/update/announce/nr260926v13404/
 tags: [japan, transportation, ransomware, availability, 2026]
 status: draft
 stale_after: 2026-10-10T00:00:00+09:00
-generated: { by: openai/gpt-5.6-sol, at: 2026-10-03T13:11:00Z }
+generated: { by: openai/gpt-5.6-sol, at: 2026-10-03T19:46:31Z }
 incident:
   organization: 京王電鉄株式会社
   sector: transportation
@@ -17,6 +17,7 @@ incident:
   detected_at: "2026-09-26 (pre-dawn; exact time not publicly disclosed)"
   first_disclosed_at: "2026-09-26"
   latest_public_update: "2026-09-26"
+  public_record_checked_at: "2026-10-04T04:46:31+09:00"
   intrusion_vector: not_publicly_disclosed
   affected_services: "some sales/business systems at group companies"
   data_exposure: not_observed
@@ -45,7 +46,6 @@ sources:
 | 2026-09-26 未明 | 京王電鉄がグループサーバーへのランサムウェア攻撃を確認。[^keio-20260926] |
 | 2026-09-26 | 被害拡大防止のためネットワークを遮断。警察への通報、外部専門家を交えた侵入経路・影響調査を開始。[^keio-20260926] |
 | 2026-09-26 | 一部グループ会社の営業システムへの支障を公表。鉄道運行への支障なし、情報漏えいは未確認と説明。[^keio-20260926] |
-| 2026-10-03 review | 京王電鉄のお知らせ一覧上で、このランサムウェア事案に明示的に紐づく追加報告は確認できていない。9月28日以降の個別システム障害告知は、公式に因果関係が示されない限り本事案へ統合しない。[^keio-news-index] |
 
 # Impact
 
@@ -75,7 +75,9 @@ sources:
 
 # Prognosis / current state
 
-2026年10月3日時点の公開記録では調査中として扱う。初報後の追加公表が出れば、情報漏えいの有無、影響したグループ会社と業務、復旧時期、侵入経路、再発防止策を優先して更新する。
+2026年10月4日に京王電鉄のお知らせ一覧を再確認した時点でも、本ランサムウェア事案に明示的に紐づく追加報告は確認できず、9月26日の初報が最新の公開記録である。9月28日以降に掲載された個別システム障害告知は、公式に因果関係が示されない限り本事案へ統合しない。[^keio-news-index]
+
+したがって公開状態は引き続き `investigating` とし、情報漏えいの有無、影響したグループ会社と業務、復旧時期、侵入経路、再発防止策の続報を追跡する。
 
 # Defensive lessons
 
@@ -92,4 +94,4 @@ sources:
 - 初報後に告知された個別システム障害との因果関係
 
 [^keio-20260926]: 京王電鉄「ランサムウェア攻撃によるシステム障害に関するお知らせとお詫び」2026-09-26.
-[^keio-news-index]: 京王電鉄「お知らせ」一覧。2026-10-03確認。
+[^keio-news-index]: 京王電鉄「お知らせ」一覧。2026-10-04確認。
