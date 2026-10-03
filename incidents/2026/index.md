@@ -17,6 +17,7 @@
 * [ニチレイ — cyberattack, cold-chain logistics disruption and confirmed personal-data leak](nichirei-cyberattack-logistics-breach.md)
 * [アフラック生命保険 — large-scale personal-data leak](aflac-life-unauthorized-access.md)
 * [KDDI — shared ISP mail-platform zero-day and credential leak](kddi-isp-mail-breach.md)
+* [名鉄協商 — multi-server unauthorized access, prolonged service disruption and possible customer-data exposure](meitetsu-kyosho-multi-server-breach.md)
 * [ハンズホールディングス — ransomware](hands-holdings-ransomware.md)
 * [フェースグループ — ransomware via VPN](faith-ransomware.md)
 * [日本資産総研 — credential-theft ransomware and confirmed leak-site publication](nihon-shisan-souken-ransomware-leak.md)
