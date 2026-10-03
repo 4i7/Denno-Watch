@@ -7,6 +7,8 @@ Reports are selected for material operational impact, sensitive/large-scale data
 | Organization | First disclosed | Incident | Public state |
 | --- | --- | --- | --- |
 | [セイコーマート](2026/seicomart-app-breach.md) | 2026-09-29 | App-server breach / 572,022 confirmed viewed members | Recovering / investigating |
+| [OZmall / スターツ出版](2026/ozmall-unauthorized-access.md) | 2026-09-27 | Unauthorized access / up to 442,779 potentially viewed users | Service restored / monitoring |
+| [東京メトロ / メトポ](2026/tokyo-metro-metpo-mail-breach.md) | 2026-09-27 | Mail-service breach / about 59,000 potentially viewed or acquired addresses | Investigating |
 | [京王電鉄](2026/keio-electric-ransomware.md) | 2026-09-26 | Ransomware / group system disruption | Investigating |
 | [株式会社ファインズ](2026/fines-reservation-system-breach.md) | 2026-09-25 | Reservation-system unauthorized access / 1.53M records | Investigating |
 | [タイムズモビリティ / パーク２４](2026/times-car-web-breach.md) | 2026-09-25 | Web-system breach / 6.6M accounts / identity documents | Investigating |
