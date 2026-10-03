@@ -6,7 +6,7 @@ resource: https://www.park24.co.jp/news/2026/09/20260929-1.html
 tags: [japan, mobility, unauthorized-access, identity-documents, personal-data, credentials, 2026]
 status: draft
 stale_after: 2026-10-13T00:00:00+09:00
-generated: { by: openai/gpt-5.6-sol, at: 2026-10-03T13:11:00Z }
+generated: { by: openai/gpt-5.6-sol, at: 2026-10-03T19:46:31Z }
 incident:
   organization: タイムズモビリティ株式会社 / パーク２４株式会社
   sector: mobility-and-car-sharing
@@ -17,6 +17,7 @@ incident:
   detected_at: "2026-09-25 09:07 JST"
   first_disclosed_at: "2026-09-25"
   latest_public_update: "2026-09-29"
+  public_record_checked_at: "2026-10-04T04:46:31+09:00"
   intrusion_vector: not_publicly_disclosed
   affected_services: "Times Car Web system"
   data_exposure: confirmed
@@ -57,7 +58,6 @@ sources:
 | 2026-09-26 07:25まで | 不正アクセス経路の遮断、攻撃元との通信遮断、遮断後のアクセス不能確認を完了。[^times-first][^times-second] |
 | 2026-09-28 | 第2報。約660万アカウント分の情報が第三者に取得されたことを確認。外部専門機関によるフォレンジック継続。[^times-second] |
 | 2026-09-29 | 第3報。約160万アカウントで本人確認書類情報の漏えいを確認。対象者への個別案内開始。[^times-third] |
-| 2026-10-03 review | パーク２４トップページ上では第3報が最新の本件更新。個々の漏えい詳細は外部専門機関の調査を踏まえ約2週間を目処に追加案内予定とされている。[^times-third][^park24-home] |
 
 # Impact
 
@@ -110,6 +110,8 @@ sources:
 
 侵入経路は遮断済みで、新たな不正アクセスは9月28日時点で確認されていない。一方、個々の漏えい内容、原因、最終影響範囲、再発防止策は追加調査・通知中である。[^times-second][^times-third]
 
+2026年10月4日にパーク２４の最新情報を再確認した時点でも、本件の最新一次公表は9月29日の第3報であり、第4報以降は確認できていない。[^park24-home]
+
 本人確認書類という高感度データを約160万件含むため、後続の不正利用監視・本人保護措置と最終報を追跡する必要があり、`investigating` とする。
 
 # Defensive lessons
@@ -132,4 +134,4 @@ sources:
 [^times-first]: パーク２４「タイムズカーWebサイトへの不正アクセスによる個人情報漏えいの可能性について（第1報）」2026-09-25、9月26日追記.
 [^times-second]: パーク２４「タイムズカーWebシステムへの不正アクセスに関する調査結果および今後の対応について（第2報）」2026-09-28.
 [^times-third]: パーク２４「タイムズカーWebシステムへの不正アクセスに関する調査結果および今後の対応について（第3報）」2026-09-29.
-[^park24-home]: パーク２４株式会社トップページ。2026-10-03確認。
+[^park24-home]: パーク２４株式会社トップページ。2026-10-04確認。
