@@ -13,7 +13,9 @@
 - Added the Seicomart app incident, preserving the progression from the initial roughly 570,000-account estimate to 572,022 confirmed viewed members and the partial-service recovery state.
 - Added the Nichirei incident, separating the July cold-chain/frozen-food availability disruption and July 24 operational recovery from the later September confirmation of personal-data leakage.
 - Added the Nihon Shisan Souken incident, preserving the evidence progression from ransomware and encryption through credential-theft attribution, possible exfiltration and confirmed customer-data publication on an attacker leak site.
-- Re-synchronized the year and top-level indexes; the initial corpus now contains 21 incident reports.
+- Added the Meitetsu Kyosho incident, tracking the broad June multi-service outage, later confirmation of attacks against multiple servers, staged service recovery and widening customer notification while preserving the fact that actual external data leakage remained unconfirmed as of the latest primary update.
+- Explicitly excluded the August Cariteco Bike outage/restart from the Meitetsu Kyosho incident timeline because the company attributed that interruption to a separate Docomo Bike Share system failure.
+- Re-synchronized the year and top-level indexes; the initial corpus now contains 22 incident reports.
 
 ## 2026-10-03
 
