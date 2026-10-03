@@ -7,11 +7,16 @@ Reports are selected for material operational impact, sensitive/large-scale data
 | Organization | First disclosed | Incident | Public state |
 | --- | --- | --- | --- |
 | [京王電鉄](2026/keio-electric-ransomware.md) | 2026-09-26 | Ransomware / group system disruption | Investigating |
-| [REXT Holdings / REXT](2026/rext-ransomware.md) | 2026-08-10 | Ransomware / retail operations / confirmed online publication of possible leaked data | Investigating |
+| [株式会社ファインズ](2026/fines-reservation-system-breach.md) | 2026-09-25 | Reservation-system unauthorized access / 1.53M records | Investigating |
+| [タイムズモビリティ / パーク２４](2026/times-car-web-breach.md) | 2026-09-25 | Web-system breach / 6.6M accounts / identity documents | Investigating |
+| [Helpfeel / Gyazo](2026/helpfeel-gyazo-breach.md) | 2026-09-16 | Unauthorized access / 23.62M users / large-scale image metadata | Service restored / investigating |
 | [さくらインターネット](2026/sakura-internet-unauthorized-access.md) | 2026-08-17 | Unauthorized access / malware / customer-management exposure risk | Monitoring |
+| [REXT Holdings / REXT](2026/rext-ransomware.md) | 2026-08-10 | Ransomware / retail operations / confirmed online publication of possible leaked data | Investigating |
 | [シーイーシー](2026/cec-datacenter-ransomware.md) | 2026-08-06 | Ransomware / data-center service outage | Public report closed |
-| [Ｅストアー / ショップサーブ](2026/estore-shopserve-breach.md) | 2026-08-01 | Unauthorized access / purchase-data exfiltration | Investigating |
 | [株式会社イノベーション](2026/innovation-github-breach.md) | 2026-08-04 | GitHub unauthorized access / repository data leak | Public report closed |
+| [Ｅストアー / ショップサーブ](2026/estore-shopserve-breach.md) | 2026-08-01 | Unauthorized access / purchase-data exfiltration | Investigating |
+| [株式会社ムラウチドットコム](2026/murauchi-dotcom-breach.md) | 2026-07-24 | Web-system compromise / 7,716,811 customer records | Public investigation completed |
+| [KDDI](2026/kddi-isp-mail-breach.md) | 2026-06-23 | Shared ISP mail platform / then-unknown software vulnerability / credentials | Public report closed / regulatory follow-up |
 | [アフラック生命保険](2026/aflac-life-unauthorized-access.md) | 2026-06-30 | Unauthorized access / large-scale personal-data leak | Monitoring / service recovery |
 | [ハンズホールディングス](2026/hands-holdings-ransomware.md) | 2026-06-22 | Ransomware / employee and My Number exposure risk | Investigating |
 | [フェースグループ](2026/faith-ransomware.md) | 2026-06-22 | Ransomware via VPN / encryption and deletion | Recovering |
