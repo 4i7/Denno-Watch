@@ -1,5 +1,7 @@
 ---
 okf_version: "0.2"
+okf_spec_revision: "ad30107c31c06aec8a7d5636e0d1058118604e6f"
+okf_spec_resource: "https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/ad30107c31c06aec8a7d5636e0d1058118604e6f/SPEC.md"
 ---
 
 # Denno Watch
