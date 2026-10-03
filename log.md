@@ -17,7 +17,8 @@
 - Explicitly excluded the August Cariteco Bike outage/restart from the Meitetsu Kyosho incident timeline because the company attributed that interruption to a separate Docomo Bike Share system failure.
 - Added the OZmall incident and preserved the correction from the first-report maximum of 447,610 people to the second-report maximum of 442,779, including the newly clarified inclusion of some former members.
 - Added the Tokyo Metro / Metpo incident, documenting that the directly affected server held only delivery-suspended email addresses and using it as an example of functional data separation limiting the observed blast radius.
-- Re-synchronized the year and top-level indexes; the initial corpus now contains 24 incident reports.
+- Added the LEAN BODY incident, documenting confirmed customer-data acquisition through a vulnerable internal Metabase analytics environment while deliberately leaving the CVE unidentified because the company did not publish one.
+- Re-synchronized the year and top-level indexes; the initial corpus now contains 25 incident reports.
 
 ## 2026-10-03
 
