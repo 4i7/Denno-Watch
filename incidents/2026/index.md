@@ -1,6 +1,8 @@
 # 2026
 
 * [セイコーマート — app-server breach and 572,022 confirmed viewed members](seicomart-app-breach.md)
+* [OZmall / スターツ出版 — unauthorized access and up to 442,779 potentially viewed users](ozmall-unauthorized-access.md)
+* [東京メトロ / メトポ — mail-service breach and about 59,000 potentially viewed/acquired addresses](tokyo-metro-metpo-mail-breach.md)
 * [京王電鉄 — ransomware and group-system disruption](keio-electric-ransomware.md)
 * [株式会社ファインズ — reservation-system breach](fines-reservation-system-breach.md)
 * [タイムズモビリティ / パーク２４ — Web system breach and identity-document exposure](times-car-web-breach.md)
