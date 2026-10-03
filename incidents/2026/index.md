@@ -12,7 +12,7 @@
 * [株式会社イノベーション — GitHub unauthorized access](innovation-github-breach.md)
 * [Ｅストアー / ショップサーブ — purchase-data exfiltration](estore-shopserve-breach.md)
 * [株式会社ムラウチドットコム — 7.7M-customer data breach](murauchi-dotcom-breach.md)
-* [ファイブフォックス / コムサ — unauthorized access and ransomware-suspected breach](five-foxes-ransomware-suspected-breach.md)
+* [ファイブフォックス / コムサ — unauthorized access with suspected ransomware and personal-data exposure](five-foxes-ransomware-suspected-breach.md)
 * [アフラック生命保険 — large-scale personal-data leak](aflac-life-unauthorized-access.md)
 * [KDDI — shared ISP mail-platform zero-day and credential leak](kddi-isp-mail-breach.md)
 * [ハンズホールディングス — ransomware](hands-holdings-ransomware.md)
