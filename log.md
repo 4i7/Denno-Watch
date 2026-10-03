@@ -15,7 +15,9 @@
 - Added the Nihon Shisan Souken incident, preserving the evidence progression from ransomware and encryption through credential-theft attribution, possible exfiltration and confirmed customer-data publication on an attacker leak site.
 - Added the Meitetsu Kyosho incident, tracking the broad June multi-service outage, later confirmation of attacks against multiple servers, staged service recovery and widening customer notification while preserving the fact that actual external data leakage remained unconfirmed as of the latest primary update.
 - Explicitly excluded the August Cariteco Bike outage/restart from the Meitetsu Kyosho incident timeline because the company attributed that interruption to a separate Docomo Bike Share system failure.
-- Re-synchronized the year and top-level indexes; the initial corpus now contains 22 incident reports.
+- Added the OZmall incident and preserved the correction from the first-report maximum of 447,610 people to the second-report maximum of 442,779, including the newly clarified inclusion of some former members.
+- Added the Tokyo Metro / Metpo incident, documenting that the directly affected server held only delivery-suspended email addresses and using it as an example of functional data separation limiting the observed blast radius.
+- Re-synchronized the year and top-level indexes; the initial corpus now contains 24 incident reports.
 
 ## 2026-10-03
 
