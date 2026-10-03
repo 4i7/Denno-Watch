@@ -18,6 +18,7 @@ Reports are selected for material operational impact, sensitive/large-scale data
 | [株式会社イノベーション](2026/innovation-github-breach.md) | 2026-08-04 | GitHub unauthorized access / repository data leak | Public report closed |
 | [Ｅストアー / ショップサーブ](2026/estore-shopserve-breach.md) | 2026-08-01 | Unauthorized access / purchase-data exfiltration | Investigating |
 | [株式会社ムラウチドットコム](2026/murauchi-dotcom-breach.md) | 2026-07-24 | Web-system compromise / 7,716,811 customer records | Public investigation completed |
+| [ファイブフォックス / コムサ](2026/five-foxes-ransomware-suspected-breach.md) | 2026-07-14 | Unauthorized access / ransomware infection suspected / customer & employee data | Investigating |
 | [アフラック生命保険](2026/aflac-life-unauthorized-access.md) | 2026-06-30 | Unauthorized access / large-scale personal-data leak | Monitoring / service recovery |
 | [KDDI](2026/kddi-isp-mail-breach.md) | 2026-06-23 | Shared ISP mail platform / then-unknown software vulnerability / credentials | Public report closed / regulatory follow-up |
 | [ハンズホールディングス](2026/hands-holdings-ransomware.md) | 2026-06-22 | Ransomware / employee and My Number exposure risk | Investigating |
