@@ -11,6 +11,7 @@ Open defensive knowledge for major cyber incidents affecting organizations in Ja
 ## Knowledge
 
 * [Incident reports](incidents/index.md) - public-evidence incident records, timelines, impact, recovery and follow-up.
+* [Analysis](analysis/index.md) - cross-incident patterns, realistic countermeasures, loss models and defense-budget guidance.
 * [Reporting standard](methodology/reporting-standard.md) - inclusion, evidence, provenance, freshness and field semantics.
 * [2026 corpus audit](methodology/corpus-audit-2026-10-04.md) - primary-source consistency audit, corpus expansion and cross-incident findings.
 * [Update log](log.md) - chronological bundle changes.
