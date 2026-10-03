@@ -22,6 +22,7 @@ Reports are selected for material operational impact, sensitive/large-scale data
 | [ロート製薬](2026/rohto-direct-sales-system-breach.md) | 2026-09-11 | Direct-sales system / possible customer data and call-audio acquisition | Investigating |
 | [日本トレクス](2026/japan-trex-unauthorized-access-outage.md) | 2026-09-11 | Unauthorized access / procurement, parts-order and email disruption | Restored / public investigation concluded |
 | [ApplyNow](2026/applynow-recruitment-platform-breach.md) | 2026-09-09 | Recruitment SaaS / downstream applicant and employment-related data | Downstream notification / investigating |
+| [コープやまぐち](2026/coop-yamaguchi-line-miniapp-breach.md) | 2026-08-28 | LINE mini-app DB / all data deleted / 212,712 main member records plus affected subsets | Service restored / confidentiality investigation open |
 | [イエローハット](2026/yellowhat-web-reservation-breach.md) | 2026-08-28 | Web work-reservation breach / up to 1,801,499 members | Investigating |
 | [VOISING](2026/voising-bi-tool-breach.md) | 2026-08-18 | BI known-vulnerability exploitation / ~170,000 confirmed leaked records | Investigation complete / monitoring |
 | [さくらインターネット](2026/sakura-internet-unauthorized-access.md) | 2026-08-17 | Unauthorized access / malware / customer-management exposure risk | Monitoring |
@@ -32,6 +33,8 @@ Reports are selected for material operational impact, sensitive/large-scale data
 | [Ｅストアー / ショップサーブ](2026/estore-shopserve-breach.md) | 2026-08-01 | Unauthorized access / purchase-data exfiltration | Investigating |
 | [EPARKリラク＆エステ / PeakManager](2026/epark-peakmanager-breach.md) | 2026-07-31 | Customer DB exfiltration and deletion / ~22.18M records after refinement | Forensic result published / monitoring |
 | [株式会社ムラウチドットコム](2026/murauchi-dotcom-breach.md) | 2026-07-24 | Web-system compromise / 7,716,811 customer records | Public investigation completed |
+| [扶桑電通](2026/fuso-dentsu-cloud-storage-breach.md) | 2026-07-22 | Cloud-storage credential misuse / 26,489 records potentially exposed | Investigation complete / monitoring |
+| [メディア4u](2026/media4u-sms-platform-breach.md) | 2026-07-14 | SMS platform / 95,412 management records leaked / 280 unauthorized SMS messages | Service continuing / scope refinement |
 | [ファイブフォックス / コムサ](2026/five-foxes-ransomware-suspected-breach.md) | 2026-07-14 | Unauthorized access / suspected ransomware / customer and employee data | Investigating |
 | [ニチレイ](2026/nichirei-cyberattack-logistics-breach.md) | 2026-07-13 | Cyberattack / cold-chain logistics and frozen-food shipment disruption / confirmed personal-data leak | Operations restored / investigation continues |
 | [日本交通](2026/nihon-kotsu-malware-breach.md) | 2026-07-13 | Malware / reservation-dispatch disruption / confirmed external file leakage | Recovery / data-scope investigation |
@@ -40,7 +43,9 @@ Reports are selected for material operational impact, sensitive/large-scale data
 | [名鉄協商](2026/meitetsu-kyosho-multi-server-breach.md) | 2026-06-23 | Multi-server unauthorized access / prolonged multi-service disruption / possible customer-data exposure | Partial recovery / investigating |
 | [ハンズホールディングス](2026/hands-holdings-ransomware.md) | 2026-06-22 | Ransomware / employee and My Number exposure risk | Investigating |
 | [フェースグループ](2026/faith-ransomware.md) | 2026-06-22 | Ransomware via VPN / encryption and deletion | Recovering |
+| [ドットマネー / ドットギフト](2026/dotmoney-dotgift-breach.md) | 2026-06-11 | Unauthorized access / long full outage / phased restart / DotGift termination | DotMoney restored / DotGift terminated |
 | [日本資産総研](2026/nihon-shisan-souken-ransomware-leak.md) | 2026-05-14 | Credential-theft ransomware / encryption / confirmed customer-data leak-site publication | Operations restored / remediation continues |
+| [マルタケ](2026/marutake-ransomware-leak.md) | 2026-04-28 | Ransomware / prolonged operational disruption / confirmed exfiltration and leak-site publication | Temporary environment / monitoring |
 | [２りんかんイエローハット](2026/yellowhat-2rinkan-breach.md) | 2026-04-23 | API-related unauthorized access / 3,179,454 members | Public report closed / service rebuild pending |
 | [日本テレネット](2026/nippon-telenet-ransomware-bpo-breach.md) | 2026-03-17 | Network-equipment entry / ransomware / large entrusted-data populations | Investigation complete / monitoring |
 
