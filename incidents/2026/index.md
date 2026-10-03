@@ -1,5 +1,6 @@
 # 2026
 
+* [セイコーマート — app-server breach and 572,022 confirmed viewed members](seicomart-app-breach.md)
 * [京王電鉄 — ransomware and group-system disruption](keio-electric-ransomware.md)
 * [株式会社ファインズ — reservation-system breach](fines-reservation-system-breach.md)
 * [タイムズモビリティ / パーク２４ — Web system breach and identity-document exposure](times-car-web-breach.md)
@@ -13,8 +14,10 @@
 * [Ｅストアー / ショップサーブ — purchase-data exfiltration](estore-shopserve-breach.md)
 * [株式会社ムラウチドットコム — 7.7M-customer data breach](murauchi-dotcom-breach.md)
 * [ファイブフォックス / コムサ — unauthorized access with suspected ransomware and personal-data exposure](five-foxes-ransomware-suspected-breach.md)
+* [ニチレイ — cyberattack, cold-chain logistics disruption and confirmed personal-data leak](nichirei-cyberattack-logistics-breach.md)
 * [アフラック生命保険 — large-scale personal-data leak](aflac-life-unauthorized-access.md)
 * [KDDI — shared ISP mail-platform zero-day and credential leak](kddi-isp-mail-breach.md)
 * [ハンズホールディングス — ransomware](hands-holdings-ransomware.md)
 * [フェースグループ — ransomware via VPN](faith-ransomware.md)
+* [日本資産総研 — credential-theft ransomware and confirmed leak-site publication](nihon-shisan-souken-ransomware-leak.md)
 * [２りんかんイエローハット — API-related member-data breach](yellowhat-2rinkan-breach.md)
