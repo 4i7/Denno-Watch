@@ -6,6 +6,7 @@ Reports are selected for material operational impact, sensitive/large-scale data
 
 | Organization | First disclosed | Incident | Public state |
 | --- | --- | --- | --- |
+| [セイコーマート](2026/seicomart-app-breach.md) | 2026-09-29 | App-server breach / 572,022 confirmed viewed members | Recovering / investigating |
 | [京王電鉄](2026/keio-electric-ransomware.md) | 2026-09-26 | Ransomware / group system disruption | Investigating |
 | [株式会社ファインズ](2026/fines-reservation-system-breach.md) | 2026-09-25 | Reservation-system unauthorized access / 1.53M records | Investigating |
 | [タイムズモビリティ / パーク２４](2026/times-car-web-breach.md) | 2026-09-25 | Web-system breach / 6.6M accounts / identity documents | Investigating |
@@ -19,10 +20,12 @@ Reports are selected for material operational impact, sensitive/large-scale data
 | [Ｅストアー / ショップサーブ](2026/estore-shopserve-breach.md) | 2026-08-01 | Unauthorized access / purchase-data exfiltration | Investigating |
 | [株式会社ムラウチドットコム](2026/murauchi-dotcom-breach.md) | 2026-07-24 | Web-system compromise / 7,716,811 customer records | Public investigation completed |
 | [ファイブフォックス / コムサ](2026/five-foxes-ransomware-suspected-breach.md) | 2026-07-14 | Unauthorized access / suspected ransomware / customer and employee data | Investigating |
+| [ニチレイ](2026/nichirei-cyberattack-logistics-breach.md) | 2026-07-13 | Cyberattack / cold-chain logistics and frozen-food shipment disruption / confirmed personal-data leak | Operations restored / investigation continues |
 | [アフラック生命保険](2026/aflac-life-unauthorized-access.md) | 2026-06-30 | Unauthorized access / large-scale personal-data leak | Monitoring / service recovery |
 | [KDDI](2026/kddi-isp-mail-breach.md) | 2026-06-23 | Shared ISP mail platform / then-unknown software vulnerability / credentials | Public report closed / regulatory follow-up |
 | [ハンズホールディングス](2026/hands-holdings-ransomware.md) | 2026-06-22 | Ransomware / employee and My Number exposure risk | Investigating |
 | [フェースグループ](2026/faith-ransomware.md) | 2026-06-22 | Ransomware via VPN / encryption and deletion | Recovering |
+| [日本資産総研](2026/nihon-shisan-souken-ransomware-leak.md) | 2026-05-14 | Credential-theft ransomware / encryption / confirmed customer-data leak-site publication | Operations restored / remediation continues |
 | [２りんかんイエローハット](2026/yellowhat-2rinkan-breach.md) | 2026-04-23 | API-related unauthorized access / 3,179,454 members | Public report closed / service rebuild pending |
 
 See [reporting standard](/methodology/reporting-standard.md) for evidence-state and field semantics.
