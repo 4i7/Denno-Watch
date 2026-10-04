@@ -2,6 +2,12 @@
 
 ## 2026-10-04
 
+- Added an [executive AI-amplified cyber risk report](analysis/executive-ai-amplified-cyber-risk-report-2026-10-04.md) that translates the 42-report Japan incident corpus and 2026 threat intelligence into a business-facing view of attacker economics, 24/365 automation, likely damage scenarios and layered defensive priorities.
+- Explicitly documented that attackers do not need to own DGX SuperPOD-class infrastructure: LLM inference can be rented through APIs/cloud services while low-cost controllers/workers handle scheduling, observation and network/browser tasks; the report carefully distinguishes cheap orchestration nodes from local frontier-model inference.
+- Added a 24/365 threat model that separates continuously automatable reconnaissance, prioritization, campaign management and data triage from the complex real-world intrusion stages that still commonly require meaningful human direction.
+- Mapped AI-era attack economics to observed Japanese failure modes: exposed vulnerabilities, valid-account/VPN/cloud abuse, API/business-logic extraction, SaaS/supply-chain concentration, ransomware/data theft, destructive DB impact, communications control-plane abuse and historical-data accumulation.
+- Added a ten-layer practical defense model covering external attack-surface visibility, phishing-resistant identity, machine-speed vulnerability response, behavioral/rate controls, data minimization, segmentation, 24/365 detection, clean backup recovery, supply-chain governance and dual-control business processes.
+- Added executive KPIs for critical-exposure MTTR, FIDO/MFA coverage, privileged-account reduction, server EDR coverage, bulk-access detect-to-block time, restore success, data-retention debt and critical-vendor mapping.
 - Completed a second public-source sweep and expanded the 2026 corpus from 37 to **42 incident reports**.
 - Added コープやまぐち: destructive unauthorized access deleted the LINE mini-app database; same-day backup restoration recovered service while confidentiality impact remained unresolved; the refined scope includes 69,586 and 143,126 main member-record populations plus smaller affected subsets.
 - Added メディア4u: SMS-platform control-plane compromise with 95,412 confirmed leaked customer-management records, 22,928 records potentially containing personal information, and 280 unauthorized SMS messages sent through one customer account; OEM/reseller downstream handling is recorded separately.
