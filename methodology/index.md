@@ -1,4 +1,4 @@
-# Methodology
+# 記録方法・監査
 
-* [Reporting standard](reporting-standard.md) - the canonical rules used to select, research, update and interpret Denno Watch incident reports.
-* [2026 major-incident corpus audit — 2026-10-04](corpus-audit-2026-10-04.md) - primary-source consistency review of the existing corpus, newly selected incidents, OKF conformance notes and cross-incident defensive findings.
+* [インシデント記録基準](reporting-standard.md) - Denno Watchで事例を選定・調査・更新・解釈するための標準ルール。
+* [2026年 重大インシデント事例集監査 — 2026-10-04](corpus-audit-2026-10-04.md) - 既存事例と一次情報の整合性、新規収録事例、OKF適合性、事例横断の防御上の知見を確認した監査記録。
