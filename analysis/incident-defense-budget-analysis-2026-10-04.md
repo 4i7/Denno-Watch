@@ -57,7 +57,7 @@ sources:
 
 # Observed recurring patterns
 
-## 1. インターネット公開 and adjacent-tool vulnerability exploitation
+## 1. Internet-facing and adjacent-tool vulnerability exploitation
 
 代表例: KDDI、LEAN BODY、VOISING、ApplyNow、メディア4u、OZmall 等。
 
@@ -69,7 +69,7 @@ sources:
 
 現実的な対抗策:
 
-- インターネット公開 asset inventory / external attack-surface management を常時運用。
+- internet-facing asset inventory / external attack-surface management を常時運用。
 - KEV・実悪用情報・ベンダー緊急情報を監視し、公開系は**時間単位〜24時間単位の隔離判断**を可能にする。
 - WAFだけで終わらず、API/管理画面/BIへのrate limit、行動異常検知、管理面のIP/identity制約を追加。
 - 補助ツールも本番データ境界として扱い、patch owner とSLAを明示。
@@ -88,11 +88,11 @@ sources:
 
 現実的な対抗策:
 
-- フィッシング耐性のある MFA/FIDO2 を外部アクセス・管理者・クラウド共有へ優先導入。
+- phishing-resistant MFA/FIDO2 を外部アクセス・管理者・クラウド共有へ優先導入。
 - legacy authentication を廃止し、条件付きアクセス・端末準拠・地理/ASN/Impossible Travel等を組み合わせる。
 - PAM/JIT/JEAで恒久管理者権限を削減。
 - PAT/API key/tokenは短寿命・最小権限・自動rotation。コード/設定ファイル直書きを禁止。
-- dormant/contractor/vendor アカウント を定期自動失効。
+- dormant/contractor/vendor account を定期自動失効。
 - 認証成功後も大量列挙・異常ダウンロード・深夜アクセスを監視。
 
 防止可能性: **高**。資格情報単独で侵入可能な構成は、MFA・権限制御・監視で大幅にリスク低下可能。
@@ -111,14 +111,14 @@ sources:
 
 - EDR + 24/365 MDR/SOC、サーバー・端末・identityの相関監視。
 - network segmentation と管理経路分離。バックアップ管理面を本番AD/SSOから切り離す。
-- immutable/オフライン backup、復元演習、RTO/RPO測定。
+- immutable/offline backup、復元演習、RTO/RPO測定。
 - 管理者資格情報のtiering、LAPS/PAM、横展開に使われるプロトコル・共有を最小化。
 - egress異常、圧縮/大量読出し、クラウドストレージ転送を検知。
 - IR retainer と「全停止」「部分隔離」「クリーン再構築」の意思決定手順を事前契約。
 
 防止可能性: **中**、被害縮小可能性: **非常に高い**。侵入自体を完全阻止できなくても、暗号化範囲・持出し量・停止期間は設計で大きく変わる。
 
-## 4. 提供事業者 / SaaS / entrusted-data concentration
+## 4. Provider / SaaS / entrusted-data concentration
 
 代表例: ApplyNow、KDDI、両毛システムズ、日本テレネット、メディア4u。
 
@@ -170,7 +170,7 @@ sources:
 
 - user/session/device単位の取得量上限、pagination cap、export privilege分離。
 - IDOR/BOLAだけでなく「正規権限で何件まで取得できるか」をabuse caseとして脅威モデリング。
-- per-アカウント velocity、unique-object access count、深夜・長時間列挙をUEBAへ投入。
+- per-account velocity、unique-object access count、深夜・長時間列挙をUEBAへ投入。
 - high-value APIはstep-up authenticationとrisk scoringを適用。
 
 防止可能性: **高**。機能要件にrate/volume boundaryを組み込めば大規模化をかなり抑えられる。
@@ -187,7 +187,7 @@ sources:
 現実的な対抗策:
 
 - DB production roleからbackup削除権限を分離。
-- point-in-time 復旧、immutable snapshot、cross-アカウント/cross-subscription backup。
+- point-in-time recovery、immutable snapshot、cross-account/cross-subscription backup。
 - deletion / truncate / mass updateを高重要イベントとして即時通知。
 - restore testを四半期以上の頻度で実施し、RTO/RPOを実測。
 
@@ -211,7 +211,7 @@ sources:
 
 防止可能性: **高**。
 
-## 9. Communications 制御プレーンの悪用
+## 9. Communications control-plane abuse
 
 代表例: メディア4u。
 
@@ -221,7 +221,7 @@ sources:
 
 現実的な対抗策:
 
-- outbound message quota、template allowlist、high-リスク URL/domain検査。
+- outbound message quota、template allowlist、high-risk URL/domain検査。
 - 新規送信元・異常送信量・普段と異なる宛先分布でautomatic pause。
 - 管理者操作と配信実行を別権限に分け、重要変更はstep-up MFA/4-eyes。
 - emergency credential rotation と顧客単位kill switchを用意。
@@ -239,7 +239,7 @@ sources:
 
 現実的な対抗策:
 
-- DNS anycast / multi-提供事業者 / capacity headroom / rate control。
+- DNS anycast / multi-provider / capacity headroom / rate control。
 - shared platformをtenant partitionし、credential store/keysを分離。
 - failure domainを明示し、顧客ブランドごとの「見かけの分離」ではなく物理・論理依存関係を管理。
 - platform-wide emergency credential rotation / notification pipelineを事前実装。
@@ -262,7 +262,7 @@ sources:
 
 防止可能性: 侵入 **なし**、被害規模縮小 **非常に高い**。
 
-## 12. Business continuity and サービス廃止
+## 12. Business continuity and service retirement
 
 代表例: 日本トレクス、日本交通、マルタケ、ドットマネー/ドットギフト、ニチレイ。
 
@@ -277,7 +277,7 @@ sources:
 - 年2回以上のtabletopと実運用切替演習。
 - legacy serviceについて「復旧コスト > 残存価値」ならretirementへ移れる計画を事前作成。
 
-# Defense budget モデル
+# Defense budget model
 
 ## External benchmark
 
@@ -289,22 +289,22 @@ IBMの2025日本調査では、データ侵害の平均コストは**5億5,000�
 
 したがって、数千万円〜数億円規模の予防投資は、重大事故の期待損失と比較して必ずしも過大ではない。
 
-## Denno Watch リスク-adjusted annual floor
+## Denno Watch risk-adjusted annual floor
 
 以下は外部benchmarkそのものではなく、42件の日本事例を踏まえた**Denno Watchの予算モデル**である。
 
 | Environment | Suggested annual security budget | Rationale |
 | --- | ---: | --- |
 | 一般的な企業IT | IT予算の10〜12% | IANS 10.9%を基準 |
-| インターネット公開 + 10万件超PII / SaaS / EC | IT予算の12〜15% | application abuse、data concentration、incident responseを上乗せ |
-| 金融・通信・物流・医療供給・100万件超データ・multi-tenant 提供事業者 | IT予算の15〜18% | 大規模下流波及と事業停止を前提 |
+| Internet-facing + 10万件超PII / SaaS / EC | IT予算の12〜15% | application abuse、data concentration、incident responseを上乗せ |
+| 金融・通信・物流・医療供給・100万件超データ・multi-tenant provider | IT予算の15〜18% | 大規模下流波及と事業停止を前提 |
 | breach後の2年間 / 大規模legacy是正期間 | IT予算の18〜22%も許容 | accumulated debt、clean rebuild、監視増強、人員補強の時限措置 |
 
 この比率は「高いほど安全」という意味ではない。asset ownership、identity、patch、logging、restore testが回っていない組織では、製品購入を増やしても効果は低い。
 
 ### Example conversion
 
-| Annual IT spend | 10.9% benchmark | High-リスク 15% | Very-high-リスク 18% |
+| Annual IT spend | 10.9% benchmark | High-risk 15% | Very-high-risk 18% |
 | ---: | ---: | ---: | ---: |
 | ¥200M | ¥21.8M | ¥30M | ¥36M |
 | ¥500M | ¥54.5M | ¥75M | ¥90M |
@@ -318,20 +318,20 @@ IBMの2025日本調査では、データ侵害の平均コストは**5億5,000�
 
 | Attack / failure mode | Core control bundle | Mid-size envelope | Large / critical envelope |
 | --- | --- | ---: | ---: |
-| インターネット公開 vulnerability | EASM + VM + emergency patch + WAF/API controls | ¥10–40M/yr | ¥40–200M/yr |
+| Internet-facing vulnerability | EASM + VM + emergency patch + WAF/API controls | ¥10–40M/yr | ¥40–200M/yr |
 | Credential / VPN / cloud abuse | SSO/MFA/FIDO2 + PAM/JIT + conditional access | ¥5–30M/yr | ¥30–150M/yr |
 | Ransomware/system intrusion | EDR + MDR/SOC + segmentation + IR retainer | ¥30–120M/yr | ¥150–800M/yr |
-| Immutable backup / クリーンな復旧 | isolated backup + restore drill + 復旧 environment | ¥10–50M initial, ¥5–30M/yr | ¥50–300M initial, ¥20–150M/yr |
-| SaaS / entrusted-data 被害範囲 | テナント分離 + TPRM + データ系譜 + deletion evidence | ¥5–30M/yr | ¥30–150M/yr |
-| BI / analytics compromise | restricted access + patch + データ最小化 + export monitoring | ¥5–25M/yr | ¥20–100M/yr |
+| Immutable backup / clean recovery | isolated backup + restore drill + recovery environment | ¥10–50M initial, ¥5–30M/yr | ¥50–300M initial, ¥20–150M/yr |
+| SaaS / entrusted-data blast radius | tenant isolation + TPRM + data lineage + deletion evidence | ¥5–30M/yr | ¥30–150M/yr |
+| BI / analytics compromise | restricted access + patch + data minimization + export monitoring | ¥5–25M/yr | ¥20–100M/yr |
 | API/business-logic scraping | API gateway + behavioral analytics + per-session limits | ¥5–30M/yr | ¥30–150M/yr |
 | Dev/GitHub secrets and PII | secret scanning + OIDC + DLP + masked test data | ¥3–15M/yr | ¥15–80M/yr |
-| Communication 制御プレーンの悪用 | strong admin auth + send anomaly detection + kill switch | ¥5–20M/yr | ¥20–100M/yr |
-| DNS/high-volume availability | managed authoritative DNS + DDoS protection + multi-提供事業者 | ¥5–30M/yr | ¥30–200M/yr |
+| Communication control-plane abuse | strong admin auth + send anomaly detection + kill switch | ¥5–20M/yr | ¥20–100M/yr |
+| DNS/high-volume availability | managed authoritative DNS + DDoS protection + multi-provider | ¥5–30M/yr | ¥30–200M/yr |
 | Data-retention reduction | inventory + deletion automation + archive governance | ¥5–20M/yr | ¥20–100M/yr |
 | IR/tabletop/forensics readiness | retainer + twice-yearly exercise + legal/comms playbook | ¥3–15M/yr | ¥15–60M/yr |
 
-# Maximum credible loss モデル
+# Maximum credible loss model
 
 「最大被害」は件数だけでは決まらない。Denno Watchでは次の合計でストレステストする。
 
@@ -342,12 +342,12 @@ IBMの2025日本調査では、データ侵害の平均コストは**5億5,000�
 | Archetype | Maximum credible loss band | Main loss drivers |
 | --- | ---: | --- |
 | 限定的なWeb/クラウド侵害、停止小 | ¥0.1–1B | IR、通知、再構築、顧客対応 |
-| 10万〜100万規模のPII/credential 侵害 | ¥0.5–5B | 調査、通知、認証変更、fraud対策、churn |
+| 10万〜100万規模のPII/credential breach | ¥0.5–5B | 調査、通知、認証変更、fraud対策、churn |
 | 100万〜数千万規模 / 高感度データ | ¥2–15B | 長期顧客保護、金融/ID悪用対策、ブランド毀損 |
 | Ransomware + 数日〜数週の業務停止 | ¥3–30B+ | 売上/粗利停止、物流、復旧、在庫、再構築 |
 | multi-tenant / supplier / shared infrastructure | 自社¥1–10B + downstream aggregate ¥10B超も想定 | 複数顧客同時波及、契約責任、通知・復旧並列化 |
 | critical supply / finance / telecom / logistics | ¥5–30B+ | 社会的供給影響、代替運用、長期停止、規制対応 |
-| サービス廃止 | 残存サービス価値全額 + 顧客救済 | 復旧不能/非合理、残高・契約・移行負担 |
+| service retirement | 残存サービス価値全額 + 顧客救済 | 復旧不能/非合理、残高・契約・移行負担 |
 
 これらは実損認定ではない。IBMの日本平均5.5億円と、ASKULで観測された52.62億円の対応費の間に、重大事案が容易に数十億円級へ拡大し得る現実的な幅があることを予算判断へ反映するためのモデルである。[^ibm-cost-2025-jp][^askul-cost]
 
@@ -375,7 +375,7 @@ IBMの2025日本調査では、データ侵害の平均コストは**5億5,000�
 
 ## Priority 2 — blast radiusを構造的に縮める
 
-- データ最小化 / retention deletion。
+- data minimization / retention deletion。
 - tenant segmentation。
 - analytics copy削減。
 - privileged identityのJIT化。
@@ -390,9 +390,9 @@ IBMの2025日本調査では、データ侵害の平均コストは**5億5,000�
 | Security staff / SecOps / IR capability | 25–30% |
 | Identity / endpoint / detection & response | 20–25% |
 | Vulnerability / application / cloud security | 15–20% |
-| Resilience / backup / 復旧 / segmentation | 15–20% |
+| Resilience / backup / recovery / segmentation | 15–20% |
 | Data governance / DLP / retention | 5–10% |
-| Third-party リスク / assurance | 5–8% |
+| Third-party risk / assurance | 5–8% |
 | Exercises / training / external IR retainer | 3–7% |
 
 IANSではsecurity softwareが平均security budgetの約30%を占めるとされる。ツール費だけが膨らみ、staffing・運用・復元演習が不足しないようにする必要がある。[^ians-budget-2025]
@@ -401,12 +401,12 @@ IANSではsecurity softwareが平均security budgetの約30%を占めるとさ�
 
 | Incident pattern | Most relevant missing/valuable controls |
 | --- | --- |
-| LEAN BODY / VOISING / ApplyNow | BI patch ownership、private access、データ最小化、export anomaly detection |
-| 両毛システムズ / 扶桑電通 | フィッシング耐性のある MFA、PAM、vendor アカウント lifecycle、post-auth anomaly detection |
+| LEAN BODY / VOISING / ApplyNow | BI patch ownership、private access、data minimization、export anomaly detection |
+| 両毛システムズ / 扶桑電通 | phishing-resistant MFA、PAM、vendor account lifecycle、post-auth anomaly detection |
 | 日本テレネット / マルタケ / CEC / 京王 | EDR/MDR、segmentation、immutable backup、clean rebuild、IR retainer |
-| アフラック | business-logic abuse detection、query volume cap、リスク-based step-up auth |
-| KDDI | zero-day-ready detection、shared-platform segmentation、rapid credential reset across downstream 提供事業者 |
-| コープやまぐち | immutable PITR backup、DB destructive-action alert、データ最小化 |
+| アフラック | business-logic abuse detection、query volume cap、risk-based step-up auth |
+| KDDI | zero-day-ready detection、shared-platform segmentation、rapid credential reset across downstream providers |
+| コープやまぐち | immutable PITR backup、DB destructive-action alert、data minimization |
 | メディア4u | send-control plane MFA、quota/anomaly detection、per-customer kill switch |
 | イノベーション | short-lived credentials、secret scanning、PII-in-repo prevention、synthetic test data |
 | 東京メトロ / 第一生命 | retention reduction and dormant-data deletion |
@@ -424,7 +424,7 @@ IANSではsecurity softwareが平均security budgetの約30%を占めるとさ�
 - clean rebuildがあれば侵害済み環境を信用せず復旧できる。
 - alternate operationsがあれば物流・交通・医薬品供給を維持できる。
 
-したがって、防衛予算の中心は「最新の検知製品」だけではなく、**identity、segmentation、データ最小化、patch velocity、observability、復旧 engineering、business continuity**へ置くべきである。
+したがって、防衛予算の中心は「最新の検知製品」だけではなく、**identity、segmentation、data minimization、patch velocity、observability、recovery engineering、business continuity**へ置くべきである。
 
 # Budget decision rule
 
