@@ -5,13 +5,15 @@
 日本の組織に影響する重大なサイバーインシデントを、公開情報だけで追跡・整理する防御側のオープンナレッジベースです。国内の個別事例だけでなく、事故発生から長期予後までを横断する分析と、国内では観測期間が不足する領域を補う海外比較ケースを分離して収録します。
 
 - 被害組織・規制当局などの一次情報を優先します。
-- 発生前条件、侵入、拡大、検知、公表、影響、封じ込め、復旧、通知、予後を時系列で記録します。
-- 技術復旧と業務復旧、影響範囲確定、長期予後を別の節目として扱います。
+- 発生前条件、侵入、拡大、検知、公表、影響、封じ込め、復旧、通知、予後、再確認を時系列で記録します。
+- 技術復旧と業務復旧、OT・重要インフラの安全確認、影響範囲確定、長期予後を別の節目として扱います。
 - 確認済みの事実、可能性、未観測、未公表事項、不明事項を分離します。
+- 件数だけでなく、データ感度・保持期間・変更可能性、下流依存、完全性・安全への影響も分けて扱います。
+- 報告、本人通知、監督当局対応、市場開示、契約上の通知を技術対応と混同しません。
 - Google Open Knowledge Format（OKF）v0.2 に沿って、出典・鮮度・生成履歴を機械可読に保持します。
-- 公開根拠のない攻撃者帰属、侵入経路、被害規模は推測しません。
+- 公開根拠のない攻撃者帰属、侵入経路、被害規模、欠落統制は推測しません。
 - 海外ケースは国内事例集の統計・件数へ混ぜず、比較知見として明確に分離します。
 
-**入口:** [知識基盤マップ](analysis/knowledge-base-map-2026-10-04.md) · [AI時代の企業サイバーリスク](analysis/executive-ai-amplified-cyber-risk-report-2026-10-04.md) · [国内インシデント索引](incidents/index.md) · [海外比較ケース](incidents/international/index.md) · [横断分析](analysis/index.md) · [記録基準](methodology/reporting-standard.md)
+**入口:** [知識基盤マップ](analysis/knowledge-base-map-2026-10-04.md) · [知識基盤拡張監査](analysis/knowledge-base-expansion-audit-2026-10-04.md) · [AI時代の企業サイバーリスク](analysis/executive-ai-amplified-cyber-risk-report-2026-10-04.md) · [国内インシデント索引](incidents/index.md) · [海外比較ケース](incidents/international/index.md) · [横断分析](analysis/index.md) · [記録基準](methodology/reporting-standard.md) · [鮮度・再確認基準](methodology/source-monitoring-and-freshness-standard.md)
 
 > Denno Watch は公的なインシデント対応機関ではありません。公式発表と本リポジトリの記載が矛盾する場合は、一次情報を優先して記録を再評価します。
