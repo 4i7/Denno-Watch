@@ -1,61 +1,61 @@
-# Update log
+# 更新履歴
 
 ## 2026-10-04
 
-- Restructured the [executive AI-amplified cyber risk report](analysis/executive-ai-amplified-cyber-risk-report-2026-10-04.md) into two layers: an approximately two-page plain-language board summary first, followed by a progressively more detailed research and decision-support section for executives, information-systems teams and security leaders.
-- Added a [whole-sector maximum-impact stress matrix](analysis/sector-worst-case-impact-matrix-2026-10-04.md) covering Japanese Standard Industrial Classification A–S and cross-sector high-amplification providers, separating information loss, direct financial loss, business interruption, physical/safety impact and downstream societal/supply-chain effects.
-- Added a [claim-level evidence ledger](analysis/evidence-ledger-ai-cyber-risk-2026-10-04.md) mapping the report's strongest claims to primary/public evidence and explicitly separating confirmed observation, supported inference, stress scenario and unknown state.
-- Expanded the Times Car analysis beyond the primary breach count: retained the confirmed ~6.6M-account data acquisition and ~1.6M-account identity-document exposure; documented JICC/KSC/CIC institutional treatment of leaked identity documents as a name-abuse / credit-decision risk; and recorded the contemporaneous JICC/CIC application congestion while explicitly **not** claiming that fraudulent loans, cards or credit-record damage attributable to the breach had already been confirmed.
-- Added the economic-capacity warning that low-cost AI can materially amplify a single person's research/development throughput, while treating LOC as neither a quality nor offensive-capability metric; the executive question is whether defense planning can still assume human-speed attackers when multiple operators, larger budgets, rented compute, locally hosted models and 24/365 automation can be combined.
-- Generalized the compute threat model away from specific supercomputer product names: attackers may rent external high-performance compute when needed or operate sufficiently capable open-weight models on self-managed local hardware, so provider refusal, API quotas, account suspension and provider-side telemetry must not be counted as enterprise security controls.
-- Added an [executive AI-amplified cyber risk report](analysis/executive-ai-amplified-cyber-risk-report-2026-10-04.md) that translates the 42-report Japan incident corpus and 2026 threat intelligence into a business-facing view of attacker economics, 24/365 automation, likely damage scenarios and layered defensive priorities.
-- Added a 24/365 threat model that separates continuously automatable reconnaissance, prioritization, campaign management and data triage from the complex real-world intrusion stages that still commonly require meaningful human direction.
-- Mapped AI-era attack economics to observed Japanese failure modes: exposed vulnerabilities, valid-account/VPN/cloud abuse, API/business-logic extraction, SaaS/supply-chain concentration, ransomware/data theft, destructive DB impact, communications control-plane abuse and historical-data accumulation.
-- Added a ten-layer practical defense model covering external attack-surface visibility, phishing-resistant identity, machine-speed vulnerability response, behavioral/rate controls, data minimization, segmentation, 24/365 detection, clean backup recovery, supply-chain governance and dual-control business processes.
-- Added executive KPIs for critical-exposure MTTR, FIDO/MFA coverage, privileged-account reduction, server EDR coverage, bulk-access detect-to-block time, restore success, data-retention debt and critical-vendor mapping.
-- Completed a second public-source sweep and expanded the 2026 corpus from 37 to **42 incident reports**.
-- Added コープやまぐち: destructive unauthorized access deleted the LINE mini-app database; same-day backup restoration recovered service while confidentiality impact remained unresolved; the refined scope includes 69,586 and 143,126 main member-record populations plus smaller affected subsets.
-- Added メディア4u: SMS-platform control-plane compromise with 95,412 confirmed leaked customer-management records, 22,928 records potentially containing personal information, and 280 unauthorized SMS messages sent through one customer account; OEM/reseller downstream handling is recorded separately.
-- Added 扶桑電通: cloud-storage authentication-credential misuse with 26,489 potentially exposed customer/contact records; the final public investigation could not establish how credentials were obtained and remediation includes MFA for external users, password-policy strengthening, shared-folder governance and periodic account review.
-- Added ドットマネー / ドットギフト: unauthorized access caused a prolonged whole-service stop; DotMoney later resumed in stages with mandatory phone verification for exchanges while DotGift was permanently terminated, establishing `service retirement` as a distinct incident outcome.
-- Added マルタケ: pharmaceutical-wholesale ransomware with confirmed data exfiltration and attacker-site publication; preserved the progression from initial no-leak observation to later confirmation and documented alternate procedures / temporary servers used to maintain medicine supply.
-- Screened スマレジEC as a watch candidate: a management-login vulnerability affected four customer environments, but the currently disclosed scope was not promoted into this material-core corpus pending broader impact or later expansion.
-- Pinned the upstream OKF v0.2 specification used by the bundle to commit `ad30107c31c06aec8a7d5636e0d1058118604e6f`, recording both `okf_version` and producer-defined `okf_spec_revision` / `okf_spec_resource` at bundle root.
-- Extended recovery semantics with `service retirement` and expanded the corpus audit with destructive-integrity recovery, communications control-plane abuse, credential-misuse-vs-acquisition distinction and divergent service-outcome findings.
-- Completed a primary-source consistency audit of all 25 pre-existing incident concepts; no material contradiction was found. Preserved existing uncertainty, count units and evidence-state progressions rather than rewriting them into stronger claims.
-- Added a durable [2026 corpus audit](methodology/corpus-audit-2026-10-04.md) documenting audit method, per-record results, OKF conformance notes, metadata debt and cross-incident findings.
-- Confirmed the canonical OKF v0.2 specification lives in `GoogleCloudPlatform/open-knowledge-format`; timestamp-valued metadata emitted in this expansion uses explicit UTC offsets.
-- Added 12 material incidents in the first audit expansion: 第一生命グループ、佐川急便、ヤマト運輸/クロネコ代金後払い、池上通信機、ロート製薬、日本トレクス、ApplyNow、VOISING、両毛システムズ、EPARKリラク＆エステ/PeakManager、日本交通、日本テレネット.
-- Added PeakManager with the full count/evidence progression: initial ~33 million records at risk to confirmed external transfer of ~22.18 million records after refinement, explicitly retaining `records != people`; also captured sensitive health information in free-text notes and five note entries that may contain expired card data.
-- Added VOISING as a detailed BI/analytics compromise case: known BI-tool vulnerability, ~170,000 confirmed leaked records, external publication, compromised-environment disposal, credential invalidation and data-minimization/monitoring changes.
-- Added ApplyNow and Ryomo Systems as multi-organization downstream cases, preserving provider-side facts separately from affected-customer notifications and avoiding unsupported aggregation into unique-person totals.
-- Added Dai-ichi Life as a long-retention HR case, with a ~120,000 current/former employee population and historical former-employee coverage extending back to 1967 for office staff.
-- Added Sagawa and Yamato as current logistics cases while separating digital-service disruption from physical parcel operations and recording still-unknown counts/causes as unknown rather than estimates.
-- Added Nihon Kotsu and Ikegami Tsushinki with explicit evidence progression from availability/integrity symptoms to later external-leak observations.
-- Added Nippon Telenet with large entrusted BPO/CSS data populations, network-equipment entry at published granularity, and a clean-network rebuild / full endpoint reimaging as a security-state restoration milestone.
-- Added producer-defined metadata fields for new concepts where public evidence requires them: `downstream_impact`, `regulatory_response`, `notification_state`, `business_continuity`, and `data_sensitivity`.
-- Added `public_record_checked_at` and explicit recovery-phase semantics to the reporting standard so a source-check date is distinct from the date of the latest public incident update.
-- Rechecked active primary-source records for Keio, Fines and Times Car; no newer incident disclosure was located, so their canonical `latest_public_update` values remain unchanged while the fresh check is recorded separately.
-- Extended the Gyazo record through the September 29 staged recovery change, preserving the distinction between service restart, safe-default visibility and investigation closure.
-- Added two distinct Yellow Hat group incidents rather than merging them: the 2rinkan member-server breach and the later Yellow Hat Web work-reservation breach.
-- Recorded the confirmed 3,179,454-member exposure in the 2rinkan final report separately from the later maximum 1,801,499-member potential exposure.
-- Captured the defensive effect of payment-data and system separation, and flagged the later incident for follow-up because a final public forensic result has not yet been located.
-- Added the JCOM September 23 availability incident: external high-volume traffic caused DNS overload and a large-scale outage affecting up to about 4.08 million subscribed households; the report deliberately does not label the traffic as DDoS because malicious intent was not established in the public source.
-- Added the Five Foxes / Comme Ca incident with a strict evidence-state distinction between a first-report ransomware suspicion and the later confirmed unauthorized-access / potential personal-data exposure findings, and repaired its missing index entry.
-- Added the Seicomart app incident, preserving the progression from the initial roughly 570,000-account estimate to 572,022 confirmed viewed members and the partial-service recovery state.
-- Added the Nichirei incident, separating the July cold-chain/frozen-food availability disruption and July 24 operational recovery from the later September confirmation of personal-data leakage.
-- Added the Nihon Shisan Souken incident, preserving the evidence progression from ransomware and encryption through credential-theft attribution, possible exfiltration and confirmed customer-data publication on an attacker leak site.
-- Added the Meitetsu Kyosho incident, tracking the broad June multi-service outage, later confirmation of attacks against multiple servers, staged service recovery and widening customer notification while preserving the fact that actual external data leakage remained unconfirmed as of the latest primary update.
-- Explicitly excluded the August Cariteco Bike outage/restart from the Meitetsu Kyosho incident timeline because the company attributed that interruption to a separate Docomo Bike Share system failure.
-- Added the OZmall incident and preserved the correction from the first-report maximum of 447,610 people to the second-report maximum of 442,779, including the newly clarified inclusion of some former members.
-- Added the Tokyo Metro / Metpo incident, documenting that the directly affected server held only delivery-suspended email addresses and using it as an example of functional data separation limiting the observed blast radius.
-- Added the LEAN BODY incident, documenting confirmed customer-data acquisition through a vulnerable internal Metabase analytics environment while deliberately leaving the CVE unidentified because the company did not publish one.
-- Re-synchronized the year and top-level indexes; the 2026 corpus now contains 42 incident reports.
+- [AIで攻撃コストが崩れた時代の企業サイバーリスク](analysis/executive-ai-amplified-cyber-risk-report-2026-10-04.md)を二層構造へ再編。前半を約2ページの平易な取締役会向けサマリー、後半を経営層・情報システム部門・セキュリティ責任者向けの詳細な調査・意思決定支援資料とした。
+- [全業種サイバー侵害・最大被害ストレスマトリクス](analysis/sector-worst-case-impact-matrix-2026-10-04.md)を追加。日本標準産業分類A〜Sと、業種横断で影響を増幅し得るサービス提供事業者を対象に、情報損失、直接的な金銭損失、事業停止、物理・安全影響、社会・サプライチェーンへの下流影響を分離して整理した。
+- [AI時代の企業サイバーリスク — 根拠資料台帳](analysis/evidence-ledger-ai-cyber-risk-2026-10-04.md)を追加。強い主張を一次・公的根拠へ対応付け、「確認済みの観測事実」「根拠に支えられた推論」「ストレスシナリオ」「不明／未確認」を明確に分離した。
+- Times Carの分析を一次被害件数だけでなく長期二次被害まで拡張。約660万アカウントの情報取得、約160万アカウントの本人確認書類漏えいを確認済み事実として保持し、JICC・全国銀行個人信用情報センター・CICが本人確認書類流出を名義悪用・与信判断上のリスクとして制度上扱うこと、同時期にJICC／CICで申込みが集中したことを記録した。一方、当該流出に起因する不正ローン、カード契約、信用情報毀損が確認済みであるとは記載していない。
+- 低価格なAIでも個人の調査・開発処理量を大きく増幅し得るという経済性上の警告を追加。コード行数は品質や攻撃能力の指標とはみなさず、複数の攻撃者、より大きな予算、借用計算資源、自己管理AI、24時間365日の自動化を組み合わせられる状況で、防御側がなお「人間と同じ速度の攻撃者」を前提にできるかという経営上の問いとして扱う。
+- 計算資源の脅威モデルから特定のスーパーコンピューター製品名を除外し、一般化した。攻撃者は必要時に外部の高性能計算資源を借りることも、十分な性能を持つオープンウェイトモデルを自己管理ハードウェア上で動かすこともできるため、AI提供事業者による拒否、API利用上限、アカウント停止、提供事業者側の監視を企業の防御統制として前提にしない。
+- [企業向けAI時代のサイバーリスク総合レポート](analysis/executive-ai-amplified-cyber-risk-report-2026-10-04.md)を追加。国内42件のインシデント事例集と2026年の脅威インテリジェンスを、攻撃側の経済性、24時間365日の自動化、想定被害、多層防御の優先順位へ接続した。
+- 24時間365日の脅威モデルを追加。常時自動化しやすい偵察、優先順位付け、キャンペーン管理、データ選別と、現在も有意な人間の判断を必要とする複雑な実侵害工程を分離した。
+- AI時代の攻撃経済性を、日本で実際に観測された失敗類型へ対応付けた。対象は公開資産の脆弱性、正規アカウント・VPN・クラウド認証情報の悪用、API・業務ロジックを使った大量取得、SaaS・サプライチェーン集中、ランサムウェアと情報窃取、DB破壊、通信基盤の送信権限悪用、長期保有データの蓄積など。
+- 10層の実践的防御モデルを追加。外部攻撃対象領域の可視化、フィッシング耐性認証、機械速度を意識した脆弱性対応、振る舞い・レート制御、データ最小化、分離、24時間365日の検知、クリーンなバックアップ復旧、サプライチェーン統制、重要業務の二者承認を含む。
+- 経営KPIとして、重大露出の平均修復時間、FIDO／MFA適用率、特権アカウント削減、サーバーEDR適用率、大量アクセスの検知から遮断までの時間、復元成功率、期限超過データ量、重要委託先の把握率を追加。
+- 公開情報の第2次横断調査を完了し、2026年の事例集を37件から **42件** へ拡張。
+- コープやまぐちを追加。LINEミニアプリDBへの破壊的な不正アクセスにより全データが削除された。同日バックアップ復旧でサービスは回復した一方、機密性影響は未解決。精査後の主要対象は69,586件と143,126件の組合員レコード、および小規模な追加対象。
+- メディア4uを追加。SMS基盤の制御機能が侵害され、顧客管理レコード95,412件の流出、うち22,928件で個人情報を含む可能性、1顧客アカウントから不正SMS280件の送信を確認。OEM・再販先への下流影響は別に記録。
+- 扶桑電通を追加。クラウドストレージの認証情報悪用により顧客・連絡先レコード26,489件に影響可能性。最終公表でも認証情報の取得経路は特定できず、外部利用者MFA、パスワード方針強化、共有フォルダー統制、定期的なアカウント棚卸しを再発防止策として記録。
+- ドットマネー／ドットギフトを追加。不正アクセスによりサービス全体を長期停止。ドットマネーは交換時の電話番号認証を必須化して段階再開した一方、ドットギフトは恒久終了し、「サービス廃止」を独立したインシデント結果として扱う根拠となった。
+- マルタケを追加。医薬品卸へのランサムウェアで、情報持ち出しと攻撃者サイト掲載を確認。当初の「漏えい未確認」から後日の確認まで証拠状態の変化を保持し、医薬品供給維持のため代替手順・仮サーバーを利用した事業継続も記録。
+- スマレジECを監視候補として精査。管理画面ログインの脆弱性が4顧客環境で悪用されたが、現在の公表範囲では重大事例集の中核へ昇格させず、影響拡大や後続公表を待って再評価する。
+- ナレッジベースが参照する上流OKF v0.2仕様をコミット `ad30107c31c06aec8a7d5636e0d1058118604e6f` に固定。ルートに `okf_version` と、生成側で追加する `okf_spec_revision`／`okf_spec_resource` を記録。
+- 復旧状態へ「サービス廃止」を追加し、事例集監査に破壊的な完全性影響からの復旧、通信基盤の送信制御悪用、認証情報の悪用と取得経路の分離、同一事故で異なるサービス結果が分岐する事例を追加。
+- 既存25事例を一次情報と再照合。重大な矛盾は見つからず、既存の不確実性、件数単位、証拠状態の変化をより強い断定へ書き換えず保持した。
+- 恒久的な[2026年事例集監査](methodology/corpus-audit-2026-10-04.md)を追加。監査方法、各事例の結果、OKF適合性、メタデータ上の保守負債、事例横断の知見を記録。
+- OKF v0.2の標準仕様が `GoogleCloudPlatform/open-knowledge-format` にあることを確認。本拡張で生成する時刻値には明示的なUTCオフセットを使用。
+- 第1次監査拡張として重大事例12件を追加: 第一生命グループ、佐川急便、ヤマト運輸／クロネコ代金後払い、池上通信機、ロート製薬、日本トレクス、ApplyNow、VOISING、両毛システムズ、EPARKリラク＆エステ／PeakManager、日本交通、日本テレネット。
+- PeakManagerでは件数と証拠状態の全変化を保持。当初約3,300万レコードに影響可能性 → 精査後約2,218万レコードの外部転送確認とし、`records != people`（レコード数と人数は同義ではない）を明示。自由記述欄の健康情報と、期限切れカード情報の可能性がある5件も記録。
+- VOISINGをBI・分析基盤侵害の詳細事例として追加。BIツールの既知脆弱性、約17万レコードの流出確認、外部掲載、侵害環境の廃棄、認証情報無効化、データ最小化・監視強化を記録。
+- ApplyNowと両毛システムズを複数組織へ波及した事例として追加。提供事業者側の事実と影響顧客側の通知を分離し、根拠のないユニーク人数への合算を避けた。
+- 第一生命を長期保有人事データの事例として追加。現職・退職者約12万人、事務職退職者は1967年まで遡る。
+- 佐川急便とヤマト運輸を物流事例として追加。デジタルサービス障害と物理配送を分離し、不明な件数・原因は推定せず不明として記録。
+- 日本交通と池上通信機では、可用性・完全性の症状から、後日の外部流出・攻撃者サイト掲載確認まで証拠状態の変化を明示。
+- 日本テレネットでは、大規模な受託BPO／CSSデータ、公開粒度で確認できるネットワーク機器からの侵入、独立クリーンネットワーク再構築と全端末再構築を安全状態復旧の節目として記録。
+- 公開根拠が必要とする新規概念向けに、生成側独自メタデータ `downstream_impact`、`regulatory_response`、`notification_state`、`business_continuity`、`data_sensitivity` を追加。
+- 記録基準へ `public_record_checked_at` と復旧工程の明示的な分離を追加し、「情報源を再確認した日」と「最新のインシデント公表日」を区別。
+- 京王電鉄、ファインズ、Times Carの進行中の一次公表を再確認。より新しい公表は見つからず、`latest_public_update` は変更せず、今回の確認日だけを別途記録。
+- Gyazoは9月29日の段階復旧まで更新。サービス再開、安全な初期公開設定、調査完了を分離して保持。
+- イエローハットグループの2件を統合せず個別事例として追加。2りんかん会員サーバー侵害と、後発のイエローハットWeb作業予約侵害を分離。
+- 2りんかん最終報で確認された3,179,454人の影響と、後発事案で最大1,801,499人に影響可能性があることを別々に記録。
+- 決済データ・システム分離が被害を抑えた点を記録し、後発事案では最終フォレンジック結果が未確認のため継続確認対象とした。
+- JCOMの9月23日可用性事案を追加。外部からの大量通信によりDNSが過負荷となり、最大約408万加入世帯へ影響。公開情報で悪意が確認されていないため、DDoSとは断定しない。
+- ファイブフォックス／コムサを追加。初報のランサムウェア疑いと、後続公表で確認された不正アクセス・個人情報影響可能性を厳密に分離し、欠落していた索引も修復。
+- セイコーマートのアプリ事案を追加。当初約57万アカウントの推定から572,022人の閲覧確認への変化と、部分的なサービス復旧状態を保持。
+- ニチレイを追加。7月の低温物流・冷凍食品出荷障害と7月24日の業務復旧を、9月の個人情報流出確認と分離。
+- 日本資産総研を追加。ランサムウェアと暗号化、認証情報窃取に関する公表、持ち出し可能性、顧客データの攻撃者サイト掲載確認まで証拠状態の変化を保持。
+- 名鉄協商を追加。6月の広範な複数サービス停止、複数サーバーへの攻撃確認、段階復旧、顧客通知対象の拡大を追跡しつつ、最新一次公表時点でも実際の外部データ流出は未確認として保持。
+- 8月のカリテコバイク停止・再開は、同社が別件のドコモ・バイクシェア側システム障害と説明しているため、名鉄協商サイバー事案の時系列から明示的に除外。
+- OZmallを追加し、初報最大447,610人 → 第二報最大442,779人への訂正と、一部退会者を含むことを保持。
+- 東京メトロ／メトポを追加。直接影響サーバーには配信停止済みメールアドレスのみが置かれていたことを記録し、機能ごとのデータ分離が観測被害範囲を制限した例として扱う。
+- LEAN BODYを追加。脆弱な社内Metabase分析環境を通じた顧客データ取得を確認済みとして記録し、会社がCVEを公表していないため識別子を推定していない。
+- 年次索引と上位索引を再同期。2026年事例集は42件。
 
 ## 2026-10-03
 
-- Initialized the Denno Watch knowledge bundle as OKF v0.2.
-- Defined the incident reporting and evidence standard.
-- Added the first 2026 incident corpus covering major publicly observable incidents from May through September.
-- Expanded coverage with KDDI, Times Car, Helpfeel / Gyazo, Murauchi.com, and Fines incident records.
-- Synchronized the year and top-level incident indexes with the current corpus.
+- Denno WatchナレッジベースをOKF v0.2として初期化。
+- インシデント記録・証拠評価の標準を定義。
+- 2026年5月〜9月に公開観測できた重大事例を中心に最初の事例集を作成。
+- KDDI、Times Car、Helpfeel／Gyazo、ムラウチドットコム、ファインズの事例を追加して対象範囲を拡張。
+- 年次索引と上位インシデント索引を当時の事例集と同期。
