@@ -14,37 +14,37 @@ generated: { by: openai/gpt-5.6-sol, at: 2026-10-04T10:10:00+09:00 }
 
 各項目を以下の状態に分ける。
 
-- **Confirmed observation** — 公的機関、被害組織、研究主体等が観測・公表した事実。
-- **Supported inference** — 複数の確認済み事実から合理的に導けるが、個別事件で発生確認されていないリスク。
-- **Stress scenario** — 経営上の備えのために置く最大被害シナリオ。発生済みの事実ではない。
-- **Unknown / not confirmed** — 公開情報では確定できない事項。
+- **確認済みの観測事実** — 公的機関、被害組織、研究主体等が観測・公表した事実。
+- **根拠に支えられた推論** — 複数の確認済み事実から合理的に導けるが、個別事件で発生確認されていないリスク。
+- **ストレスシナリオ** — 経営上の備えのために置く最大被害シナリオ。発生済みの事実ではない。
+- **不明／未確認** — 公開情報では確定できない事項。
 
 # Evidence ledger
 
 | ID | 主張 | 状態 | 根拠 | 根拠が示すこと | 限界・誤読防止 |
 | --- | --- | --- | --- | --- | --- |
-| E-01 | 日本企業が直面する主要脅威として、ランサム、サプライチェーン、AI利用リスク、脆弱性悪用が上位にある | Confirmed observation | IPA「情報セキュリティ10大脅威 2026」 | 組織向け1位ランサム、2位サプライチェーン/委託先、3位AI利用リスク、4位脆弱性悪用 | ランキングは被害確率の定量予測ではない |
-| E-02 | AIは攻撃の速度・規模・一貫性を上げ、攻撃チェーンの一部を自動化し始めている | Confirmed observation | Microsoft Digital Defense Report 2026 | reconnaissance、vulnerability discovery、phishing、malware/exploit、data analysis、post-compromiseで利用。weaponizationまでの中央値が24時間を大きく下回る | 全ての高度攻撃が完全自律化したという意味ではない |
-| E-03 | agent-enabled攻撃が短時間に構築・実行された実例がある | Confirmed observation | Google Threat Intelligence Group, 2026-09-08 | 侵害したcloud resourceからmass credential-harvesting campaignを6時間未満で計画・構築・実行 | 一つの観測事例であり、全攻撃の一般的所要時間ではない |
-| E-04 | 悪用されたAI利用はATT&CKの広範な領域へ既に分布している | Confirmed observation | Anthropic LLM ATT&CK Navigator, 2026-06-03 | 832 malicious accounts、13,873 actions、全14 tactics、482 techniques/sub-techniques | Anthropicが調査・停止したうち十分な情報があったsubsetで、全脅威actor母集団ではない |
-| E-05 | 脆弱性悪用は現在の主要侵入経路である | Confirmed observation | Verizon 2026 DBIR | breachesの31%でsoftware vulnerability exploitationがinitial-access vector | データセットの地域・業種構成を個社へそのまま当てはめない |
-| E-06 | AI-enabled malicious breachesは高コストになり得る | Confirmed observation | IBM Cost of a Data Breach 2026 | malicious breachesの4件に1件がAI-enabled、平均$6M、global average $4.99M | IBM調査母集団に基づく世界平均で、日本個社の損失額ではない |
-| E-07 | 高性能なAI処理は外部providerだけでなくself-hosted/offlineでも成立する | Confirmed capability | Mistral “Using offline models” | 24B agentic/code modelのlocal deployment例、24GB VRAM GPUを含む構成、fully offline運用を公式記載 | 特定モデルの能力をあらゆる攻撃作業の成功能力と同一視しない |
-| E-08 | downloadable modelではproviderが入力・出力を観測しない構成を取れる | Confirmed capability | Meta Llama FAQ | model download後、利用者が送らない限りMetaはinputs/outputsへアクセスしない | これは安全制御回避の推奨ではなく、外部provider監視を防衛前提にできないことを示す |
-| E-09 | Denno Watchの2026 corpusでは、大量情報漏えい、ランサム、認証悪用、SaaS/委託先、BI/API、破壊、業務停止が繰り返し現れる | Confirmed observation | Denno Watch 42 incident reports / corpus audit | 日本組織の公開一次情報から類型横断の反復を確認 | corpusは全日本インシデントの無作為標本ではない |
-| E-10 | Times Carで約660万accountの情報が第三者に取得された | Confirmed observation | Park24 第2報 | 氏名、住所、生年月日、連絡先、免許情報等を含む大規模取得 | 個々の項目は対象者により異なる |
-| E-11 | Times Carで約160万accountの本人確認書類が漏えいした | Confirmed observation | Park24 第3報 2026-09-29 | 運転免許証画像、住所確認書類、学生証、家族確認書類 | 160万件すべてが運転免許証画像という意味ではない |
-| E-12 | Times Car情報を用いた不正ローン・クレジット契約が発生したとは、10月4日時点の一次公表から確認できない | Unknown / not confirmed | Park24公表、JICC/CIC公表を確認 | 公開一次情報では具体的な不正契約件数を確認できない | 「被害がない」とも断定できない。未公表・未検知の可能性は残る |
-| E-13 | 本人確認書類画像の漏えいは、信用取引上「名義悪用」の防止対象として公的な信用情報制度が扱っている | Confirmed institutional treatment | JICC「不正利用防止の届け出」/ FAQ、全国銀行個人信用情報センター本人申告、CIC本人申告 | 免許証画像等が流出した場合に本人申告を登録し、loan/credit審査時の慎重な与信判断に使える | 登録は悪用防止を保証しない。預金口座開設など対象外の手続きもある |
-| E-14 | Times Car公表直後、信用情報開示・本人申告の利用負荷が実際に増大した | Confirmed observation | JICC 2026-09-30/10-01、CIC 2026-09-30 | 申込み・問い合わせ集中、JICCではスマホアプリ一時休止、CICでも受付番号・電話がつながりにくい状態 | 各機関の公表はTimes Carが原因だと明示していないため、因果関係は断定しない。時系列上の同時発生として扱う |
-| E-15 | 偽造/なりすまし本人確認による他人名義携帯契約は実在する犯罪手口である | Confirmed observation | 警察庁 警察白書 | 偽造本人確認書類や本人になりすました契約で得た携帯電話が特殊詐欺等に悪用される事例を記載 | Times Car流出情報がこの用途に使われたとは確認されていない |
-| E-16 | 日本ではinternet bankingの不正送金が大きな実損を生んでいる | Confirmed observation | 金融庁 2026-06-30 | 令和7年度internet banking不正送金3,946件、平均被害額360万円 | 主因は主にphishing等で、Times Car流出と直接関係しない |
-| E-17 | 医療IT停止は数か月級の診療制約へ発展し得る | Confirmed historical observation | 大阪急性期・総合医療センター調査報告 | 基幹再稼働43日、全体診療システム復旧73日、調査・復旧数億円以上、診療制限逸失利益十数億円以上見込み | 2022年事例。現在の全病院へ同じ被害額を適用しない |
-| E-18 | 港湾IT停止は物理物流全体を停止させ得る | Confirmed historical observation | NISC 名古屋港資料 | 2023-07-04から全container terminal作業停止、7月6日18:15再開 | 一港湾の事例。全物流障害の標準復旧時間ではない |
-| E-19 | 通信基盤停止は多数の他業種へ同時波及する | Confirmed historical observation | KDDI 2022通信障害報告 | 61時間25分、音声約2,278万人・data765万人以上、物流、自動車、行政、銀行、交通等へ波及 | 原因はcyberattackではない。依存関係と最大影響の実証例としてのみ使用 |
-| E-20 | 大規模ランサム対応は数十億円規模の直接費用になり得る | Confirmed observation | LY Corporation FY2025 3Q results | ASKUL ransomware system outage response costs 5,262百万円。物流設備維持、調査・復旧、期限切れ商品評価損等 | 企業全体の最終損失ではなく、開示された特定費用項目 |
-| E-21 | 重要インフラは情報漏えいだけでなくサービス継続を守る必要がある | Confirmed policy | NISC/NCO 重要インフラ行動計画 | 重要サービスの安全かつ持続的な提供を防護目的とする | policy framingであり損失確率ではない |
-| E-22 | 日本平均のdata-breach costには数億円規模のbenchmarkがある | Confirmed benchmark | IBM Cost of a Data Breach 2025 Japan | 日本平均5.5億円 | 平均値であり、最大損失でもDenno Watch個社推定でもない |
+| E-01 | 日本企業が直面する主要脅威として、ランサム、サプライチェーン、AI利用リスク、脆弱性悪用が上位にある | 確認済みの観測事実 | IPA「情報セキュリティ10大脅威 2026」 | 組織向け1位ランサム、2位サプライチェーン/委託先、3位AI利用リスク、4位脆弱性悪用 | ランキングは被害確率の定量予測ではない |
+| E-02 | AIは攻撃の速度・規模・一貫性を上げ、攻撃チェーンの一部を自動化し始めている | 確認済みの観測事実 | Microsoft Digital Defense Report 2026 | 偵察、脆弱性探索、フィッシング、malware/exploit、data analysis、post-compromiseで利用。weaponizationまでの中央値が24時間を大きく下回る | 全ての高度攻撃が完全自律化したという意味ではない |
+| E-03 | agent-enabled攻撃が短時間に構築・実行された実例がある | 確認済みの観測事実 | Google Threat Intelligence Group, 2026-09-08 | 侵害したcloud resourceからmass credential-harvesting campaignを6時間未満で計画・構築・実行 | 一つの観測事例であり、全攻撃の一般的所要時間ではない |
+| E-04 | 悪用されたAI利用はATT&CKの広範な領域へ既に分布している | 確認済みの観測事実 | Anthropic LLM ATT&CK Navigator, 2026-06-03 | 832 malicious アカウント、13,873 actions、全14 tactics、482 techniques/sub-techniques | Anthropicが調査・停止したうち十分な情報があったsubsetで、全脅威actor母集団ではない |
+| E-05 | 脆弱性悪用は現在の主要侵入経路である | 確認済みの観測事実 | Verizon 2026 DBIR | breachesの31%でsoftware vulnerability exploitationがinitial-access vector | データセットの地域・業種構成を個社へそのまま当てはめない |
+| E-06 | AI-enabled malicious breachesは高コストになり得る | 確認済みの観測事実 | IBM Cost of a Data 侵害 2026 | malicious breachesの4件に1件がAI-enabled、平均$6M、世界平均 $4.99M | IBM調査母集団に基づく世界平均で、日本個社の損失額ではない |
+| E-07 | 高性能なAI処理は外部providerだけでなくself-hosted/offlineでも成立する | 能力として確認済み | Mistral “Using オフライン モデル” | 24B agentic/code modelのlocal deployment例、24GB VRAM GPUを含む構成、fully offline運用を公式記載 | 特定モデルの能力をあらゆる攻撃作業の成功能力と同一視しない |
+| E-08 | downloadable modelではproviderが入力・出力を観測しない構成を取れる | 能力として確認済み | Meta Llama FAQ | モデル download後、利用者が送らない限りMetaはinputs/outputsへアクセスしない | これは安全制御回避の推奨ではなく、外部provider監視を防衛前提にできないことを示す |
+| E-09 | Denno Watchの2026 corpusでは、大量情報漏えい、ランサム、認証悪用、SaaS/委託先、BI/API、破壊、業務停止が繰り返し現れる | 確認済みの観測事実 | Denno Watch 42 incident reports / corpus audit | 日本組織の公開一次情報から類型横断の反復を確認 | corpusは全日本インシデントの無作為標本ではない |
+| E-10 | Times Carで約660万accountの情報が第三者に取得された | 確認済みの観測事実 | Park24 第2報 | 氏名、住所、生年月日、連絡先、免許情報等を含む大規模取得 | 個々の項目は対象者により異なる |
+| E-11 | Times Carで約160万accountの本人確認書類が漏えいした | 確認済みの観測事実 | Park24 第3報 2026-09-29 | 運転免許証画像、住所確認書類、学生証、家族確認書類 | 160万件すべてが運転免許証画像という意味ではない |
+| E-12 | Times Car情報を用いた不正ローン・クレジット契約が発生したとは、10月4日時点の一次公表から確認できない | 不明／未確認 | Park24公表、JICC/CIC公表を確認 | 公開一次情報では具体的な不正契約件数を確認できない | 「被害がない」とも断定できない。未公表・未検知の可能性は残る |
+| E-13 | 本人確認書類画像の漏えいは、信用取引上「名義悪用」の防止対象として公的な信用情報制度が扱っている | 制度上確認済み | JICC「不正利用防止の届け出」/ FAQ、全国銀行個人信用情報センター本人申告、CIC本人申告 | 免許証画像等が流出した場合に本人申告を登録し、ローン/credit審査時の慎重な与信判断に使える | 登録は悪用防止を保証しない。預金口座開設など対象外の手続きもある |
+| E-14 | Times Car公表直後、信用情報開示・本人申告の利用負荷が実際に増大した | 確認済みの観測事実 | JICC 2026-09-30/10-01、CIC 2026-09-30 | 申込み・問い合わせ集中、JICCではスマホアプリ一時休止、CICでも受付番号・電話がつながりにくい状態 | 各機関の公表はTimes Carが原因だと明示していないため、因果関係は断定しない。時系列上の同時発生として扱う |
+| E-15 | 偽造/なりすまし本人確認による他人名義携帯契約は実在する犯罪手口である | 確認済みの観測事実 | 警察庁 警察白書 | 偽造本人確認書類や本人になりすました契約で得た携帯電話が特殊詐欺等に悪用される事例を記載 | Times Car流出情報がこの用途に使われたとは確認されていない |
+| E-16 | 日本ではinternet bankingの不正送金が大きな実損を生んでいる | 確認済みの観測事実 | 金融庁 2026-06-30 | 令和7年度internet banking不正送金3,946件、平均被害額360万円 | 主因は主にphishing等で、Times Car流出と直接関係しない |
+| E-17 | 医療IT停止は数か月級の診療制約へ発展し得る | 過去事例として確認済み | 大阪急性期・総合医療センター調査報告 | 基幹再稼働43日、全体診療システム復旧73日、調査・復旧数億円以上、診療制限逸失利益十数億円以上見込み | 2022年事例。現在の全病院へ同じ被害額を適用しない |
+| E-18 | 港湾IT停止は物理物流全体を停止させ得る | 過去事例として確認済み | NISC 名古屋港資料 | 2023-07-04から全container terminal作業停止、7月6日18:15再開 | 一港湾の事例。全物流障害の標準復旧時間ではない |
+| E-19 | 通信基盤停止は多数の他業種へ同時波及する | 過去事例として確認済み | KDDI 2022通信障害報告 | 61時間25分、音声約2,278万人・data765万人以上、物流、自動車、行政、銀行、交通等へ波及 | 原因はcyberattackではない。依存関係と最大影響の実証例としてのみ使用 |
+| E-20 | 大規模ランサム対応は数十億円規模の直接費用になり得る | 確認済みの観測事実 | LY Corporation FY2025 3Q results | ASKUL ransomware システム停止 response costs 5,262百万円。物流設備維持、調査・復旧、期限切れ商品評価損等 | 企業全体の最終損失ではなく、開示された特定費用項目 |
+| E-21 | 重要インフラは情報漏えいだけでなくサービス継続を守る必要がある | 公的方針として確認済み | NISC/NCO 重要インフラ行動計画 | 重要サービスの安全かつ持続的な提供を防護目的とする | policy framingであり損失確率ではない |
+| E-22 | 日本平均のdata-侵害 costには数億円規模のbenchmarkがある | ベンチマークとして確認済み | IBM Cost of a Data 侵害 2025 Japan | 日本平均5.5億円 | 平均値であり、最大損失でもDenno Watch個社推定でもない |
 
 # Times Car — 二次被害をどう表現するか
 
@@ -60,8 +60,8 @@ generated: { by: openai/gpt-5.6-sol, at: 2026-10-04T10:10:00+09:00 }
 
 本人確認書類画像、氏名、住所、生年月日、電話番号、メール等の組合せは、条件次第で以下の二次被害に利用され得る。
 
-- loan / credit申込み等における名義冒用
-- 本人確認・account recoveryの突破を狙う試行
+- ローン / credit申込み等における名義冒用
+- 本人確認・アカウント recoveryの突破を狙う試行
 - 他人名義の通信契約や、それを足場とする詐欺
 - 漏えい事実と正確な個人属性を利用した高度なphishing / social engineering
 - 複数の別漏えいdatasetと組み合わせたidentity fraud
@@ -93,8 +93,8 @@ Denno Watch運用上の観察として、月数千円規模のAIサービス利�
 - Google Threat Intelligence Group, From Prompting to Autonomy: https://cloud.google.com/blog/topics/threat-intelligence/from-prompting-to-autonomy-the-evolution-of-adversarial-ai
 - Anthropic, Mapping AI-enabled cyber threats: https://www.anthropic.com/research/attack-navigator
 - Verizon, 2026 DBIR: https://www.verizon.com/business/ja-jp/resources/reports/dbir/
-- IBM, Cost of a Data Breach 2026: https://newsroom.ibm.com/2026-07-29-ibm-study-one-in-four-malicious-breaches-are-ai-enabled%2C-costing-companies-6-million-on-average
-- Mistral, Using offline models: https://docs.mistral.ai/vibe/code/cli/offline-models
+- IBM, Cost of a Data 侵害 2026: https://newsroom.ibm.com/2026-07-29-ibm-study-one-in-four-malicious-breaches-are-ai-enabled%2C-costing-companies-6-million-on-average
+- Mistral, Using オフライン モデル: https://docs.mistral.ai/vibe/code/cli/offline-models
 - Meta, Llama FAQ: https://ai.meta.com/llama/faq/
 - Park24, Times Car 第3報: https://www.park24.co.jp/news/2026/09/20260929-1.html
 - JICC, 不正利用防止の届け出: https://www.jicc.co.jp/comment/
