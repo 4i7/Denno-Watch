@@ -11,6 +11,7 @@ Open defensive knowledge for major cyber incidents affecting organizations in Ja
 ## Knowledge
 
 * [Incident reports](incidents/index.md) - public-evidence incident records, timelines, impact, recovery and follow-up.
+* [Executive AI-amplified cyber risk report](analysis/executive-ai-amplified-cyber-risk-report-2026-10-04.md) - one-page business view of attacker economics, 24/365 automation, likely damage and layered defense.
 * [Analysis](analysis/index.md) - cross-incident patterns, realistic countermeasures, loss models and defense-budget guidance.
 * [Reporting standard](methodology/reporting-standard.md) - inclusion, evidence, provenance, freshness and field semantics.
 * [2026 corpus audit](methodology/corpus-audit-2026-10-04.md) - primary-source consistency audit, corpus expansion and cross-incident findings.
