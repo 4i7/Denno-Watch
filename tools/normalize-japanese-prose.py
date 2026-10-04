@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
-"""Conservatively normalize human-readable Markdown prose to Japanese.
+"""Denno Watch本文に残った既知の英語混在・内部Jargonを保守的に正規化する。
 
-This tool intentionally leaves YAML frontmatter, URLs, inline code, fenced code,
-footnote source lines, filenames, identifiers, product names, standards and
-machine-readable enum values untouched where practical. It is not a general
-translator. It only fixes recurring headings and known mixed-language jargon
-that has appeared in Denno Watch prose.
+一般翻訳器ではない。YAMLフロントマター、URLを含む出典行、コード、脚注の
+正式な出典表記は変更せず、既に日本語化方針が決まった表現だけを置換する。
 """
 
 from __future__ import annotations
@@ -15,6 +12,8 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+ASCII_LEFT = r"(?<![A-Za-z0-9_])"
+ASCII_RIGHT = r"(?![A-Za-z0-9_])"
 
 HEADING_REPLACEMENTS = {
     "# Executive summary": "# 概要",
@@ -33,98 +32,99 @@ HEADING_REPLACEMENTS = {
     "| Date | Observable event |": "| 日付 | 公開情報で確認できる出来事 |",
 }
 
-# Longer phrases must be replaced before shorter tokens.
 PHRASE_REPLACEMENTS = [
-    (r"\bincident corpus\b", "インシデント事例集"),
-    (r"\bidentity documents?\b", "本人確認書類"),
-    (r"\bdata centers?\b", "データセンター"),
-    (r"\bsystem outage\b", "システム停止"),
-    (r"\bblast radius\b", "被害範囲"),
-    (r"\bcontrol-plane abuse\b", "制御プレーンの悪用"),
-    (r"\bcontrol plane abuse\b", "制御プレーンの悪用"),
-    (r"\bstanding privilege\b", "常設権限"),
-    (r"\bclean recovery\b", "クリーンな復旧"),
-    (r"\bwatch candidate\b", "監視候補"),
-    (r"\bcapacity-planning\b", "能力計画"),
-    (r"\bstress scenario\b", "ストレスシナリオ"),
-    (r"\bsupported inference\b", "根拠に支えられた推論"),
-    (r"\bconfirmed observation\b", "確認済みの観測事実"),
-    (r"\bunknown / not confirmed\b", "不明／未確認"),
-    (r"\bconfirmed capability\b", "能力として確認済み"),
-    (r"\bconfirmed institutional treatment\b", "制度上確認済み"),
-    (r"\bconfirmed historical observation\b", "過去事例として確認済み"),
-    (r"\bconfirmed policy\b", "公的方針として確認済み"),
-    (r"\bconfirmed benchmark\b", "ベンチマークとして確認済み"),
-    (r"\baccount recovery\b", "アカウント復旧"),
-    (r"\binternet banking\b", "インターネットバンキング"),
-    (r"\bmass credential-harvesting campaign\b", "大規模な認証情報収集キャンペーン"),
-    (r"\bvulnerability discovery\b", "脆弱性探索"),
-    (r"\bpost-compromise\b", "侵害後活動"),
-    (r"\binitial-access vector\b", "初期侵入経路"),
-    (r"\bsoftware vulnerability exploitation\b", "ソフトウェア脆弱性悪用"),
-    (r"\bAI-enabled malicious breaches\b", "AIを利用した悪意ある侵害"),
-    (r"\bagent-enabled\b", "AIエージェントを利用した"),
-    (r"\bagentic/code model\b", "エージェント型／コード向けモデル"),
-    (r"\blocal deployment\b", "ローカル配備"),
-    (r"\bfully offline\b", "完全オフライン"),
-    (r"\bdownloadable model\b", "ダウンロード可能なモデル"),
-    (r"\bmodel download\b", "モデルのダウンロード"),
-    (r"\binputs/outputs\b", "入力／出力"),
-    (r"\bglobal average\b", "世界平均"),
-    (r"\bcontainer terminal\b", "コンテナターミナル"),
-    (r"\bsmartphone app\b", "スマートフォンアプリ"),
-    (r"\bcall center\b", "コールセンター"),
-    (r"\bmail addresses?\b", "メールアドレス"),
-    (r"\bservice retirement\b", "サービス廃止"),
-    (r"\bbulk-access\b", "大量アクセス"),
-    (r"\bdata retention\b", "データ保持"),
-    (r"\bdata minimization\b", "データ最小化"),
-    (r"\bdata lineage\b", "データ系譜"),
-    (r"\battack surface\b", "攻撃対象領域"),
-    (r"\binternet-facing\b", "インターネット公開"),
-    (r"\bphishing-resistant\b", "フィッシング耐性のある"),
-    (r"\bmanual fallback\b", "手作業への切り替え"),
-    (r"\bmanual control\b", "手動制御"),
-    (r"\bmanual dispatch\b", "手動配車"),
-    (r"\btenant isolation\b", "テナント分離"),
-    (r"\bfailure domain\b", "障害領域"),
-    (r"\bidentity document controls\b", "本人確認書類の管理"),
-    (r"\bidentity-document controls\b", "本人確認書類の管理"),
-    (r"\bfraud monitoring\b", "不正監視"),
-    (r"\bfraud analytics\b", "不正分析"),
-    (r"\bsegregation of duties\b", "職務分離"),
+    ("mass credential-harvesting campaign", "大規模な認証情報収集キャンペーン"),
+    ("software vulnerability exploitation", "ソフトウェア脆弱性悪用"),
+    ("confirmed institutional treatment", "制度上確認済み"),
+    ("confirmed historical observation", "過去事例として確認済み"),
+    ("unknown / not confirmed", "不明／未確認"),
+    ("confirmed observation", "確認済みの観測事実"),
+    ("supported inference", "根拠に支えられた推論"),
+    ("confirmed capability", "能力として確認済み"),
+    ("confirmed benchmark", "ベンチマークとして確認済み"),
+    ("confirmed policy", "公的方針として確認済み"),
+    ("AI-enabled malicious breaches", "AIを利用した悪意ある侵害"),
+    ("initial-access vector", "初期侵入経路"),
+    ("agentic/code model", "エージェント型／コード向けモデル"),
+    ("identity document controls", "本人確認書類の管理"),
+    ("identity-document controls", "本人確認書類の管理"),
+    ("identity documents", "本人確認書類"),
+    ("identity document", "本人確認書類"),
+    ("incident corpus", "インシデント事例集"),
+    ("control-plane abuse", "制御プレーンの悪用"),
+    ("control plane abuse", "制御プレーンの悪用"),
+    ("standing privilege", "常設権限"),
+    ("capacity-planning", "必要能力の見積もり"),
+    ("account recovery", "アカウント復旧"),
+    ("service retirement", "サービス廃止"),
+    ("downloadable model", "ダウンロード可能なモデル"),
+    ("local deployment", "ローカル配備"),
+    ("fully offline", "完全オフライン"),
+    ("model download", "モデルのダウンロード"),
+    ("system outage", "システム停止"),
+    ("blast radius", "被害範囲"),
+    ("clean recovery", "クリーンな復旧"),
+    ("data centers", "データセンター"),
+    ("data center", "データセンター"),
+    ("watch candidate", "監視候補"),
+    ("bulk-access", "大量アクセス"),
+    ("agent-enabled", "AIエージェントを利用した"),
+    ("internet banking", "インターネットバンキング"),
+    ("container terminal", "コンテナターミナル"),
+    ("smartphone app", "スマートフォンアプリ"),
+    ("call center", "コールセンター"),
+    ("global average", "世界平均"),
+    ("inputs/outputs", "入力／出力"),
+    ("data retention", "データ保持"),
+    ("data minimization", "データ最小化"),
+    ("attack surface", "攻撃対象領域"),
+    ("phishing-resistant", "フィッシング耐性のある"),
+    ("fraud monitoring", "不正監視"),
+    ("fraud analytics", "不正分析"),
+    ("segregation of duties", "職務分離"),
 ]
 
 TOKEN_REPLACEMENTS = {
-    "account": "アカウント",
     "accounts": "アカウント",
-    "record": "レコード",
+    "account": "アカウント",
     "records": "レコード",
-    "provider": "提供事業者",
+    "record": "レコード",
     "providers": "提供事業者",
-    "risk": "リスク",
-    "risks": "リスク",
+    "provider": "提供事業者",
     "recovery": "復旧",
-    "loan": "ローン",
     "loans": "ローン",
+    "loan": "ローン",
     "credit": "クレジット",
-    "local": "ローカル",
-    "offline": "オフライン",
-    "model": "モデル",
-    "models": "モデル",
+    "risks": "リスク",
+    "risk": "リスク",
     "reconnaissance": "偵察",
-    "phishing": "フィッシング",
     "weaponization": "攻撃実用化",
     "subset": "部分集合",
-    "actor": "攻撃主体",
     "actors": "攻撃主体",
-    "breach": "侵害",
-    "breaches": "侵害事案",
+    "actor": "攻撃主体",
+    "throughput": "処理量",
+    "automation": "自動化",
 }
 
 INLINE_CODE = re.compile(r"`[^`]*`")
-URL = re.compile(r"https?://[^\s)>]+")
 LINK_TARGET = re.compile(r"\]\(([^)]+)\)")
+
+
+def compile_term(term: str) -> re.Pattern[str]:
+    return re.compile(
+        ASCII_LEFT + re.escape(term) + ASCII_RIGHT,
+        flags=re.IGNORECASE,
+    )
+
+
+PHRASE_PATTERNS = [
+    (compile_term(term), replacement)
+    for term, replacement in PHRASE_REPLACEMENTS
+]
+TOKEN_PATTERNS = [
+    (compile_term(term), replacement)
+    for term, replacement in TOKEN_REPLACEMENTS.items()
+]
 
 
 def split_frontmatter(text: str) -> tuple[str, str]:
@@ -144,7 +144,6 @@ def protect(line: str) -> tuple[str, list[str]]:
         return f"\u0000{len(saved)-1}\u0000"
 
     line = INLINE_CODE.sub(keep, line)
-    line = URL.sub(keep, line)
     line = LINK_TARGET.sub(keep, line)
     return line, saved
 
@@ -158,14 +157,14 @@ def restore(line: str, saved: list[str]) -> str:
 def normalize_line(line: str) -> str:
     if line in HEADING_REPLACEMENTS:
         return HEADING_REPLACEMENTS[line]
-    # Preserve bibliography/footnote source titles verbatim.
-    if re.match(r"^\[\^[^]]+\]:", line):
+    # 出典の正式名称やURLを含む行は自動変換しない。
+    if re.match(r"^\[\^[^]]+\]:", line) or "http://" in line or "https://" in line:
         return line
     work, saved = protect(line)
-    for pattern, replacement in PHRASE_REPLACEMENTS:
-        work = re.sub(pattern, replacement, work, flags=re.IGNORECASE)
-    for token, replacement in TOKEN_REPLACEMENTS.items():
-        work = re.sub(rf"\b{re.escape(token)}\b", replacement, work, flags=re.IGNORECASE)
+    for pattern, replacement in PHRASE_PATTERNS:
+        work = pattern.sub(replacement, work)
+    for pattern, replacement in TOKEN_PATTERNS:
+        work = pattern.sub(replacement, work)
     return restore(work, saved)
 
 
@@ -186,15 +185,14 @@ def normalize_text(text: str) -> str:
 
 
 def markdown_files() -> list[Path]:
-    return sorted(
-        p for p in ROOT.rglob("*.md")
-        if ".git" not in p.parts and p.name != "AGENTS.md"
-    )
+    targets = list((ROOT / "analysis").glob("*.md"))
+    targets += list((ROOT / "incidents" / "2026").glob("*.md"))
+    return sorted(p for p in targets if p.name != "index.md")
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--check", action="store_true", help="report files that would change")
+    parser.add_argument("--check", action="store_true", help="変更対象だけを表示する")
     args = parser.parse_args()
     changed: list[Path] = []
     for path in markdown_files():
