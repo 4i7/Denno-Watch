@@ -4,7 +4,7 @@
 方針:
 - YAMLフロントマター、URL、コード、脚注の正式な出典表記は対象外。
 - 正式な製品名・組織名・規格名と、AI/IT/セキュリティ分野で一般化した
-  略語は許容する。
+  略語・技術用語は許容する。
 - 主要な分析文書では、日本語を含む行に残る一般的な英小文字語を原則検出する。
   これにより agent/model/local/system/cloud のような、既知語リストにない混在も
   新たに検出できる。
@@ -23,6 +23,7 @@ JAPANESE = re.compile(r"[ぁ-んァ-ヶ一-龯]")
 LOWER_ASCII_WORD = re.compile(
     r"(?<![A-Za-z0-9_])([a-z][a-z0-9]*(?:[-/][a-z0-9]+)*)(?![A-Za-z0-9_])"
 )
+VERSION_TOKEN = re.compile(r"(?<![A-Za-z0-9_])v\d+(?:\.\d+)*(?![A-Za-z0-9_])", re.I)
 
 # 過去に実際に混入した、または意味が曖昧になりやすい表現。
 PHRASES = [
@@ -78,30 +79,34 @@ STRICT_PROSE_PATHS = {
     Path("methodology/corpus-audit-2026-10-04.md"),
 }
 
-# 小文字を含んでも一般的な技術表記として保持するもの。
-# 原則は厳しくし、必要な語だけここへ追加する。
+# 小文字のまま一般的な技術用語として定着しているもの。
 LOWER_ALLOWED = {
-    "eKYC".lower(),  # 比較時はlower()する
+    "anycast",
 }
+
+# 複数語で一般的な正式機能・技術名。単語単体を許可しないため、先にマスクする。
+STANDARD_TECH_PHRASES = [
+    "push protection",
+]
 
 # 見出し・本文でそのまま使ってよい、一般化した略語・固有名。
 ASCII_ALLOWED = {
     "AI", "LLM", "GPU", "VRAM", "BI", "API", "SaaS", "DNS", "GitHub", "Web",
     "LINE", "SMS", "VPN", "MFA", "FIDO", "FIDO2", "EDR", "NDR", "SOC", "MDR",
     "SIEM", "WAF", "CVE", "KEV", "KPI", "MITRE", "ATT", "CK", "DB", "IT", "OT",
-    "BPO", "MSP", "CSS", "ID", "KYC", "PII", "POS", "EC", "HR", "ISP", "FAQ",
-    "JICC", "CIC", "NISC", "NCO", "IBM", "KDDI", "ASKUL", "OZmall", "Helpfeel",
-    "Gyazo", "LEAN", "BODY", "ApplyNow", "VOISING", "PeakManager", "Denno", "Watch",
-    "Metabase", "MCL", "MTTR", "MTTD", "RTO", "RPO", "OKF", "LOC", "SLA", "ASN",
-    "IAM", "PAM", "JIT", "JEA", "OIDC", "PAT", "SSO", "DLP", "UEBA", "EASM", "VM",
-    "TPRM", "SCADA", "MES", "ERP", "DR", "BCP", "LAPS", "AD", "IR", "SecOps",
+    "BPO", "MSP", "CSS", "ID", "KYC", "eKYC", "PII", "POS", "EC", "HR", "ISP",
+    "FAQ", "JICC", "CIC", "NISC", "NCO", "IBM", "KDDI", "ASKUL", "OZmall",
+    "Helpfeel", "Gyazo", "LEAN", "BODY", "ApplyNow", "VOISING", "PeakManager", "Denno",
+    "Watch", "Metabase", "MCL", "MTTR", "MTTD", "RTO", "RPO", "OKF", "LOC", "SLA",
+    "ASN", "IAM", "PAM", "JIT", "JEA", "OIDC", "PAT", "SSO", "DLP", "UEBA", "EASM",
+    "VM", "TPRM", "SCADA", "MES", "ERP", "DR", "BCP", "LAPS", "AD", "IR", "SecOps",
     "Microsoft", "Google", "Anthropic", "Verizon", "Mistral", "Meta", "Park24", "IANS",
-    "Artico", "Search", "LY", "Corporation", "APAC", "FAQ", "Llama", "Five", "Foxes",
-    "REXT", "CEC", "JCOM", "DotGift",
+    "Artico", "Search", "LY", "Corporation", "APAC", "Llama", "Five", "Foxes", "REXT",
+    "CEC", "JCOM", "DotGift", "WordPress", "OEM", "PDF", "PC", "FAX", "DDoS",
 }
 
 # 正式な出典名として本文中の引用セルに現れる英小文字語。
-# 一般本文での免罪符にしないため、quoted/source文脈だけで使う。
+# 一般本文での免罪符にしないため、出典文脈だけで使う。
 FORMAL_SOURCE_LOWER = {
     "results", "release", "summary",
 }
@@ -120,6 +125,7 @@ def ascii_term(term: str) -> re.Pattern[str]:
 
 
 PHRASE_PATTERNS = [(term, ascii_term(term)) for term in PHRASES]
+TECH_PHRASE_PATTERNS = [ascii_term(term) for term in STANDARD_TECH_PHRASES]
 
 
 def body_only(text: str) -> str:
@@ -133,6 +139,7 @@ def scrub(line: str) -> str:
     line = INLINE_CODE.sub(" ", line)
     line = URL.sub(" ", line)
     line = LINK_TARGET.sub("]", line)
+    line = VERSION_TOKEN.sub(" ", line)
     return line
 
 
@@ -141,7 +148,10 @@ def scrub_formal_sources(raw: str, line: str) -> str:
     if raw.lstrip().startswith("-") and "http" in raw:
         return ""
     # 引用符で囲まれた正式な英語タイトルは本文の混在判定から外す。
-    return QUOTED.sub(" ", line)
+    line = QUOTED.sub(" ", line)
+    for pattern in TECH_PHRASE_PATTERNS:
+        line = pattern.sub(" ", line)
+    return line
 
 
 def markdown_files() -> list[Path]:
