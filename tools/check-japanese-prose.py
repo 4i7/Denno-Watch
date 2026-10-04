@@ -2,8 +2,9 @@
 """日本語本文に残った英語Jargon候補を検出する。
 
 全英単語を禁止するのではなく、Denno Watchで日本語表記へ統一すると決めた
-表現だけを検査する。YAMLフロントマター、URL、インラインコード、コード
-ブロック、脚注の正式な出典表記は検査対象から外す。
+表現と、人が読む見出しに残る不要な英語を検査する。YAMLフロントマター、
+URL、インラインコード、コードブロック、脚注の正式な出典表記は対象外。
+AI/IT/セキュリティ分野で一般化した略語や固有名は見出しでも許容する。
 """
 
 from __future__ import annotations
@@ -67,9 +68,23 @@ MIXED_TOKENS = [
     "throughput", "automation",
 ]
 
+# 見出しでそのまま使ってよい、一般化した略語・固有名。
+HEADING_ALLOWED = {
+    "AI", "BI", "API", "SaaS", "DNS", "GitHub", "Web", "LINE", "SMS", "VPN",
+    "MFA", "FIDO", "FIDO2", "EDR", "SOC", "SIEM", "WAF", "CVE", "KPI",
+    "MITRE", "ATT", "CK", "DB", "IT", "OT", "BPO", "CSS", "ID", "KYC",
+    "POS", "EC", "HR", "ISP", "FAQ", "JICC", "CIC", "NISC", "NCO", "IBM",
+    "KDDI", "ASKUL", "OZmall", "Helpfeel", "Gyazo", "LEAN", "BODY",
+    "ApplyNow", "VOISING", "PeakManager", "Denno", "Watch", "Metabase",
+    "Times", "Car", "MCL", "MTTR", "RTO", "RPO",
+}
+
 INLINE_CODE = re.compile(r"`[^`]*`")
 URL = re.compile(r"https?://[^\s)>]+")
 LINK_TARGET = re.compile(r"\]\(([^)]+)\)")
+HEADING_ASCII = re.compile(
+    r"(?<![A-Za-z0-9_])([A-Za-z][A-Za-z0-9+&.-]{1,})(?![A-Za-z0-9_])"
+)
 
 
 def ascii_term(term: str) -> re.Pattern[str]:
@@ -116,6 +131,12 @@ def main() -> int:
             if in_fence or re.match(r"^\[\^[^]]+\]:", raw):
                 continue
             line = scrub(raw)
+            if line.startswith("#"):
+                for token in HEADING_ASCII.findall(line):
+                    if token not in HEADING_ALLOWED:
+                        failures.append(
+                            f"{path.relative_to(ROOT)}:{lineno}: heading token '{token}'"
+                        )
             for term, pattern in PHRASE_PATTERNS:
                 if pattern.search(line):
                     failures.append(
