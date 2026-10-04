@@ -1,52 +1,52 @@
-# Incident reports
+# インシデントレポート
 
-Reports are selected for material operational impact, sensitive/large-scale data exposure, downstream blast radius, or unusually reusable defensive findings. Inclusion is not a severity ranking.
+重大な業務影響、機微・大規模なデータ影響、顧客・委託先・サプライチェーンへの波及、または他組織でも再利用価値の高い防御上の知見が確認できる事例を収録する。収録は深刻度ランキングではない。
 
-## 2026
+## 2026年
 
-| Organization | First disclosed | Incident | Public state |
+| 組織 | 最初の公表 | インシデント | 公開上の状態 |
 | --- | --- | --- | --- |
-| [第一生命グループ](2026/daiichi-life-hr-system-breach.md) | 2026-10-02 | Shared HR system / ~120,000 current and former employees | Investigating |
-| [佐川急便](2026/sagawa-package-tracking-breach.md) | 2026-09-30 | Package-tracking breach / ~100 days of shipment-related data at risk | Web services suspended / investigating |
-| [ヤマト運輸](2026/yamato-kuroneko-postpay-breach.md) | 2026-09-29 | Kuroneko postpay breach / customer billing and purchase context | Service suspended / investigating |
-| [セイコーマート](2026/seicomart-app-breach.md) | 2026-09-29 | App-server breach / 572,022 confirmed viewed members | Recovering / investigating |
-| [OZmall / スターツ出版](2026/ozmall-unauthorized-access.md) | 2026-09-27 | Unauthorized access / up to 442,779 potentially viewed users | Service restored / monitoring |
-| [東京メトロ / メトポ](2026/tokyo-metro-metpo-mail-breach.md) | 2026-09-27 | Mail-service breach / about 59,000 potentially viewed or acquired addresses | Investigating |
-| [京王電鉄](2026/keio-electric-ransomware.md) | 2026-09-26 | Ransomware / group system disruption | Investigating |
-| [株式会社ファインズ](2026/fines-reservation-system-breach.md) | 2026-09-25 | Reservation-system unauthorized access / 1.53M records | Investigating |
-| [タイムズモビリティ / パーク２４](2026/times-car-web-breach.md) | 2026-09-25 | Web-system breach / 6.6M accounts / identity documents | Investigating |
-| [池上通信機](2026/ikegami-tsushinki-cyberattack-leak.md) | 2026-09-24 | Unauthorized server access / file encryption / attacker-site publication | Network isolated / investigating |
-| [JCOM](2026/jcom-dns-external-traffic-outage.md) | 2026-09-23 | External high-volume traffic / DNS overload / up to ~4.08M subscribed households | Restored / cause disclosed |
-| [Helpfeel / Gyazo](2026/helpfeel-gyazo-breach.md) | 2026-09-16 | Unauthorized access / 23.62M users / large-scale image metadata | Service restored / investigating |
-| [LEAN BODY](2026/lean-body-metabase-breach.md) | 2026-09-15 | Metabase vulnerability exploitation / about 440,000 accounts / confirmed customer-data acquisition | Contained / investigation continues |
-| [ロート製薬](2026/rohto-direct-sales-system-breach.md) | 2026-09-11 | Direct-sales system / possible customer data and call-audio acquisition | Investigating |
-| [日本トレクス](2026/japan-trex-unauthorized-access-outage.md) | 2026-09-11 | Unauthorized access / procurement, parts-order and email disruption | Restored / public investigation concluded |
-| [ApplyNow](2026/applynow-recruitment-platform-breach.md) | 2026-09-09 | Recruitment SaaS / downstream applicant and employment-related data | Downstream notification / investigating |
-| [コープやまぐち](2026/coop-yamaguchi-line-miniapp-breach.md) | 2026-08-28 | LINE mini-app DB / all data deleted / 212,712 main member records plus affected subsets | Service restored / confidentiality investigation open |
-| [イエローハット](2026/yellowhat-web-reservation-breach.md) | 2026-08-28 | Web work-reservation breach / up to 1,801,499 members | Investigating |
-| [VOISING](2026/voising-bi-tool-breach.md) | 2026-08-18 | BI known-vulnerability exploitation / ~170,000 confirmed leaked records | Investigation complete / monitoring |
-| [さくらインターネット](2026/sakura-internet-unauthorized-access.md) | 2026-08-17 | Unauthorized access / malware / customer-management exposure risk | Monitoring |
-| [両毛システムズ](2026/ryomo-systems-ransomware-supply-chain.md) | 2026-08-15 | VPN account abuse / ransomware / entrusted-data downstream impact | Investigating / downstream notification |
-| [REXT Holdings / REXT](2026/rext-ransomware.md) | 2026-08-10 | Ransomware / retail operations / confirmed online publication of possible leaked data | Investigating |
-| [シーイーシー](2026/cec-datacenter-ransomware.md) | 2026-08-06 | Ransomware / data-center service outage | Public report closed |
-| [株式会社イノベーション](2026/innovation-github-breach.md) | 2026-08-04 | GitHub unauthorized access / repository data leak | Public report closed |
-| [Ｅストアー / ショップサーブ](2026/estore-shopserve-breach.md) | 2026-08-01 | Unauthorized access / purchase-data exfiltration | Investigating |
-| [EPARKリラク＆エステ / PeakManager](2026/epark-peakmanager-breach.md) | 2026-07-31 | Customer DB exfiltration and deletion / ~22.18M records after refinement | Forensic result published / monitoring |
-| [株式会社ムラウチドットコム](2026/murauchi-dotcom-breach.md) | 2026-07-24 | Web-system compromise / 7,716,811 customer records | Public investigation completed |
-| [扶桑電通](2026/fuso-dentsu-cloud-storage-breach.md) | 2026-07-22 | Cloud-storage credential misuse / 26,489 records potentially exposed | Investigation complete / monitoring |
-| [メディア4u](2026/media4u-sms-platform-breach.md) | 2026-07-14 | SMS platform / 95,412 management records leaked / 280 unauthorized SMS messages | Service continuing / scope refinement |
-| [ファイブフォックス / コムサ](2026/five-foxes-ransomware-suspected-breach.md) | 2026-07-14 | Unauthorized access / suspected ransomware / customer and employee data | Investigating |
-| [ニチレイ](2026/nichirei-cyberattack-logistics-breach.md) | 2026-07-13 | Cyberattack / cold-chain logistics and frozen-food shipment disruption / confirmed personal-data leak | Operations restored / investigation continues |
-| [日本交通](2026/nihon-kotsu-malware-breach.md) | 2026-07-13 | Malware / reservation-dispatch disruption / confirmed external file leakage | Recovery / data-scope investigation |
-| [アフラック生命保険](2026/aflac-life-unauthorized-access.md) | 2026-06-30 | Unauthorized access / large-scale personal-data leak | Monitoring / service recovery |
-| [KDDI](2026/kddi-isp-mail-breach.md) | 2026-06-23 | Shared ISP mail platform / then-unknown software vulnerability / credentials | Public report closed / regulatory follow-up |
-| [名鉄協商](2026/meitetsu-kyosho-multi-server-breach.md) | 2026-06-23 | Multi-server unauthorized access / prolonged multi-service disruption / possible customer-data exposure | Partial recovery / investigating |
-| [ハンズホールディングス](2026/hands-holdings-ransomware.md) | 2026-06-22 | Ransomware / employee and My Number exposure risk | Investigating |
-| [フェースグループ](2026/faith-ransomware.md) | 2026-06-22 | Ransomware via VPN / encryption and deletion | Recovering |
-| [ドットマネー / ドットギフト](2026/dotmoney-dotgift-breach.md) | 2026-06-11 | Unauthorized access / long full outage / phased restart / DotGift termination | DotMoney restored / DotGift terminated |
-| [日本資産総研](2026/nihon-shisan-souken-ransomware-leak.md) | 2026-05-14 | Credential-theft ransomware / encryption / confirmed customer-data leak-site publication | Operations restored / remediation continues |
-| [マルタケ](2026/marutake-ransomware-leak.md) | 2026-04-28 | Ransomware / prolonged operational disruption / confirmed exfiltration and leak-site publication | Temporary environment / monitoring |
-| [２りんかんイエローハット](2026/yellowhat-2rinkan-breach.md) | 2026-04-23 | API-related unauthorized access / 3,179,454 members | Public report closed / service rebuild pending |
-| [日本テレネット](2026/nippon-telenet-ransomware-bpo-breach.md) | 2026-03-17 | Network-equipment entry / ransomware / large entrusted-data populations | Investigation complete / monitoring |
+| [第一生命グループ](2026/daiichi-life-hr-system-breach.md) | 2026-10-02 | 共有人事システム侵害／現職・退職者約12万人 | 調査中 |
+| [佐川急便](2026/sagawa-package-tracking-breach.md) | 2026-09-30 | 荷物追跡システム侵害／約100日分の配送関連情報に影響可能性 | Webサービス停止／調査中 |
+| [ヤマト運輸](2026/yamato-kuroneko-postpay-breach.md) | 2026-09-29 | クロネコ代金後払い侵害／顧客の請求・購買関連情報 | サービス停止／調査中 |
+| [セイコーマート](2026/seicomart-app-breach.md) | 2026-09-29 | アプリサーバー侵害／572,022人の閲覧を確認 | 復旧中／調査中 |
+| [OZmall / スターツ出版](2026/ozmall-unauthorized-access.md) | 2026-09-27 | 不正アクセス／最大442,779人が閲覧された可能性 | サービス復旧／監視中 |
+| [東京メトロ / メトポ](2026/tokyo-metro-metpo-mail-breach.md) | 2026-09-27 | メールサービス侵害／約5.9万件のアドレスが閲覧・取得された可能性 | 調査中 |
+| [京王電鉄](2026/keio-electric-ransomware.md) | 2026-09-26 | ランサムウェア／グループシステム障害 | 調査中 |
+| [株式会社ファインズ](2026/fines-reservation-system-breach.md) | 2026-09-25 | 予約システムへの不正アクセス／153万レコード | 調査中 |
+| [タイムズモビリティ / パーク２４](2026/times-car-web-breach.md) | 2026-09-25 | Webシステム侵害／660万アカウント／本人確認書類 | 調査中 |
+| [池上通信機](2026/ikegami-tsushinki-cyberattack-leak.md) | 2026-09-24 | サーバー不正アクセス／ファイル暗号化／攻撃者サイト掲載 | ネットワーク隔離／調査中 |
+| [JCOM](2026/jcom-dns-external-traffic-outage.md) | 2026-09-23 | 外部からの大量通信／DNS過負荷／最大約408万加入世帯に影響 | 復旧済み／原因公表済み |
+| [Helpfeel / Gyazo](2026/helpfeel-gyazo-breach.md) | 2026-09-16 | 不正アクセス／2,362万ユーザー／大規模な画像メタデータ影響 | サービス復旧／調査中 |
+| [LEAN BODY](2026/lean-body-metabase-breach.md) | 2026-09-15 | Metabase脆弱性悪用／約44万アカウント／顧客データ取得を確認 | 封じ込め済み／調査継続 |
+| [ロート製薬](2026/rohto-direct-sales-system-breach.md) | 2026-09-11 | 通販システム／顧客情報・通話音声が取得された可能性 | 調査中 |
+| [日本トレクス](2026/japan-trex-unauthorized-access-outage.md) | 2026-09-11 | 不正アクセス／調達・部品発注・メール障害 | 復旧済み／公表上の調査完了 |
+| [ApplyNow](2026/applynow-recruitment-platform-breach.md) | 2026-09-09 | 採用SaaS侵害／応募者・雇用関連データへ下流影響 | 下流通知／調査中 |
+| [コープやまぐち](2026/coop-yamaguchi-line-miniapp-breach.md) | 2026-08-28 | LINEミニアプリDB／全データ削除／主要組合員レコード212,712件と追加対象 | サービス復旧／機密性調査継続 |
+| [イエローハット](2026/yellowhat-web-reservation-breach.md) | 2026-08-28 | Web作業予約システム侵害／最大1,801,499人 | 調査中 |
+| [VOISING](2026/voising-bi-tool-breach.md) | 2026-08-18 | BIツール既知脆弱性悪用／約17万レコードの流出確認 | 調査完了／監視中 |
+| [さくらインターネット](2026/sakura-internet-unauthorized-access.md) | 2026-08-17 | 不正アクセス／マルウェア／顧客管理情報への影響可能性 | 監視中 |
+| [両毛システムズ](2026/ryomo-systems-ransomware-supply-chain.md) | 2026-08-15 | VPNアカウント悪用／ランサムウェア／受託データを介した下流影響 | 調査中／下流通知 |
+| [REXT Holdings / REXT](2026/rext-ransomware.md) | 2026-08-10 | ランサムウェア／小売業務影響／漏えい可能性のある情報のオンライン掲載確認 | 調査中 |
+| [シーイーシー](2026/cec-datacenter-ransomware.md) | 2026-08-06 | ランサムウェア／データセンターサービス停止 | 公表上の調査完了 |
+| [株式会社イノベーション](2026/innovation-github-breach.md) | 2026-08-04 | GitHub不正アクセス／リポジトリ情報流出 | 公表上の調査完了 |
+| [Ｅストアー / ショップサーブ](2026/estore-shopserve-breach.md) | 2026-08-01 | 不正アクセス／購買データ持ち出し | 調査中 |
+| [EPARKリラク＆エステ / PeakManager](2026/epark-peakmanager-breach.md) | 2026-07-31 | 顧客DBの持ち出し・削除／精査後約2,218万レコード | フォレンジック結果公表／監視中 |
+| [株式会社ムラウチドットコム](2026/murauchi-dotcom-breach.md) | 2026-07-24 | Webシステム侵害／顧客レコード7,716,811件 | 公表上の調査完了 |
+| [扶桑電通](2026/fuso-dentsu-cloud-storage-breach.md) | 2026-07-22 | クラウドストレージ認証情報悪用／26,489件に影響可能性 | 調査完了／監視中 |
+| [メディア4u](2026/media4u-sms-platform-breach.md) | 2026-07-14 | SMS基盤侵害／管理レコード95,412件流出／不正SMS280件 | サービス継続／影響範囲精査 |
+| [ファイブフォックス / コムサ](2026/five-foxes-ransomware-suspected-breach.md) | 2026-07-14 | 不正アクセス／ランサムウェア疑い／顧客・従業員情報 | 調査中 |
+| [ニチレイ](2026/nichirei-cyberattack-logistics-breach.md) | 2026-07-13 | サイバー攻撃／低温物流・冷凍食品出荷障害／個人情報流出確認 | 業務復旧／調査継続 |
+| [日本交通](2026/nihon-kotsu-malware-breach.md) | 2026-07-13 | マルウェア／予約・配車障害／ファイル外部流出確認 | 復旧中／データ範囲調査 |
+| [アフラック生命保険](2026/aflac-life-unauthorized-access.md) | 2026-06-30 | 不正アクセス／大規模個人情報漏えい | 監視中／サービス復旧 |
+| [KDDI](2026/kddi-isp-mail-breach.md) | 2026-06-23 | 共有ISPメール基盤／当時未認知のソフトウェア脆弱性／認証情報 | 公表上の調査完了／規制対応継続 |
+| [名鉄協商](2026/meitetsu-kyosho-multi-server-breach.md) | 2026-06-23 | 複数サーバーへの不正アクセス／複数サービスの長期障害／顧客情報影響可能性 | 部分復旧／調査中 |
+| [ハンズホールディングス](2026/hands-holdings-ransomware.md) | 2026-06-22 | ランサムウェア／従業員・マイナンバー情報への影響可能性 | 調査中 |
+| [フェースグループ](2026/faith-ransomware.md) | 2026-06-22 | VPN経由ランサムウェア／暗号化・削除 | 復旧中 |
+| [ドットマネー / ドットギフト](2026/dotmoney-dotgift-breach.md) | 2026-06-11 | 不正アクセス／長期全面停止／段階復旧／ドットギフト終了 | ドットマネー復旧／ドットギフト終了 |
+| [日本資産総研](2026/nihon-shisan-souken-ransomware-leak.md) | 2026-05-14 | 認証情報窃取に関連するランサムウェア／暗号化／顧客データの攻撃者サイト掲載確認 | 業務復旧／再発防止継続 |
+| [マルタケ](2026/marutake-ransomware-leak.md) | 2026-04-28 | ランサムウェア／長期業務障害／情報持ち出し・攻撃者サイト掲載確認 | 仮環境運用／監視中 |
+| [２りんかんイエローハット](2026/yellowhat-2rinkan-breach.md) | 2026-04-23 | API関連不正アクセス／会員3,179,454人 | 公表上の調査完了／サービス再構築待ち |
+| [日本テレネット](2026/nippon-telenet-ransomware-bpo-breach.md) | 2026-03-17 | ネットワーク機器からの侵入／ランサムウェア／大規模受託データ | 調査完了／監視中 |
 
-See [reporting standard](/methodology/reporting-standard.md) for evidence-state and field semantics and [2026 corpus audit](/methodology/corpus-audit-2026-10-04.md) for the latest consistency pass and cross-incident findings.
+証拠状態と各フィールドの意味は[インシデント記録基準](/methodology/reporting-standard.md)、最新の整合性確認と事例横断の知見は[2026年事例集監査](/methodology/corpus-audit-2026-10-04.md)を参照。
