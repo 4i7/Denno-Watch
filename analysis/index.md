@@ -11,6 +11,7 @@
 * [サイバーインシデントのライフサイクルと復旧判定](incident-lifecycle-and-recovery-knowledge-base-2026-10-04.md) - 発生前条件、初期侵入、横展開、被害、検知、封じ込め、根絶、技術復旧、業務復旧、影響確定、通知、長期予後を一つの時間軸で整理。
 * [インシデント対応指標と経営判断トリガー](incident-response-metrics-and-decision-triggers-2026-10-04.md) - 最初の60分、P0/P1/P2、全面停止と部分隔離、復旧開始・完了条件、平時に測る先行指標を整理。
 * [バックアップ・復元可能性・クリーン復旧](backup-recoverability-and-clean-restoration-knowledge-base-2026-10-04.md) - バックアップの存在ではなく、分離、復元試験、復旧点、構成・秘密情報、クリーンな復旧先、業務照合までを復旧能力として評価。
+* [再発防止策の実効性と再発追跡](remediation-effectiveness-and-recurrence-tracking-2026-10-04.md) - 対策の「発表」を、予定、実装、試験、独立評価、実運用での効果へ分け、同一組織・共有基盤を数年単位で追跡。
 * [インシデント後の長期予後](post-incident-long-tail-prognosis-2026-10-04.md) - 技術復旧後に残る本人保護、規制、契約、訴訟、保険、信用、技術負債、人員負荷を数か月〜数年の時間軸で整理。
 
 ## 制度・公表・財務
@@ -26,10 +27,11 @@
 * [完全性・破壊・不正操作の被害](integrity-and-destructive-impact-knowledge-base-2026-10-04.md) - DB削除、改変、不正送信、設定変更、ログ・復旧基盤破壊など、漏えい件数では測れない被害を独立評価。
 * [OT・重要インフラの安全・復旧リスク](ot-critical-infrastructure-safety-and-recovery-2026-10-04.md) - 物理プロセス、安全、遠隔アクセス、制御ロジック、工学バックアップ、縮退運転、相互依存、通常操業までの復旧をIT事故と分けて整理。
 
-## 集中・依存・防御統制
+## 集中・依存・クラウド・防御統制
 
 * [第三者・認証・集中リスク](third-party-identity-concentration-risk-2026-10-04.md) - 委託先、SaaS、認証情報、共有基盤、データ集中、復旧依存が単一事故を複数組織へ波及させる条件を国内外事例から整理。
 * [システム依存・集中リスクのグラフモデル](systemic-dependency-and-concentration-graph-model-2026-10-04.md) - 組織、SaaS、ID、管理面、データ、バックアップ、重要業務をノードと依存関係として記録し、単一点障害と下流波及を比較。
+* [クラウド・SaaSの共有責任と証拠境界](cloud-saas-shared-responsibility-and-evidence-boundaries-2026-10-04.md) - 設定・ID・ログ・検知・対応・復旧の責任と、事故時に顧客側が取得できる証拠の限界を分離。
 * [失敗モードと防御統制の対応表](control-failure-mode-crosswalk-2026-10-04.md) - 認証、脆弱性、過大権限、共有基盤、ログ、セグメント、バックアップ等の失敗モードを、確認済み事実と一般的推奨策を分離したまま防御統制へ接続。
 * [全業種サイバー侵害・最大被害ストレスマトリクス](sector-worst-case-impact-matrix-2026-10-04.md) - 日本標準産業分類A〜Sを基礎に、情報、金銭、事業継続、安全、社会・サプライチェーンへの波及まで各業種で想定し得る最大被害を整理。
 
