@@ -114,6 +114,7 @@ FORMAL_SOURCE_LOWER = {
 INLINE_CODE = re.compile(r"`[^`]*`")
 URL = re.compile(r"https?://[^\s)>]+")
 LINK_TARGET = re.compile(r"\]\(([^)]+)\)")
+FOOTNOTE_REF = re.compile(r"\[\^[^]]+\]")
 QUOTED = re.compile(r"[“\"]([^”\"]+)[”\"]")
 ASCII_TOKEN = re.compile(
     r"(?<![A-Za-z0-9_])([A-Za-z][A-Za-z0-9+&.-]{1,})(?![A-Za-z0-9_])"
@@ -139,6 +140,7 @@ def scrub(line: str) -> str:
     line = INLINE_CODE.sub(" ", line)
     line = URL.sub(" ", line)
     line = LINK_TARGET.sub("]", line)
+    line = FOOTNOTE_REF.sub(" ", line)
     line = VERSION_TOKEN.sub(" ", line)
     return line
 
@@ -147,6 +149,9 @@ def scrub_formal_sources(raw: str, line: str) -> str:
     # URL付き箇条書きは出典一覧として扱う。脚注自体はmain()で除外済み。
     if raw.lstrip().startswith("-") and "http" in raw:
         return ""
+    # 正式資料名は原表記を保持する。
+    for title in ("IBM Cost of a Data Breach 2026", "IBM Cost of a Data Breach 2025 Japan"):
+        line = line.replace(title, " ")
     # 引用符で囲まれた正式な英語タイトルは本文の混在判定から外す。
     line = QUOTED.sub(" ", line)
     for pattern in TECH_PHRASE_PATTERNS:
