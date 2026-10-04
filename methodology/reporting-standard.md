@@ -1,7 +1,7 @@
 ---
 type: Reference
-title: Denno Watch incident reporting standard
-description: Evidence, provenance, lifecycle and field semantics for public incident records.
+title: Denno Watch インシデント記録基準
+description: 公開インシデント記録の証拠評価、出典管理、ライフサイクル、各フィールドの意味を定義する。
 tags: [methodology, incident-response, provenance, okf]
 status: draft
 generated: { by: openai/gpt-5.6-sol, at: 2026-10-04T06:23:00+09:00 }
@@ -12,140 +12,150 @@ sources:
     author: team:GoogleCloudPlatform
 ---
 
-# Purpose
+# 目的
 
-Denno Watch records what can be established from public evidence about major cyber incidents affecting organizations in Japan. The corpus is optimized for later defensive use: understanding what happened, what was affected, how response and recovery progressed, what remained unknown, and which controls can be learned from the disclosed facts.
+Denno Watch は、日本の組織に影響する重大なサイバーインシデントについて、公開根拠から確認できる事実を記録する。後の防御に利用できるよう、何が起きたか、何が影響を受けたか、対応と復旧がどう進んだか、何が不明のまま残ったか、公開事実からどのような防御上の教訓を得られるかを整理する。
 
-The bundle follows OKF v0.2: concept documents are Markdown with YAML frontmatter; provenance is stored in `sources`; claim-level citations use matching footnote IDs; machine generation and independent verification are separate signals.[^okf-v02]
+ナレッジベースは OKF v0.2 に従う。各概念文書は YAML フロントマター付き Markdown とし、出典情報を `sources` に保持する。個別の主張は対応する脚注 ID で根拠へ結び付ける。機械生成と独立検証は別の状態として扱う。[^okf-v02]
 
-Because the upstream OKF v0.2 text has evolved while retaining the same version label, bundle root `index.md` records both `okf_version` and the exact `okf_spec_revision` / `okf_spec_resource` used by Denno Watch. Producer-defined revision keys are additive metadata and do not replace the canonical `okf_version` field.
+上流の OKF v0.2 は同じ版番号を維持したまま本文が更新されているため、ルートの `index.md` には `okf_version` に加え、Denno Watch が参照した正確な `okf_spec_revision` と `okf_spec_resource` を記録する。これらは生成側が追加するメタデータであり、標準の `okf_version` を置き換えるものではない。
 
-# Inclusion
+# 収録基準
 
-An incident is in scope when public evidence shows at least one of the following:
+公開根拠から、少なくとも次のいずれかが確認できる事例を収録対象とする。
 
-- material interruption of business or customer-facing services;
-- confirmed or plausible exposure of large-scale, sensitive or authentication data;
-- compromise with meaningful downstream, supplier, infrastructure or multi-organization blast radius;
-- a technically reusable defensive lesson that is unusually well documented by the affected organization.
+- 事業または顧客向けサービスに重大な停止・制限が生じた。
+- 大規模、機微、または認証に関わる情報の流出・取得・曝露が確認された、または否定できない。
+- 顧客、委託先、インフラ、複数組織へ意味のある波及が生じた。
+- 被害組織の公表が十分に具体的で、他組織でも再利用できる防御上の教訓が得られる。
 
-Inclusion is not a severity ranking. Denno Watch does not assign companies a score or infer business damage that has not been disclosed.
+収録は深刻度ランキングではない。Denno Watch は企業へ点数を付けず、公表されていない事業損失を推定値として断定しない。
 
-# Evidence hierarchy
+# 根拠資料の優先順位
 
-Use sources in this order where available:
+利用可能な場合は、原則として次の順で根拠を優先する。
 
-1. affected organization, parent/subsidiary or directly responsible service provider;
-2. regulator, law-enforcement or other competent public authority;
-3. directly affected partner or customer organization;
-4. high-quality secondary reporting that adds independently observable facts.
+1. 被害組織、親会社・子会社、または当該サービスを直接運営する事業者。
+2. 規制当局、捜査機関、その他の権限ある公的機関。
+3. 直接影響を受けた取引先・顧客組織。
+4. 独立して観測可能な事実を追加する、信頼性の高い二次報道。
 
-Secondary reporting must not override a later primary correction. Anonymous attacker claims, leak-site claims and social-media posts are recorded only when independently corroborated or when the fact being recorded is merely that the claim/publication itself exists.
+二次報道を、後から公表された一次情報による訂正より優先してはならない。匿名の攻撃者主張、リークサイト上の主張、SNS投稿は、独立した裏付けがある場合、または「その主張・掲載自体が存在した」ことを記録する場合に限って扱う。
 
-# Fact states
+# 事実状態
 
-Do not collapse absence of evidence into a negative finding.
+「証拠が見つからない」ことを「発生していない」と読み替えない。
 
-| State | Meaning |
+| 状態 | 意味 |
 | --- | --- |
-| `confirmed` | Explicitly established by a cited source. |
-| `possible` | The source says exposure/impact cannot be excluded or may have occurred. |
-| `not_observed` | Investigation states that evidence of the event was not found. This is not proof that it never happened. |
-| `not_publicly_disclosed` | The organization has not published the detail, or explicitly withheld it. |
-| `unknown` | Public evidence is insufficient to determine the fact. |
-| `not_applicable` | The field does not apply to the incident. |
+| `confirmed` | 引用した根拠が明示的に事実として確認している。 |
+| `possible` | 根拠が、影響・流出等を否定できない、または発生した可能性があるとしている。 |
+| `not_observed` | 調査で該当事象を示す証拠が確認されなかった。発生しなかったことの証明ではない。 |
+| `not_publicly_disclosed` | 組織が詳細を公表していない、または非公表としている。 |
+| `unknown` | 公開根拠だけでは判断できない。 |
+| `not_applicable` | 当該フィールドがその事例には適用されない。 |
 
-# Canonical incident metadata
+# 標準インシデントメタデータ
 
-Incident concepts use `type: Cybersecurity Incident` plus a producer-defined `incident` mapping. Fields may be extended when the public record requires it.
+各インシデントは `type: Cybersecurity Incident` と、Denno Watch が追加する `incident` マッピングを用いる。公開記録を正確に表現するために必要であればフィールドを追加できる。
 
-| Field | Meaning |
+| フィールド | 意味 |
 | --- | --- |
-| `organization` | Primary affected organization. |
-| `sector` | Broad business sector. |
-| `jurisdiction` | Primary jurisdiction; currently `JP` for this corpus. |
-| `incident_status` | Public lifecycle such as `investigating`, `recovering`, `monitoring`, or `public_report_closed`. |
-| `attack_type` | Publicly established incident class; never inferred solely from symptoms. |
-| `earliest_known_activity` | Earliest activity the public investigation ties to the incident. |
-| `detected_at` | Detection time/date if disclosed. |
-| `first_disclosed_at` | First public disclosure date. |
-| `latest_public_update` | Latest primary update incorporated into the record. This is an event/source date, not a review date. |
-| `public_record_checked_at` | Most recent time the maintainer actively checked the organization/regulator public record for a later update, even if none existed. Use an ISO 8601 timestamp with offset. |
-| `intrusion_vector` | Confirmed route, or an explicit unknown/withheld state. |
-| `affected_services` | Material systems/services publicly described as affected. |
-| `data_exposure` | `confirmed`, `possible`, `not_observed`, or `unknown`, or a more precise producer state that preserves this distinction. |
-| `availability_impact` | Whether operations/services were disrupted. |
-| `restoration_state` | Latest publicly observable recovery condition. Keep containment, service restoration and investigation closure distinct. |
-| `secondary_abuse` | Publicly reported misuse after the incident. |
-| `downstream_impact` | Observable effects on customers, suppliers, entrusted-data owners or other organizations beyond the primary affected organization. Do not imply their own systems were directly breached unless a source establishes that. |
-| `regulatory_response` | Publicly disclosed reporting, investigation or coordination with regulators, police or other authorities. |
-| `notification_state` | Whether affected populations are still being identified, notified, fully notified, or not publicly disclosed. Keep notification population distinct from confirmed-exposure population. |
-| `business_continuity` | Alternate channels, manual workarounds or unaffected service paths that materially preserved operations while affected systems were restricted. |
-| `data_sensitivity` | High-level sensitivity/context of affected data, including authentication, identity documents, employment, health, financial context or other categories that change defensive significance. Do not add undisclosed data categories. |
+| `organization` | 主な被害組織。 |
+| `sector` | 大まかな業種。 |
+| `jurisdiction` | 主な法域。本事例集では現在 `JP`。 |
+| `incident_status` | `investigating`、`recovering`、`monitoring`、`public_report_closed` など、公表上のライフサイクル状態。 |
+| `attack_type` | 公開根拠で確認された攻撃・事故類型。症状だけから推定しない。 |
+| `earliest_known_activity` | 公開調査が本件と結び付けた最も早い活動時点。 |
+| `detected_at` | 公表されている場合の検知日時。 |
+| `first_disclosed_at` | 最初の公表日。 |
+| `latest_public_update` | 記録へ反映した最新の一次公表日。再確認日ではない。 |
+| `public_record_checked_at` | より新しい公表がないか、保守者が組織・規制当局の公開記録を最後に能動確認した時刻。新情報がなくても記録できる。UTC オフセット付き ISO 8601 を用いる。 |
+| `intrusion_vector` | 確認済みの侵入経路、または明示的な不明・非公表状態。 |
+| `affected_services` | 影響を受けたと公表された重要システム・サービス。 |
+| `data_exposure` | `confirmed`、`possible`、`not_observed`、`unknown`、またはこの区別を保つさらに精密な状態。 |
+| `availability_impact` | 業務・サービス停止の有無と内容。 |
+| `restoration_state` | 最新の公開情報から確認できる復旧状態。封じ込め、サービス復旧、調査完了を分離する。 |
+| `secondary_abuse` | 本件後に公表された二次悪用。 |
+| `downstream_impact` | 主被害組織を越えて、顧客、委託元、取引先、データ所有者等へ生じた観測可能な影響。根拠がない限り、下流組織自体のシステムが侵害されたとは書かない。 |
+| `regulatory_response` | 規制当局、警察等への報告、調査、連携など公表された対応。 |
+| `notification_state` | 影響対象の特定・通知が継続中か、完了したか、または非公表か。通知人数と確認済み流出人数を混同しない。 |
+| `business_continuity` | 影響システムを制限している間も業務継続に寄与した代替経路、手作業、非影響サービス等。 |
+| `data_sensitivity` | 認証情報、本人確認書類、雇用、健康、金融など、防御上の重要性を左右するデータの性質。公表されていないデータ種別を追加しない。 |
 
-The final five fields are additive producer-defined metadata used when the public record supports them. They are intentionally separate from the core impact fields so a consumer can distinguish, for example, a provider compromise from downstream customer exposure, or service restoration from availability through an alternate channel.
+末尾5項目は、公開記録に根拠がある場合に使う Denno Watch 独自の追加メタデータである。主な影響フィールドとは分離し、たとえば「サービス提供事業者の侵害」と「顧客企業側のデータ影響」、「サービス復旧」と「代替経路による業務継続」を区別できるようにする。
 
-Dates in the incident mapping use the precision actually published. Never invent a time. `public_record_checked_at` and OKF-native timestamps such as `generated.at`, `verified[].at` and `stale_after` use ISO 8601 with an explicit offset.[^okf-v02]
+`incident` 内の日付は公表された精度をそのまま使い、時刻が公表されていない場合は作らない。`public_record_checked_at`、`generated.at`、`verified[].at`、`stale_after` などの時刻値は、UTC オフセット付き ISO 8601 を使う。[^okf-v02]
 
-`latest_public_update` MUST NOT be changed merely because a later source check found no new disclosure. That observation belongs in `public_record_checked_at`. This makes “no update found as of X” distinguishable from “nobody checked after the last disclosure.”
+後日の確認で新しい公表がなかっただけなら、`latest_public_update` を更新してはならない。その確認日時は `public_record_checked_at` に記録する。これにより「X日時点で新情報がなかった」と「最後の公表後に誰も確認していない」を区別できる。
 
-# Required report sections
+# 必須レポート構成
 
-Each report should contain:
+各レポートは原則として次を含む。
 
-1. **Executive summary** - the smallest accurate account of the incident.
-2. **Observable timeline** - activity, detection, disclosure, response, restoration and later findings in chronological order.
-3. **Impact** - availability, confidentiality, integrity, customer/employee/partner and downstream effects.
-4. **Technical findings** - only what public evidence establishes about access, malware, credentials, infrastructure and attack path.
-5. **Response and recovery** - containment, investigation, notification, rebuilding and preventive measures.
-6. **Prognosis / current state** - the latest operational and investigative state, not a speculative forecast.
-7. **Defensive lessons** - bounded lessons directly supported by the disclosed facts.
-8. **Unknowns / withheld details** - important unanswered questions so readers do not mistake silence for certainty.
+1. **概要** - インシデントを正確に把握できる最小限の要約。
+2. **公開情報で確認できる時系列** - 活動、検知、公表、対応、復旧、後続調査を時系列で記録する。
+3. **影響** - 可用性、機密性、完全性、顧客・従業員・取引先、下流への影響。
+4. **技術的に確認できた事項** - アクセス、マルウェア、認証情報、インフラ、侵入経路について公開根拠で確認できる範囲だけを記載する。
+5. **対応と復旧** - 封じ込め、調査、通知、再構築、再発防止策。
+6. **現在の状況と予後** - 推測による将来予測ではなく、最新の運用・調査状態。
+7. **防御上の教訓** - 公開事実から直接支えられる範囲に限定した教訓。
+8. **不明点・未公表事項** - 公表されていない重要事項を明示し、沈黙を確定事実と誤読させない。
 
-# Counts and corrections
+# 件数と訂正
 
-Preserve the unit used by the source: people, accounts, records, stores, systems, households, files, etc. A record count must not be restated as a number of unique people unless the source says so.
+情報源が用いた単位を保持する。人数、アカウント数、レコード数、店舗数、システム数、世帯数、ファイル数などを勝手に変換しない。情報源が明示しない限り、レコード数をユニーク人数として表現してはならない。
 
-For every material count, preserve its evidence state:
+重要な件数は、次のように証拠状態も保持する。
 
-- **maximum / potentially affected**: an upper bound or population that could have been exposed;
-- **confirmed exposed / acquired**: the source confirms access, acquisition or leakage;
-- **notified population**: people/accounts contacted, which may differ from confirmed exposure;
-- **unique people**: use only when the source explicitly establishes deduplication;
-- **records/accounts/items**: do not silently convert to people.
+- **最大値／影響可能性のある対象数**: 流出・影響した可能性のある上限または母集団。
+- **確認済みの流出・取得数**: アクセス、取得、流出が確認された数。
+- **通知対象数**: 連絡・通知した人数またはアカウント数。確認済み流出数とは一致しない場合がある。
+- **ユニーク人数**: 情報源が重複排除を明示した場合だけ使用する。
+- **レコード／アカウント／項目数**: 根拠なく人数へ変換しない。
 
-If an organization corrects a number, the corrected value becomes canonical and the prior value remains in the timeline with the correction noted. Do not add overlapping populations unless the source establishes that they are disjoint.
+組織が件数を訂正した場合、訂正後の値を現在値とし、訂正前の値も「当時の公表値」として時系列に残す。重複する可能性のある母集団は、互いに排他的であることが根拠から確認できない限り合算しない。
 
-# Recovery semantics
+# 復旧状態の定義
 
-Do not collapse recovery into a single boolean. Track distinct observable checkpoints when the sources support them:
+復旧を単一の真偽値へまとめない。公開根拠がある場合は、次の節目を分けて記録する。
 
-1. **containment** - malicious access/communications were blocked or affected assets isolated;
-2. **service restoration** - users can use the service again;
-3. **security-state restoration** - temporary safe defaults or restrictions are lifted, if applicable;
-4. **data-impact determination** - exposure scope is sufficiently established for public reporting;
-5. **investigation closure** - the organization states that investigation/public reporting is complete;
-6. **long-term remediation** - medium/long-term controls are completed, not merely announced;
-7. **service retirement** - an affected service is intentionally not restored and is permanently terminated or replaced.
+1. **封じ込め** - 不正アクセス・通信を遮断した、または影響資産を隔離した。
+2. **サービス復旧** - 利用者が再びサービスを利用できる。
+3. **安全な運用状態への復旧** - 一時的な安全設定・制限を解除できる状態へ戻った。
+4. **データ影響範囲の確定** - 公表に必要な程度まで流出・取得範囲が判明した。
+5. **調査完了** - 組織が調査または公表上の対応完了を明示した。
+6. **長期的な再発防止** - 中長期対策が「予定」ではなく実施済みになった。
+7. **サービス廃止** - 影響サービスを復旧せず、恒久終了または別サービスへ置換した。
 
-A service can therefore be operational while the incident remains `investigating`, or an incident can end with one service restored and another retired. Recovery state must be recorded per affected service when outcomes diverge.
+したがって、サービスが稼働していてもインシデント全体は `investigating` のままの場合がある。また、一つのインシデントで一方のサービスが復旧し、別のサービスが廃止されることもある。結果が分岐する場合は、影響サービスごとに復旧状態を記録する。
 
-# Freshness and review
+# 鮮度とレビュー
 
-Machine-authored reports include `generated` and remain `status: draft` until independently checked. Do not add `verified` merely because the same agent reread the source: OKF reserves `verified` for an actual confirmation event distinct from generation.[^okf-v02]
+機械生成レポートには `generated` を付け、独立確認されるまで `status: draft` を維持する。同じ生成主体が情報源を再読しただけで `verified` を追加してはならない。OKF の `verified` は生成とは別の実際の確認事象を表す。[^okf-v02]
 
-Ongoing incidents should use `stale_after` so consumers can detect when a new source check is due. Closed or mature reports may omit it, but should still record `latest_public_update` and SHOULD record `public_record_checked_at` after an active follow-up check.
+進行中の事例は `stale_after` を使い、再確認が必要な時期を機械的に判定できるようにする。終結・成熟したレポートでは省略してよいが、`latest_public_update` は保持し、能動的な後続確認を行った場合は `public_record_checked_at` も記録することが望ましい。
 
-When a follow-up check finds no new primary disclosure:
+後続確認で新しい一次公表がなかった場合は次のように扱う。
 
-- do not manufacture a new event in the incident timeline;
-- update `public_record_checked_at`;
-- keep `latest_public_update` unchanged;
-- move `stale_after` forward only if continued monitoring remains useful;
-- record the no-new-update check in the body only when it materially helps the reader understand the current state.
+- 時系列へ架空の新規イベントを追加しない。
+- `public_record_checked_at` を更新する。
+- `latest_public_update` は変更しない。
+- 継続監視に意味がある場合だけ `stale_after` を先へ進める。
+- 「新情報なし」という確認自体が現在状態の理解に重要な場合だけ、本文にも記録する。
 
-# Safety and publication boundary
+# 言語・専門用語の基準
 
-The corpus is defensive and public-source-only. It may document disclosed intrusion paths and control failures, but should not add unpublished exploit steps, secrets, credentials, personal data samples, or operational details whose only value would be to facilitate abuse.
+人が読む本文、見出し、表の説明、索引、更新履歴は**日本語を既定**とする。英単語を混在させるのは、一般的な AI・IT・サイバーセキュリティ分野でその表記自体が定着している場合、固有名詞、規格名、製品名、または原文の正式名称を保持する必要がある場合に限る。
 
-[^okf-v02]: Open Knowledge Format v0.2 specification, pinned to `ad30107c31c06aec8a7d5636e0d1058118604e6f` for this bundle revision.
+次は原則として英字表記を許容する例である: `AI`、`LLM`、`API`、`GPU`、`SaaS`、`VPN`、`MFA`、`FIDO2`、`EDR`、`SOC`、`SIEM`、`WAF`、`DNS`、`HTTP`、`CVE`、`CVSS`、`KPI`、`GitHub`、`MITRE ATT&CK`。
+
+一方、`account`、`record`、`incident corpus`、`risk`、`provider`、`recovery`、`identity document`、`blast radius`、`control-plane abuse`、`standing privilege` など、日本語で意味を失わず表現できる一般語・内部用語は、本文中でそのまま英語にしない。「アカウント」「レコード」「インシデント事例集」「リスク」「提供事業者」「復旧」「本人確認書類」「被害範囲」「制御プレーンの悪用」「常設権限」など、読者が自然に理解できる日本語へ直す。
+
+機械可読性を保つため、YAML のフィールド名、列挙値、ファイル名、URL、コード識別子は翻訳しない。出典の正式な英語タイトルも原題を保持してよい。新しい略語・造語・本資料だけで通じる内部用語を導入する場合は避けることを優先し、必要不可欠なら初出時に日本語で定義する。
+
+# 安全性と公開範囲
+
+本事例集は防御目的かつ公開情報のみを対象とする。公表済みの侵入経路や統制上の失敗は記録できるが、未公表の攻撃手順、シークレット、認証情報、個人情報の実例、その他悪用を容易にするだけの運用詳細を追加しない。
+
+[^okf-v02]: Open Knowledge Format v0.2 specification. Denno Watch では本ナレッジベースの参照版を `ad30107c31c06aec8a7d5636e0d1058118604e6f` に固定している。
