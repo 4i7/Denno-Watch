@@ -61,7 +61,7 @@ sources:
     author: organization:Park24
 ---
 
-# PART I — 約2ページで把握する経営サマリー
+# 第I部 — 約2ページで把握する経営サマリー
 
 ## まず知ってほしいこと
 
@@ -85,9 +85,9 @@ AIは、調査、文章作成、翻訳、コード作成の補助、大量情報
 
 もう一つの経路もある。十分な性能のGPU等を一度確保すれば、公開・配布されている高性能モデルを自己管理環境で動かすことができる。公式ドキュメントでも、高性能なコード・agent用途のmodelを一般に入手可能なGPU級でlocal実行し、外部通信を切ったoffline運用が可能な例が示されている。[^mistral]
 
-したがって、防御側は「危険な命令ならAI会社が拒否する」「大量に使えば利用上限で止まる」「異常ならaccountが停止される」ことを、自社の防衛策として期待してはいけない。
+したがって、防御側は「危険な命令ならAI会社が拒否する」「大量に使えば利用上限で止まる」「異常ならアカウントが停止される」ことを、自社の防衛策として期待してはいけない。
 
-攻撃者の能力を判断するときに見るべきなのは、相手が巨大なdata centerを所有しているかではない。**どれだけの計算資源、人員、自動化、時間を組み合わせられるか**である。
+攻撃者の能力を判断するときに見るべきなのは、相手が巨大なデータセンターを所有しているかではない。**どれだけの計算資源、人員、自動化、時間を組み合わせられるか**である。
 
 ## 小さな費用でも、人間一人の処理量はすでに大きく増幅できる
 
@@ -103,37 +103,37 @@ AIは、調査、文章作成、翻訳、コード作成の補助、大量情報
 
 ## 日本では、すでに「一度の侵害で数百万人」が珍しくない
 
-Denno Watchが2026年の公開情報から整理した42件には、数百万から数千万record規模の情報影響、身代金要求型攻撃、物流・交通・小売・医療に近い業務停止、委託先から複数企業へ広がる被害が含まれる。[42件のincident corpus](../incidents/index.md)
+Denno Watchが2026年の公開情報から整理した42件には、数百万から数千万レコード規模の情報影響、身代金要求型攻撃、物流・交通・小売・医療に近い業務停止、委託先から複数企業へ広がる被害が含まれる。[42件のインシデント事例集](../incidents/index.md)
 
 代表例だけでも、次の規模が確認されている。
 
-- タイムズカー: 約660万accountの情報取得。うち約160万accountで運転免許証画像等の本人確認書類が漏えい。[^times]
-- EPARK / PeakManager: 約2,218万recordsの外部転送を確認。
+- タイムズカー: 約660万アカウントの情報取得。うち約160万アカウントで運転免許証画像等の本人確認書類が漏えい。[^times]
+- EPARK / PeakManager: 約2,218万レコードの外部転送を確認。
 - Helpfeel / Gyazo: 2,000万を超えるuser規模の情報影響。
 - KDDIの共有mail基盤: 約1,223万mail addressと約762万passwordが影響。
-- ムラウチドットコム: 約771万customer records。
+- ムラウチドットコム: 約771万customer レコード。
 
-金額だけを見ても、大規模ランサムウェア事案では、ASKULのsystem outage対応費としてLY Corporationが**52.62億円**を計上している。これは最終的な全損失ではなく、物流設備維持、調査・復旧、期限切れ商品損失等を含む特定費用項目である。[^askul]
+金額だけを見ても、大規模ランサムウェア事案では、ASKULのシステム停止対応費としてLY Corporationが**52.62億円**を計上している。これは最終的な全損失ではなく、物流設備維持、調査・復旧、期限切れ商品損失等を含む特定費用項目である。[^askul]
 
 また、過去の国内事例では、大阪急性期・総合医療センターがランサムウェア被害後、基幹system再稼働まで43日、全体の診療system復旧まで73日を要し、調査・復旧費用は数億円以上、診療制限に伴う逸失利益は十数億円以上と見込んだ。[^osaka]
 
-名古屋港ではランサムウェアにより全container terminalの作業が停止した。これは、IT障害が画面上の問題ではなく、**物理物流、診療、製造、交通、社会機能の停止に変わる**ことを示す。[^nagoya]
+名古屋港ではランサムウェアにより全コンテナターミナルの作業が停止した。これは、IT障害が画面上の問題ではなく、**物理物流、診療、製造、交通、社会機能の停止に変わる**ことを示す。[^nagoya]
 
 ## タイムズカーの160万件は「パスワード流出」と同じ種類の問題ではない
 
-2026年9月29日、Park24は、タイムズカーの約160万accountで本人確認書類が漏えいしたと公表した。対象には運転免許証画像、現住所確認書類、学生証、家族確認書類が含まれる。[^times]
+2026年9月29日、Park24は、タイムズカーの約160万アカウントで本人確認書類が漏えいしたと公表した。対象には運転免許証画像、現住所確認書類、学生証、家族確認書類が含まれる。[^times]
 
 ここで重要なのは、本人確認書類はpasswordのように単純に変更できる情報ではないことである。氏名、生年月日、顔、住所等の組合せは長期に本人と結び付く。
 
-一方、**2026年10月4日時点で、Times Carから漏えいした情報を使った不正loan、不正credit契約等が実際に発生したという一次公表は確認できない。** 「160万人の信用情報がすでに毀損した」と書くことは事実を超える。
+一方、**2026年10月4日時点で、Times Carから漏えいした情報を使った不正ローン、不正クレジット契約等が実際に発生したという一次公表は確認できない。** 「160万人の信用情報がすでに毀損した」と書くことは事実を超える。
 
 しかし、リスクが抽象的なものでもない。
 
 JICCは、運転免許証画像等が流出し現物が手元にある場合でも「名義の悪用防止」の本人申告を登録できるとしている。全国銀行個人信用情報センターも、本人確認書類の漏えいにより名義冒用のおそれがある場合、本人申告情報を金融機関の与信判断の参考にできるとしている。CICにも同種の制度がある。[^jicc][^ksc][^cic]
 
-そしてPark24の第3報直後、JICCでは本人申告・本人開示の申込みが集中し、2026年10月1日にsmartphone app受付を一時休止した。CICも9月30日、本人申告や信用情報開示の受付番号、call centerへの申込み・問い合わせが通常より増え、つながりにくい状態を公表した。各機関は原因をTimes Carと断定していないため因果関係は断定できないが、**本人確認情報流出後に信用取引上の自己防衛行動が大規模に発生していること自体は確認できる。**[^jicc-load][^cic-load]
+そしてPark24の第3報直後、JICCでは本人申告・本人開示の申込みが集中し、2026年10月1日にスマートフォンアプリ受付を一時休止した。CICも9月30日、本人申告や信用情報開示の受付番号、コールセンターへの申込み・問い合わせが通常より増え、つながりにくい状態を公表した。各機関は原因をTimes Carと断定していないため因果関係は断定できないが、**本人確認情報流出後に信用取引上の自己防衛行動が大規模に発生していること自体は確認できる。**[^jicc-load][^cic-load]
 
-本人確認書類が悪用されれば、条件次第で名義を使ったcredit/loan申込み、通信契約、account recovery、より精密なphishing等へ利用される可能性がある。警察庁も、偽造本人確認書類や本人になりすました契約により不正取得された携帯電話が特殊詐欺等へ悪用される事例を記録している。[^npa]
+本人確認書類が悪用されれば、条件次第で名義を使ったクレジット/ローン申込み、通信契約、アカウント復旧、より精密なphishing等へ利用される可能性がある。警察庁も、偽造本人確認書類や本人になりすました契約により不正取得された携帯電話が特殊詐欺等へ悪用される事例を記録している。[^npa]
 
 ただし、現代の本人確認には顔照合、liveness、IC、既登録電話番号、追加認証、不正検知等もあるため、**画像を持つだけであらゆる契約が成立するわけではない。**
 
@@ -146,7 +146,7 @@ JICCは、運転免許証画像等が流出し現物が手元にある場合で�
 1. **自社がInternetへ公開しているsystemを、今この瞬間に全部列挙できるか。**
 2. **管理者、VPN、cloud、開発環境へpasswordだけで入れる場所が残っていないか。**
 3. **重大な弱点が今日見つかった場合、夜中でも1日以内に塞ぐか外部から切り離せるか。**
-4. **正しいaccountを盗まれた場合でも、数十万件を一気に読む・送る・変更する異常を止められるか。**
+4. **正しいアカウントを盗まれた場合でも、数十万件を一気に読む・送る・変更する異常を止められるか。**
 5. **本当に必要な期間を超えて、本人確認画像、退会者情報、元従業員情報、古いexportを保存していないか。**
 6. **全serverやdatabaseを破壊されても、攻撃者が触れた認証情報を使わずにbackupから戻せるか。実際に復旧試験をしたか。**
 7. **夜間・休日、委託先の事故を含めて、誰が止める権限を持っているか。**
@@ -155,7 +155,7 @@ JICCは、運転免許証画像等が流出し現物が手元にある場合で�
 
 ---
 
-# PART II — 経営・情シス・セキュリティ部門向け詳細調査
+# 第2部 — 経営・情シス・セキュリティ部門向け詳細調査
 
 # 1. 調査範囲と読み方
 
@@ -164,7 +164,7 @@ JICCは、運転免許証画像等が流出し現物が手元にある場合で�
 強い警告を出す一方、次を混同しない。
 
 - `confirmed`: 被害組織、公的機関、調査主体が確認した事実。
-- `supported inference`: 確認事実から合理的に導けるが、その事件で発生確認されていない二次risk。
+- `supported inference`: 確認事実から合理的に導けるが、その事件で発生確認されていない二次リスク。
 - `stress scenario`: 経営上の備えとして想定する最大被害。
 - `unknown`: 公開情報では分からないこと。
 
@@ -176,13 +176,13 @@ JICCは、運転免許証画像等が流出し現物が手元にある場合で�
 
 変化しているのは、そのために必要なexpert timeである。
 
-Microsoftは2026 Digital Defense Reportで、AIがvulnerability discovery、reconnaissance、phishing、malware/exploit development、data analysis、post-compromise activityに利用され、attack speed、scale、consistencyを高めていると報告した。また、実環境でのvulnerability discoveryからweaponizationまでのmedianが24時間を大きく下回るとする。[^microsoft]
+Microsoftは2026 Digital Defense Reportで、AIがvulnerability discovery、偵察、phishing、malware/exploit development、data analysis、post-compromise activityに利用され、attack speed、scale、consistencyを高めていると報告した。また、実環境でのvulnerability discoveryから攻撃実用化までのmedianが24時間を大きく下回るとする。[^microsoft]
 
-GTIGは2026年Q2、侵害したcloud resourceからagent-enabled mass credential-harvesting campaignを6時間未満で計画、構築、実行した活動を観測した。[^google]
+GTIGは2026年Q2、侵害したcloud resourceからAIエージェントを利用した 大規模な認証情報収集キャンペーンを6時間未満で計画、構築、実行した活動を観測した。[^google]
 
-Anthropicは2025年3月から2026年3月までの悪用accountのうち詳細を分析できた832件について、13,873 actions、MITRE ATT&CK全14 tactics、482 techniques/sub-techniquesにAI利用をmapした。中risk以上のactor比率は研究期間前半33%から後半56%へ増えた。ただし、この832件はAnthropicが調査・停止したaccountのsubsetで、全攻撃者の母集団ではない。[^anthropic]
+Anthropicは2025年3月から2026年3月までの悪用アカウントのうち詳細を分析できた832件について、13,873 actions、MITRE ATT&CK全14 tactics、482 techniques/sub-techniquesにAI利用をmapした。中リスク以上の攻撃主体比率は研究期間前半33%から後半56%へ増えた。ただし、この832件はAnthropicが調査・停止したアカウントの部分集合で、全攻撃者の母集団ではない。[^anthropic]
 
-Verizon 2026 DBIRでは、software vulnerability exploitationがbreachの31%で侵入経路となり、stolen credentialsを上回る主要vectorになった。[^verizon]
+Verizon 2026 DBIRでは、ソフトウェア脆弱性悪用がbreachの31%で侵入経路となり、stolen credentialsを上回る主要vectorになった。[^verizon]
 
 日本でもIPA「情報セキュリティ10大脅威 2026」は、組織向け1位をランサム、2位をサプライチェーン・委託先、3位を初選出の「AIの利用をめぐるサイバーリスク」、4位を脆弱性悪用としている。[^ipa]
 
@@ -200,15 +200,15 @@ Verizon 2026 DBIRでは、software vulnerability exploitationがbreachの31%で�
 
 ## 3.2 高性能AIを自己管理環境へ置く
 
-open-weight modelは自己管理環境でlocal inferenceできる。Mistralのofficial documentationは、agentic/code task向け24B modelについて、24GB VRAM GPUを含むlocal deployment例を示し、fully offline運用も説明している。[^mistral]
+open-weight modelは自己管理環境でlocal inferenceできる。Mistralのofficial documentationは、agentic/code task向け24B modelについて、24GB VRAM GPUを含むローカル配備例を示し、完全オフライン運用も説明している。[^mistral]
 
 Metaもdownloaded Llamaについて、利用者が入力・出力をMetaへ送らない限り、Meta側はそれらへアクセスしないとFAQで説明している。[^meta]
 
-これは特定providerの問題ではない。一般論として、自己管理modelではexternal providerのcentral moderation、API refusal、quota、account suspension、usage monitoringを防御側が期待できない。
+これは特定提供事業者の問題ではない。一般論として、自己管理modelではexternal 提供事業者のcentral moderation、API refusal、quota、アカウント suspension、usage monitoringを防御側が期待できない。
 
-ローカル環境は無限ではない。GPU throughput、memory、電力、冷却、故障、network等の制約がある。しかしhardware取得後は、処理ごとのAPI料金ではなく、電力・冷却・保守を中心とする継続費で反復運用できる。
+ローカル環境は無限ではない。GPU 処理量、memory、電力、冷却、故障、network等の制約がある。しかしhardware取得後は、処理ごとのAPI料金ではなく、電力・冷却・保守を中心とする継続費で反復運用できる。
 
-**防御計画は「悪意ある利用ならAI providerが止めてくれる」ことをcontrolとして数えてはいけない。**
+**防御計画は「悪意ある利用ならAI 提供事業者が止めてくれる」ことをcontrolとして数えてはいけない。**
 
 # 4. 24時間365日型の攻撃とは何か
 
@@ -229,17 +229,17 @@ Metaもdownloaded Llamaについて、利用者が入力・出力をMetaへ送�
 
 防御側も、発見、triage、isolation、credential revoke、restoreを人手の営業時間だけに依存できない。
 
-# 5. 生産性増幅を経営上のcapacity problemとして見る
+# 5. 生産性増幅を経営上の必要能力の問題として見る
 
-AIのriskは、個別modelのbenchmarkだけでは理解しにくい。
+AIのリスクは、個別modelのbenchmarkだけでは理解しにくい。
 
 実利用では、月数千円規模のAI利用で一人の開発者がGitHub上の15万行を超える開発規模を扱えた事例がある。LOCはqualityやoffensive capabilityの尺度ではなく、これ自体が攻撃能力を証明するものではない。
 
-しかし、調査、設計、実装、debug、review、documentationのthroughputを一人でも大きく増幅できることは、組織capacityの変化を示す。
+しかし、調査、設計、実装、debug、review、documentationの処理量を一人でも大きく増幅できることは、組織capacityの変化を示す。
 
 悪意あるgroupについても、防御側は「高度技術者一人が一件ずつ手作業する」モデルを置くべきではない。
 
-資金が数百万円、数千万円へ増え、複数operator、外部compute、local AI、worker node、automationを組み合わせれば、**対象数、監視時間、再試行頻度、分析量を同時に増やせる**。
+資金が数百万円、数千万円へ増え、複数operator、外部compute、local AI、worker node、自動化を組み合わせれば、**対象数、監視時間、再試行頻度、分析量を同時に増やせる**。
 
 このときの防御指標は「攻撃者がどれほど賢いか」だけではなく、**何件を同時に追跡できるか、何時間休まず再評価できるか**になる。
 
@@ -248,27 +248,27 @@ AIのriskは、個別modelのbenchmarkだけでは理解しにくい。
 Denno Watch corpusからは、少なくとも次の反復が見える。
 
 1. Internet-facing / adjacent toolの脆弱性悪用
-2. credential / VPN / cloud account悪用
+2. credential / VPN / cloud アカウント悪用
 3. ransomware + data theft +業務停止
-4. SaaS / provider / entrusted-data concentration
+4. SaaS / 提供事業者 / entrusted-data concentration
 5. BI / analyticsを経由したproduction data侵害
-6. 正規API・正常accountを使った大量照会
+6. 正規API・正常アカウントを使った大量照会
 7. database deletion等のintegrity破壊
 8. source code / secret / development data漏えい
 9. communications control-planeの悪用
 10. shared infrastructureの大規模failure domain
-11. 退会者・過去data等の長期保持によるblast radius拡大
-12. 復旧不能時のservice retirement
+11. 退会者・過去data等の長期保持による被害範囲拡大
+12. 復旧不能時のサービス廃止
 
 詳細なcontrol mappingとbudget modelは[攻撃類型・防衛予算分析](incident-defense-budget-analysis-2026-10-04.md)を参照する。
 
 ここで最も重要な共通点は、**侵入そのものより、侵入後にどこまで一つの権限で届くかが最終被害を決めている**ことである。
 
-# 7. Case study — Times Car本人確認書類流出をどう評価するか
+# 7. ケーススタディ — Times Car本人確認書類流出をどう評価するか
 
 ## 7.1 確認された事実
 
-Park24は2026年9月、Times Car Web systemへの不正accessにより約660万accountの情報が第三者に取得されたと公表した。9月29日の第3報で、そのうち約160万accountに本人確認書類の漏えいがあると確認した。[^times]
+Park24は2026年9月、Times Car Web systemへの不正accessにより約660万アカウントの情報が第三者に取得されたと公表した。9月29日の第3報で、そのうち約160万アカウントに本人確認書類の漏えいがあると確認した。[^times]
 
 公表された本人確認書類は、
 
@@ -281,27 +281,27 @@ Park24は2026年9月、Times Car Web systemへの不正accessにより約660万a
 
 「160万件すべてが運転免許証画像」とは公表されていないため、そのようには集計しない。
 
-## 7.2 なぜ長期riskなのか
+## 7.2 なぜ長期リスクなのか
 
 passwordは変更できる。card numberも再発行できる。
 
 一方、氏名、生年月日、顔、過去・現在の住所、家族関係等は簡単には変更できない。本人確認画像を他の漏えいdataと組み合わせれば、target-specificなidentity fraudやsocial engineeringの材料が増える。
 
-JICCは、運転免許証等の現物が手元にあっても、画像などの情報が漏えいした場合に「名義の悪用防止」の本人申告を利用できると明示している。JICC加盟会員はloanやcash advanceの審査時に本人申告commentを確認し、より慎重な与信判断を行える。[^jicc]
+JICCは、運転免許証等の現物が手元にあっても、画像などの情報が漏えいした場合に「名義の悪用防止」の本人申告を利用できると明示している。JICC加盟会員はローンやcash advanceの審査時に本人申告commentを確認し、より慎重な与信判断を行える。[^jicc]
 
 全国銀行個人信用情報センターも、本人確認書類の紛失、盗難、**漏えい**により名義冒用の可能性がある場合、本人申告情報を登録し、member financial institutionsの与信判断の参考にできるとしている。ただし判断を拘束せず、悪用防止を保証するものでもなく、預金口座開設時の照会対象ではない。[^ksc]
 
-CICも本人確認書類の紛失・盗難、名義悪用のおそれについて本人申告制度を提供し、credit/loan審査時の参考情報として扱う。[^cic]
+CICも本人確認書類の紛失・盗難、名義悪用のおそれについて本人申告制度を提供し、クレジット/ローン審査時の参考情報として扱う。[^cic]
 
-したがって、「本人確認書類画像がcredit riskと無関係」という見方は公的な信用情報制度と整合しない。
+したがって、「本人確認書類画像がクレジット リスクと無関係」という見方は公的な信用情報制度と整合しない。
 
 ## 7.3 すでに確認できる二次影響
 
 Times Car由来の不正契約そのものは、10月4日時点の一次情報で確認できない。
 
-一方、Park24第3報の翌日である9月30日、JICCはsmartphone appへのaccessと本人申告・本人開示の申込み集中、処理遅延を公表した。10月1日にはsystem maintenanceのため本人申告・本人開示のapp受付を一時休止した。[^jicc-load]
+一方、Park24第3報の翌日である9月30日、JICCはスマートフォンアプリへのaccessと本人申告・本人開示の申込み集中、処理遅延を公表した。10月1日にはsystem maintenanceのため本人申告・本人開示のapp受付を一時休止した。[^jicc-load]
 
-CICも9月30日、internet開示、internet本人申告等の受付番号取得とcall centerへの問い合わせ・申込みが通常より増え、つながりにくい状態を公表した。[^cic-load]
+CICも9月30日、internet開示、internet本人申告等の受付番号取得とコールセンターへの問い合わせ・申込みが通常より増え、つながりにくい状態を公表した。[^cic-load]
 
 JICC/CICは原因をTimes Carだと公式には明示していないため、因果関係は`confirmed`としない。しかし時系列上、**大規模な本人確認書類漏えいの直後に、信用情報の確認・名義悪用防止に関する社会的対応負荷が現実に増大した**ことは、企業が二次被害対応costを考えるうえで重要である。
 
@@ -309,27 +309,27 @@ JICC/CICは原因をTimes Carだと公式には明示していないため、因
 
 Times Car incidentで発生確認済みとはしないが、本人確認書類と個人属性の漏えいでは次をstress scenarioへ含めるべきである。
 
-- credit / loan申込みでの名義冒用
+- クレジット / ローン申込みでの名義冒用
 - communication service等の不正契約
-- account recovery / 本人確認を狙う試行
+- アカウント復旧 / 本人確認を狙う試行
 - 正確な氏名、住所、契約関係を使うphishing / voice fraud
 - 別の漏えいdataとの照合によるidentity profile精密化
-- 不正契約が成立した場合のcredit record調査、異議申立て、訂正、長期monitoring cost
+- 不正契約が成立した場合のクレジット レコード調査、異議申立て、訂正、長期monitoring cost
 
 警察庁は、偽造本人確認書類を提示したり本人になりすましたりして不正取得された他人・架空名義の携帯電話が特殊詐欺等に悪用される事例を記録している。[^npa]
 
-金融庁は、Timesとは独立した金融犯罪統計として、令和7年度のinternet banking不正送金3,946件、平均被害額360万円を公表している。[^fsa]
+金融庁は、Timesとは独立した金融犯罪統計として、令和7年度のインターネットバンキング不正送金3,946件、平均被害額360万円を公表している。[^fsa]
 
-これらをTimes被害額へ足し合わせてはいけない。意味するのは、**identity compromiseが接続し得る後段の犯罪・金融riskが現実の制度設計上も無視できない**ということだけである。
+これらをTimes被害額へ足し合わせてはいけない。意味するのは、**identity compromiseが接続し得る後段の犯罪・金融リスクが現実の制度設計上も無視できない**ということだけである。
 
 ## 7.5 企業が本人確認書類に適用すべき設計
 
 - 本人確認完了後、本当に画像を保持し続ける必要があるかを定期再評価する。
 - 法定・契約上必要な証跡と、画像原本の長期保存を分ける。
-- identity document storeを通常customer DBから分離する。
+- 本人確認書類 storeを通常customer DBから分離する。
 - access権を極小化し、bulk read / exportを強く監視する。
-- data retentionをaccount lifecycleと連動させる。
-- incident時には顧客への「漏えい通知」だけでなく、credit bureau、通信、不正契約monitoring等の長期支援をplanする。
+- データ保持をアカウント lifecycleと連動させる。
+- incident時には顧客への「漏えい通知」だけでなく、クレジット bureau、通信、不正契約monitoring等の長期支援をplanする。
 
 # 8. 業種別の最大被害 — 最悪時は「情報漏えい」で終わらない
 
@@ -339,22 +339,22 @@ Times Car incidentで発生確認済みとはしないが、本人確認書類�
 
 | 業種 | 最大被害の中心 |
 | --- | --- |
-| 医療・福祉 | 電子カルテ、検査、処方、手術、救急の制限。最悪時は生命・健康riskへ到達 |
-| 電力・gas・水道 | 広域供給停止が医療、通信、交通、決済へ連鎖。設備条件次第で物理安全・環境risk |
+| 医療・福祉 | 電子カルテ、検査、処方、手術、救急の制限。最悪時は生命・健康リスクへ到達 |
+| 電力・gas・水道 | 広域供給停止が医療、通信、交通、決済へ連鎖。設備条件次第で物理安全・環境リスク |
 | 通信・cloud | 自社障害が多数業種へ同時波及する増幅点 |
-| 金融・保険 | 顧客資産、不正送金、credit、決済、市場functionへの直接影響 |
+| 金融・保険 | 顧客資産、不正送金、クレジット、決済、市場functionへの直接影響 |
 | 物流・港湾・航空・鉄道 | 人・物の移動停止。工場、食品、医薬品、輸出入へ連鎖 |
 | 製造 | 工場停止、quality data改ざん、設計・製法流出。supplier一社から多数工場へ連鎖 |
 | 小売・EC | 受注、倉庫、配送、POS停止と大規模customer data流出 |
 | 建設 | BIM/設計・工程喪失、支払先改ざん、工期・安全・巨大projectへ影響 |
 | 教育 | 未成年data、成績、研究知財の長期漏えいと授業・学務停止 |
-| 不動産・賃貸・mobility | 本人確認書類、住所、契約、物理accessが同時にrisk化 |
+| 不動産・賃貸・mobility | 本人確認書類、住所、契約、物理accessが同時にリスク化 |
 | 行政 | 住民記録、給付、税、災害、消防・警察等のservice continuityと国民の権利へ波及 |
-| SaaS/BPO/MSP等 | 一社の侵害が多数企業へ同時波及するため、所属業種以上のsystemic risk |
+| SaaS/BPO/MSP等 | 一社の侵害が多数企業へ同時波及するため、所属業種以上のsystemic リスク |
 
 過去のKDDI大規模通信障害はcyberattackではないが、音声約2,278万人、data765万人以上に影響し、物流、自動車、行政、銀行、交通等へ波及した。これは通信基盤が停止した場合のdependency impactを示す実例である。[^kddi]
 
-名古屋港ではcyberattackにより全container terminalが停止し、IT停止が物理物流停止へ直結した。[^nagoya]
+名古屋港ではcyberattackにより全コンテナターミナルが停止し、IT停止が物理物流停止へ直結した。[^nagoya]
 
 大阪急性期・総合医療センターでは、system復旧が数週間〜数か月規模となり、診療実績も大きく低下した。[^osaka]
 
@@ -366,11 +366,11 @@ Times Car incidentで発生確認済みとはしないが、本人確認書類�
 
 1. 一つのadministrator credentialでproduction、cloud、backup、tenantへ到達できる。
 2. 退会者、元従業員、旧customer等のhistorical dataを大量保持する。
-3. identity document、medical、free-text等の高感度dataを通常PIIと同じ場所へ置く。
+3. 本人確認書類、medical、free-text等の高感度dataを通常PIIと同じ場所へ置く。
 4. internet-facing asset inventoryが不完全。
 5. critical vulnerabilityを塞ぐのに数日〜数週間かかる。
 6. supplier / maintenance remote accessが常設される。
-7. 異常なbulk read/exportが正規accountなら通る。
+7. 異常なbulk read/exportが正規アカウントなら通る。
 8. backupがproduction identityと同じ管理planeにある。
 9. restore testをしていない。
 10. 夜間休日にcontainment decisionを出せない。
@@ -379,7 +379,7 @@ Times Car incidentで発生確認済みとはしないが、本人確認書類�
 
 AI時代でも、中心は「AI対AI製品」を買うことではない。
 
-## Layer 1 — 公開面を完全に把握する
+## 第1層 — 公開面を完全に把握する
 
 - Internet-facing asset inventoryとownerを持つ。
 - certificate、domain、cloud endpoint、remote admin、BI/dev surfaceの変化をcontinuous discoveryする。
@@ -387,18 +387,18 @@ AI時代でも、中心は「AI対AI製品」を買うことではない。
 
 **経営KPI:** unknown internet-facing assets、critical exposure MTTR。
 
-## Layer 2 — Identityを最優先で固める
+## 第2層 — アイデンティティを最優先で固める
 
-- admin、VPN、cloud、GitHub、SaaSをphishing-resistant MFAへ。
+- admin、VPN、cloud、GitHub、SaaSをフィッシング耐性のある MFAへ。
 - legacy/password-only authを廃止。
 - permanent adminを減らし、必要時だけ権限を与える。
-- service account/tokenを短寿命化する。
+- service アカウント/tokenを短寿命化する。
 
-**経営KPI:** phishing-resistant MFA coverage、standing privileged account数。
+**経営KPI:** フィッシング耐性のある MFA coverage、standing privileged アカウント数。
 
-## Layer 3 — patch対応を「週次作業」から「hours単位のrisk control」へ
+## 第3層 — パッチ対応を「週次作業」から「時間単位のリスク管理」へ
 
-Microsoftが示すように、vulnerability discoveryからweaponizationまでが24時間を大きく下回り得るなら、重要なInternet-facing assetに30〜60日の通常change cycleを適用できない。[^microsoft]
+Microsoftが示すように、vulnerability discoveryから攻撃実用化までが24時間を大きく下回り得るなら、重要なInternet-facing assetに30〜60日の通常change cycleを適用できない。[^microsoft]
 
 - active exploitation / KEVとの自動照合
 - emergency isolation / feature disable / temporary mitigation
@@ -406,27 +406,27 @@ Microsoftが示すように、vulnerability discoveryからweaponizationまで�
 
 **経営KPI:** exploit-known external exposureのmitigation time。
 
-## Layer 4 — 「正しいcredentialによる異常」を止める
+## 第4層 — 「正しい認証情報による異常」を止める
 
-malware signatureだけではvalid account abuseを止められない。
+malware signatureだけではvalid アカウント abuseを止められない。
 
-- account/session/APIごとのread/write volume baseline
+- アカウント/session/APIごとのread/write volume baseline
 - bulk export、mass query、mass sendの制限
 - high-value operationのstep-up authentication
-- account/tenant/function単位のkill switch
+- アカウント/tenant/function単位のkill switch
 
 **経営KPI:** abnormal bulk action detect-to-block。
 
-## Layer 5 — 盗まれるdataそのものを減らす
+## 第5層 — 盗まれるデータそのものを減らす
 
 - retention期限をDB、backup、analytics、export、vendor copyまで適用。
 - production PIIをdev/test/BIへ無制限複製しない。
-- identity documentsは別classとして短期化・分離。
+- 本人確認書類は別classとして短期化・分離。
 - 委託終了時のdeletion proofを残す。
 
 **経営KPI:** expired sensitive data volume、ownerless stores、production PII copies。
 
-## Layer 6 — blast radiusを分割する
+## 第6層 — 被害範囲を分割する
 
 - endpoint、server、backup、management plane、tenantを分離。
 - shared credentials / shared keysを減らす。
@@ -434,25 +434,25 @@ malware signatureだけではvalid account abuseを止められない。
 
 **経営KPI:** credential一つで到達可能なcritical systems数。
 
-## Layer 7 — 防御も24時間365日へ
+## 第7層 — 防御も24時間365日へ
 
 選択肢はinternal SOCでもMDR/MSSPでもよい。
 
-必要なのは、夜間休日にhigh-confidence signalを見つけ、account revoke、endpoint isolation、network block等へ移れること。
+必要なのは、夜間休日にhigh-confidence signalを見つけ、アカウント revoke、endpoint isolation、network block等へ移れること。
 
 **経営KPI:** MTTD、mean time to contain、off-hours containment coverage。
 
-## Layer 8 — backupを「存在」ではなく「復旧能力」で評価する
+## 第8層 — バックアップを「存在」ではなく「復旧能力」で評価する
 
 - production identityからbackup control planeを分離。
 - immutable/offline copy。
 - restore drill。
-- clean recovery environment。
+- クリーンな復旧 environment。
 - RTO/RPOの実測。
 
 **経営KPI:** restore success rate、tested RTO/RPO。
 
-## Layer 9 — supplierを自社riskとして扱う
+## 第9層 — 供給事業者を自社リスクとして扱う
 
 - supplierが持つ自社dataをinventory化。
 - remote admin pathを把握。
@@ -461,7 +461,7 @@ malware signatureだけではvalid account abuseを止められない。
 
 **経営KPI:** critical vendor data/IR mapping completeness。
 
-## Layer 10 — 人間系high-risk operationを別経路で確認する
+## 第10層 — 人間系高リスク操作を別経路で確認する
 
 AIで文章・音声等の社会工学が増幅されても、employeeの見抜く能力だけに依存しない。
 
@@ -469,7 +469,7 @@ AIで文章・音声等の社会工学が増幅されても、employeeの見抜�
 - admin追加
 - credential reset
 - large export
-- supplier bank account変更
+- supplier bank アカウント変更
 
 等をsingle-person / single-channelで完結させない。
 
@@ -507,7 +507,7 @@ AIで文章・音声等の社会工学が増幅されても、employeeの見抜�
 4. top 20 critical systemsのrestore可否を確認。
 5. exploited vulnerabilityのemergency processを文書化。
 6. critical vendor / remote access一覧を作る。
-7. identity document、medical、payment、credential等の高感度data所在を把握。
+7. 本人確認書類、medical、payment、credential等の高感度data所在を把握。
 
 ## 90日以内
 
@@ -523,7 +523,7 @@ AIで文章・音声等の社会工学が増幅されても、employeeの見抜�
 
 1. network / tenant / management-plane segmentationをarchitectureとして完成。
 2. business-critical processごとにnon-IT fallbackまたはalternate pathを確立。
-3. clean-room recoveryを実地訓練。
+3. clean-room 復旧を実地訓練。
 4. third-party data lineageを契約・technical evidenceまで追跡。
 5. security metricを取締役会の定例KPIにする。
 
@@ -531,7 +531,7 @@ AIで文章・音声等の社会工学が増幅されても、employeeの見抜�
 
 「何円なら安全」という金額は存在しない。
 
-Denno Watchのplanning modelでは、security budgetをIT spendの比率で考える場合、一般企業10〜12%、Internet-facingかつ大量PII/SaaS/EC 12〜15%、金融・通信・物流・医療供給・100万件超data・multi-tenant provider等は15〜18%を一つのstarting rangeとしている。重大incident後のlegacy remediation期には18〜22%を許容する場合もある。[予算モデル](incident-defense-budget-analysis-2026-10-04.md)
+Denno Watchのplanning modelでは、security budgetをIT spendの比率で考える場合、一般企業10〜12%、Internet-facingかつ大量PII/SaaS/EC 12〜15%、金融・通信・物流・医療供給・100万件超data・multi-tenant 提供事業者等は15〜18%を一つのstarting rangeとしている。重大incident後のlegacy remediation期には18〜22%を許容する場合もある。[予算モデル](incident-defense-budget-analysis-2026-10-04.md)
 
 これはvendor quoteでも「使えば安全」の保証でもない。
 
@@ -542,13 +542,13 @@ Denno Watchのplanning modelでは、security budgetをIT spendの比率で考�
 3. patch velocity
 4. logging/detection
 5. segmentation
-6. recovery
-7. data minimization
+6. 復旧
+7. データ最小化
 8. supplier governance
 
 のgapを閉じることであり、tool数を増やすことではない。
 
-IBM 2026では、AI-enabled malicious breachesは平均$6Mでglobal breach average $4.99Mより高く、security operationsにAI/automationを使う組織は使わない組織よりbreach costが平均で約$2M低かったと報告した。[^ibm]
+IBM 2026では、AIを利用した悪意ある侵害は平均$6Mでglobal breach average $4.99Mより高く、security operationsにAI/自動化を使う組織は使わない組織よりbreach costが平均で約$2M低かったと報告した。[^ibm]
 
 # 14. 経営が毎月見るべき10指標
 
@@ -556,8 +556,8 @@ IBM 2026では、AI-enabled malicious breachesは平均$6Mでglobal breach avera
 | --- | --- |
 | unknown Internet-facing assets | 0 |
 | exploit-known critical external exposure MTTR | hours〜1 day |
-| phishing-resistant MFA coverage | 100% |
-| standing privileged accounts | 最小化 |
+| フィッシング耐性のある MFA coverage | 100% |
+| standing privileged アカウント | 最小化 |
 | serverを含むEDR coverage | 100% |
 | critical log coverage | 100% |
 | abnormal bulk access detect-to-block | 分単位 |
@@ -579,19 +579,19 @@ IBM 2026では、AI-enabled malicious breachesは平均$6Mでglobal breach avera
 
 より現実的な脅威は、**従来は高価だった専門家の注意力、調査時間、反復作業が安価になり、弱点を探し続ける能力が広く利用可能になったこと**である。
 
-日本企業の公開事例だけでも、一回の侵害から数百万人・数千万recordへ到達し、本人確認書類が大量に失われ、物流や医療に近い業務が止まり、数十億円級の直接費用が発生し得ることは既に示されている。
+日本企業の公開事例だけでも、一回の侵害から数百万人・数千万レコードへ到達し、本人確認書類が大量に失われ、物流や医療に近い業務が止まり、数十億円級の直接費用が発生し得ることは既に示されている。
 
 AIは、これらの被害を生み出す既存の弱点を新しく作る必要すらない。見つけ、整理し、優先順位を付け、再試行するcostを下げるだけで十分に脅威を増幅できる。
 
 したがって、防御の目標は「侵入を一度も許さない」だけでは不十分である。
 
-> **侵入されても横へ広がらない。盗めるdataが少ない。正規accountでも大量操作を止める。backupは別のidentityで守る。夜中でも封じ込める。委託先が落ちても続けられる。そして復旧を実際に試してある。**
+> **侵入されても横へ広がらない。盗めるdataが少ない。正規アカウントでも大量操作を止める。backupは別のidentityで守る。夜中でも封じ込める。委託先が落ちても続けられる。そして復旧を実際に試してある。**
 
 この状態を構造として作ることが、AI時代の企業防衛の中心になる。
 
-# Related analysis
+# 関連分析
 
-- [2026年42件incident corpus](../incidents/index.md)
+- [2026年42件インシデント事例集](../incidents/index.md)
 - [根拠資料台帳](evidence-ledger-ai-cyber-risk-2026-10-04.md)
 - [全業種サイバー侵害・最大被害ストレスマトリクス](sector-worst-case-impact-matrix-2026-10-04.md)
 - [攻撃類型・最大被害・防衛予算model](incident-defense-budget-analysis-2026-10-04.md)

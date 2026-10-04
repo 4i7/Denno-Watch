@@ -81,7 +81,7 @@ sources:
 
 # 影響
 
-## Business and availability impact
+## 事業・可用性への影響
 
 影響した主要業務は以下。[^nichirei-1]
 
@@ -92,7 +92,7 @@ sources:
 
 これは単なる社内IT停止ではなく、低温物流・食品出荷という物理サプライチェーンへ波及した事案として扱う。
 
-## Confirmed personal-data exposure
+## 確認済みの個人情報露出
 
 9月18日時点で漏えいが確認された区分は以下。[^nichirei-7]
 
@@ -106,7 +106,7 @@ sources:
 
 クレジットカード情報は含まれていない。個々のレコードに表記された全項目が含まれるわけでもない。[^nichirei-7]
 
-## Secondary abuse
+## 二次被害
 
 9月18日時点で不正利用等の二次被害は確認されていない。対象者には順次個別通知が行われた。[^nichirei-7]
 

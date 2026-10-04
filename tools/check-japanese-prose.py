@@ -76,7 +76,7 @@ HEADING_ALLOWED = {
     "POS", "EC", "HR", "ISP", "FAQ", "JICC", "CIC", "NISC", "NCO", "IBM",
     "KDDI", "ASKUL", "OZmall", "Helpfeel", "Gyazo", "LEAN", "BODY",
     "ApplyNow", "VOISING", "PeakManager", "Denno", "Watch", "Metabase",
-    "Times", "Car", "MCL", "MTTR", "RTO", "RPO",
+    "Times", "Car", "MCL", "MTTR", "RTO", "RPO", "OKF",
 }
 
 INLINE_CODE = re.compile(r"`[^`]*`")

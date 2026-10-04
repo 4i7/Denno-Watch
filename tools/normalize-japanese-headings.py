@@ -154,8 +154,8 @@ EXACT = {
 FRAGMENTS = [
     (re.compile(r"^(##) Layer (\d+)\b", re.I), r"\1 第\2層"),
     (re.compile(r"^(##) Priority (\d+)\b", re.I), r"\1 優先度\2"),
-    (re.compile(r"^(#) PART I\b", re.I), r"\1 第I部"),
-    (re.compile(r"^(#) PART II\b", re.I), r"\1 第II部"),
+    (re.compile(r"^(#) PART I\b", re.I), r"\1 第1部"),
+    (re.compile(r"^(#) PART II\b", re.I), r"\1 第2部"),
     (re.compile(r"\bCase study\b", re.I), "ケーススタディ"),
     (re.compile(r"\bcapacity problem\b", re.I), "必要能力の問題"),
     (re.compile(r"\bhigh-(?:risk|リスク) operation\b", re.I), "高リスク操作"),
@@ -174,6 +174,21 @@ def normalize_heading(line: str) -> str:
     if line in EXACT:
         return EXACT[line]
     out = line
+    for old, new in [
+        ("capacity problem", "必要能力の問題"),
+        ("Identity", "アイデンティティ"),
+        ("patch", "パッチ"),
+        ("hours", "時間"),
+        ("risk control", "リスク管理"),
+        ("control", "管理"),
+        ("credential", "認証情報"),
+        ("data", "データ"),
+        ("backup", "バックアップ"),
+        ("supplier", "供給事業者"),
+        ("high-リスク operation", "高リスク操作"),
+        ("high-risk operation", "高リスク操作"),
+    ]:
+        out = out.replace(old, new)
     for pattern, replacement in FRAGMENTS:
         out = pattern.sub(replacement, out)
     return EXACT.get(out, out)

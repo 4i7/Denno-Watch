@@ -54,7 +54,7 @@ sources:
 
 # 影響
 
-## Population
+## 対象者数
 
 | Population | Approximate count | Historical scope |
 | --- | ---: | --- |
@@ -64,11 +64,11 @@ sources:
 
 公表値は約値であり、より精密な確定値へ勝手に変換しない。[^daiichi-primary]
 
-## Data categories
+## データ種別
 
 対象情報には従業員番号、氏名、住所、電話番号、性別、所属部署、職位・職級、役割、上司氏名等が含まれる。組織上の役割や上司関係は、単純な連絡先以上に社内なりすましの信憑性を高め得るため、組織グラフ情報としても感度がある。[^daiichi-primary]
 
-## Customer data
+## 顧客データ
 
 10月2日時点で顧客情報への不正アクセスは確認されていない。人事システムの侵害を、根拠なく保険契約データ侵害へ拡張しない。[^daiichi-primary]
 

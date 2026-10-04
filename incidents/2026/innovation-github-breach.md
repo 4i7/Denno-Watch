@@ -64,11 +64,11 @@ sources:
 
 これは本番DBから抜き取られたデータではなく、分析・開発作業の過程でGitHubリポジトリに保存されていた個人情報が不正アクセスの対象となったもの。[^innovation-final]
 
-## Production systems
+## 本番システム
 
 本番データベースへの不正アクセス、本番環境からの情報漏えいは確認されていない。したがってソースコード管理面の侵害を、根拠なく本番環境侵害へ拡張しない。[^innovation-final]
 
-## Availability and secondary abuse
+## 可用性と二次被害
 
 サービス停止などの可用性影響は公表されていない。流出した可能性のある個人情報の不正利用等による二次被害も確定報時点では確認されていない。[^innovation-final]
 
@@ -83,14 +83,14 @@ sources:
 
 # 対応と復旧
 
-## Credential / GitHub controls
+## 認証情報／GitHubの管理
 
 - 影響したアクセストークンを無効化・停止。[^innovation-final]
 - トークン権限と発行ワークフローを見直し、組織全体で統制された仕組みへ切り替え。[^innovation-final]
 - レビュールールを見直し・強化。[^innovation-final]
 - GitHubリポジトリへのアクセス監視を強化。[^innovation-final]
 
-## Personal-data controls
+## 個人データ管理
 
 - 個人情報を含むデータをリポジトリへ保存しない運用ルールへ変更。[^innovation-final]
 - 既存リポジトリの点検・是正を完了。[^innovation-final]

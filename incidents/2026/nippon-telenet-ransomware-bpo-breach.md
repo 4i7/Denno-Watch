@@ -57,7 +57,7 @@ sources:
 
 # 影響
 
-## Potentially affected information
+## 影響を受けた可能性のある情報
 
 | Population / data set | Public count | Evidence state |
 | --- | ---: | --- |
@@ -70,7 +70,7 @@ CSS/L-netには会社名、氏名、FAX番号等、BPOには氏名、住所、�
 
 件数はデータ集合の規模であり、重複関係が公表されていないため総人数へ変換しない。
 
-## Availability and integrity
+## 可用性と完全性
 
 ファイルサーバ等で暗号化被害が確認され、既存環境をそのまま信頼して復旧するのではなく、独立したクリーンネットワークを新設し、全業務用PCを初期化・再キッティングした。これは可用性だけでなく、復旧後の環境完全性を再確立する対応として重要である。[^nippon-telenet-final]
 
