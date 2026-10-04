@@ -136,6 +136,29 @@ disclosure_quality:
 
 数値ランキングへ機械的に合算しない。適用しない項目は `not_applicable` とする。
 
+## デジタル証拠と因果関係
+
+侵入経路、外部取得、破壊等の結論について証拠の種類・限界が重要な場合は、[デジタル証拠の保全と因果関係の確度](../analysis/forensic-evidence-preservation-and-causal-confidence-2026-10-04.md) を用いる。
+
+```yaml
+causal_evidence:
+  initial_access:
+    conclusion: unknown
+    confidence: unknown
+    evidence_sources: []
+  exfiltration:
+    conclusion: unknown
+    confidence: unknown
+    evidence_sources: []
+  destructive_action:
+    conclusion: unknown
+    confidence: unknown
+    evidence_sources: []
+  limitations: []
+```
+
+最初に観測された活動を初期侵入時刻と同一視せず、外部で悪用中のCVEを当該事故の原因へ自動的に結び付けない。攻撃者サイト掲載と、組織が確認した流出量も分ける。
+
 ## データ被害プロファイル
 
 高感度又は長期悪用可能なデータを含む場合は、[データ被害・感度・保持期間の評価](../analysis/data-harm-sensitivity-and-retention-taxonomy-2026-10-04.md) を用いる。
@@ -228,6 +251,33 @@ control_evidence:
 
 事故が起きたことだけから「MFAがなかった」「EDRがなかった」等を `confirmed_gap` へ入れてはならない。
 
+## 再発防止策と長期実効性
+
+事故後対策を追跡する場合は、[再発防止策の実効性と再発追跡](../analysis/remediation-effectiveness-and-recurrence-tracking-2026-10-04.md) に従う。
+
+```yaml
+remediation_tracking:
+  - action: null
+    target_failure_mode: null
+    announced_at: null
+    state: announced
+    implemented_at: null
+    evidence_source_ids: []
+    independent_assessment: unknown
+    operational_effect: unknown
+
+recurrence_tracking:
+  follow_up_checked_at: null
+  recurrence_observed: unknown
+  recurrence_type: null
+  same_control_boundary: unknown
+  effect_on_detection_time: unknown
+  effect_on_blast_radius: unknown
+  effect_on_recovery_time: unknown
+```
+
+`announced` を `implemented` と読み替えず、再発が観測されないことだけで対策有効と断定しない。
+
 ## 依存・集中関係
 
 複数組織・複数サービスへの波及、共有基盤、認証・管理・データ・復旧集中が重要な場合は、[システム依存・集中リスクのグラフモデル](../analysis/systemic-dependency-and-concentration-graph-model-2026-10-04.md) を使う。
@@ -239,6 +289,33 @@ dependency_evidence:
 ```
 
 公開情報で確認できる能力単位の依存だけを記録し、未公表の内部ネットワークやアクセス経路を推定しない。
+
+## クラウド・SaaSの共有責任と証拠境界
+
+SaaS・クラウド事例で顧客側・提供者側の責任やログ可視性が重要な場合は、[クラウド・SaaSの共有責任と証拠境界](../analysis/cloud-saas-shared-responsibility-and-evidence-boundaries-2026-10-04.md) を使う。
+
+```yaml
+shared_responsibility:
+  identity:
+    customer: []
+    provider: []
+    shared: []
+  logging:
+    customer_accessible_events: []
+    provider_only_events: []
+    retention_days: unknown
+    external_export: unknown
+  incident_response:
+    customer_first_line: unknown
+    provider_escalation: unknown
+    evidence_request_process: unknown
+  recovery:
+    tenant_restore: unknown
+    export_available: unknown
+    alternate_operation: unknown
+```
+
+提供者基盤の侵害と顧客資格情報の悪用を区別し、顧客が取得できないログを「存在しない」と扱わない。
 
 ## OT・重要インフラ
 
@@ -275,6 +352,7 @@ ot_impact:
 
 次は条件付きで独立節を追加する。
 
+- **証拠と因果確度** - 侵入経路、流出、破壊等の結論と証拠限界が重要な場合。
 - **報告・通知・公表** - 複数の規制・契約・市場開示経路が重要な場合。
 - **公表品質** - 初報、訂正、利用者行動、長期追補の構造が重要な場合。
 - **データ被害の性質** - 本人確認、認証、医療、金融、長期保持等が重要な場合。
@@ -282,8 +360,10 @@ ot_impact:
 - **復元可能性** - バックアップ、再構築、クリーン復旧が事故結果を左右した場合。
 - **財務・事業影響** - 会社が業績・費用・保険等を開示した場合。
 - **依存関係** - 共有基盤・第三者・認証等から複数組織へ波及した場合。
+- **SaaS共有責任** - 顧客側・提供者側の設定、ログ、対応、復旧境界が重要な場合。
 - **安全・操業** - OT、重要インフラ、物理プロセスへ影響する場合。
 - **事故前後の統制** - 事故前の統制又は事故後の具体的対策が一次資料から確認できる場合。
+- **再発防止策の実効性** - 後続公表、演習、監査、再発等で対策状態を更新できる場合。
 
 # 件数と訂正
 
@@ -348,6 +428,7 @@ ot_impact:
 
 - [情報源の監視・鮮度・再確認基準](source-monitoring-and-freshness-standard.md)
 - [海外比較ケース記録基準](international-comparative-case-standard.md)
+- [デジタル証拠の保全と因果関係の確度](../analysis/forensic-evidence-preservation-and-causal-confidence-2026-10-04.md)
 - [サイバーインシデントの報告・通知・公表マップ](../analysis/regulatory-reporting-and-disclosure-map-2026-10-04.md)
 - [インシデント公表の品質・透明性](../analysis/incident-disclosure-quality-and-transparency-framework-2026-10-04.md)
 - [データ被害・感度・保持期間の評価](../analysis/data-harm-sensitivity-and-retention-taxonomy-2026-10-04.md)
@@ -355,7 +436,9 @@ ot_impact:
 - [バックアップ・復元可能性・クリーン復旧](../analysis/backup-recoverability-and-clean-restoration-knowledge-base-2026-10-04.md)
 - [サイバーインシデントの財務・事業影響](../analysis/incident-financial-and-business-impact-knowledge-base-2026-10-04.md)
 - [システム依存・集中リスクのグラフモデル](../analysis/systemic-dependency-and-concentration-graph-model-2026-10-04.md)
+- [クラウド・SaaSの共有責任と証拠境界](../analysis/cloud-saas-shared-responsibility-and-evidence-boundaries-2026-10-04.md)
 - [失敗モードと防御統制の対応表](../analysis/control-failure-mode-crosswalk-2026-10-04.md)
+- [再発防止策の実効性と再発追跡](../analysis/remediation-effectiveness-and-recurrence-tracking-2026-10-04.md)
 - [OT・重要インフラの安全・復旧リスク](../analysis/ot-critical-infrastructure-safety-and-recovery-2026-10-04.md)
 
 [^okf-v02]: Open Knowledge Format v0.2 specification. Denno Watch では本ナレッジベースの参照版を `ad30107c31c06aec8a7d5636e0d1058118604e6f` に固定している。
