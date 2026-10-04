@@ -4,7 +4,14 @@
 
 * [Denno Watch 知識基盤マップ — 事故発生から長期予後まで何をどこで調べるか](knowledge-base-map-2026-10-04.md) - 個別事例、横断分析、方法論、海外比較ケースを一つの知識基盤として辿るための入口。
 * [Denno Watch 知識基盤拡張監査 — 不足領域・補助資料・次の調査経路](knowledge-base-expansion-audit-2026-10-04.md) - 既存資料を多角的に監査し、今回補完した領域と今後の継続調査を優先順位付きで整理。
+* [2023〜2025年インシデント事例集 再調査監査](historical-incident-corpus-audit-2023-2025-2026-10-04.md) - 2023年をローカルLLM実用化期の比較開始点とし、国内16件を事故前開示・即応・復旧・IR・2026年までの予後まで再調査。
+* [ローカルLLM時代のサイバー脅威環境 — 2023年から2026年](local-llm-era-cyber-threat-environment-2023-2026.md) - Llama 2・Mistral 7B公開期を時代区分として使いつつ、RaaS・VPN・ゼロデイ等の既存脅威と個別事故のAI因果を混同しないための背景資料。
 * [AIで攻撃コストが崩れた時代の企業サイバーリスク](executive-ai-amplified-cyber-risk-report-2026-10-04.md) - AIによる攻撃経済性の変化、国内42件、多層防御、30/90/365日計画を統合した経営・実務向け総合レポート。
+
+## 事故前開示・投資家資料
+
+* [事故前のセキュリティ開示と実際の侵害境界 — 2023〜2025年比較](pre-incident-security-disclosure-vs-observed-failure-2023-2025.md) - CISO、SOC、ISMS、EDR、MFA、ゼロトラスト等の公表統制と、実事故で観測された適用差・例外・失敗境界を比較。
+* [2023〜2025年インシデント — IR・株主向け・事故前セキュリティ開示資料台帳](incident-ir-and-security-disclosure-source-ledger-2023-2025.md) - 統合報告書、サステナビリティ資料、株主総会、適時開示、事故調査PDFを事例・時点別に保存する台帳。
 
 ## 事故発生から復旧・予後まで
 
@@ -43,4 +50,7 @@
 
 ## 比較事例
 
-* [海外比較インシデント](../incidents/international/index.md) - Change Healthcare、Snowflake顧客アカウント侵害、Caesars Entertainment、MOVEit Transferを国内42件と分離して詳細記録。第三者集中、共有責任、数年単位の訴訟・保険・財務影響を補完。
+* [2023年国内事例](../incidents/2023/index.md) - ローカルLLM普及期の開始点となる国内7件。
+* [2024年国内事例](../incidents/2024/index.md) - 高度な平時統制を公表していた企業の侵害を含む国内5件。
+* [2025年国内事例](../incidents/2025/index.md) - セキュリティ提供者・共有基盤・移行途中資産・EC物流停止を含む国内4件。
+* [海外比較インシデント](../incidents/international/index.md) - Change Healthcare、Snowflake顧客アカウント侵害、Caesars Entertainment、MOVEit Transferを国内事例と分離して詳細記録。第三者集中、共有責任、数年単位の訴訟・保険・財務影響を補完。
