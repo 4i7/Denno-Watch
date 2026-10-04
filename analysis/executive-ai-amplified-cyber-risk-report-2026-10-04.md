@@ -1,11 +1,11 @@
 ---
 type: Executive Threat Analysis
-title: AIで攻撃コストが崩れた時代の企業サイバーリスク — 42件の日本事例から見る被害、攻撃経済性、防衛
-summary: Denno Watchの2026年日本重大インシデント42件と主要脅威インテリジェンスを統合し、経営層が一目で被害構造、AIによる攻撃コスト低下、外部計算資源とローカルAIの双方による24/365型継続攻撃、現実的な多層防御を理解するためのエグゼクティブレポート。
-tags: [executive, ai, cyber-risk, japan, defense, resilience, economics, automation, local-ai, 2026]
+title: AIで攻撃コストが崩れた時代の企業サイバーリスク — 経営層と情報システム部門のための調査報告
+summary: 前半を非専門家向け約2ページの経営サマリー、後半を経営・情シス・セキュリティ部門向けの詳細調査として構成し、日本の重大インシデント、AIによる攻撃経済性の変化、本人確認書類流出の長期リスク、業種別最大被害、現実的な多層防御を整理する。
+tags: [executive, ai, cyber-risk, japan, defense, resilience, economics, automation, local-ai, identity, 2026]
 status: draft
 stale_after: 2027-01-01T00:00:00+09:00
-generated: { by: openai/gpt-5.6-sol, at: 2026-10-04T09:20:00+09:00 }
+generated: { by: openai/gpt-5.6-sol, at: 2026-10-04T10:20:00+09:00 }
 sources:
   - id: denno-corpus
     resource: ../incidents/index.md
@@ -19,304 +19,601 @@ sources:
     resource: incident-defense-budget-analysis-2026-10-04.md
     title: Patterns, realistic countermeasures and defense-budget model
     author: project:Denno-Watch
+  - id: denno-sector
+    resource: sector-worst-case-impact-matrix-2026-10-04.md
+    title: 全業種サイバー侵害・最大被害ストレスマトリクス
+    author: project:Denno-Watch
+  - id: denno-evidence
+    resource: evidence-ledger-ai-cyber-risk-2026-10-04.md
+    title: AI時代の企業サイバーリスク — 根拠資料台帳
+    author: project:Denno-Watch
+  - id: ipa-2026
+    resource: https://www.ipa.go.jp/security/10threats/10threats2026.html
+    title: 情報セキュリティ10大脅威 2026
+    author: organization:IPA
   - id: microsoft-mddr
     resource: https://www.microsoft.com/en-us/security/security-insider/threat-landscape/2026-digital-defense-report
-    title: Microsoft Digital Defense Report 2026 — AI is changing the physics of cybersecurity
+    title: 2026 Digital Defense Report
     author: organization:Microsoft
-  - id: google-gtig-autonomy
+  - id: google-gtig
     resource: https://cloud.google.com/blog/topics/threat-intelligence/from-prompting-to-autonomy-the-evolution-of-adversarial-ai
     title: GTIG AI Threat Tracker — From Prompting to Autonomy
     author: organization:Google Threat Intelligence Group
-  - id: google-risk-resilience
-    resource: https://cloud.google.com/security/resources/ai-risk-and-resilience-2026
-    title: AI risk and resilience in 2026 — Mandiant special report
-    author: organization:Google Cloud / Mandiant
   - id: anthropic-navigator
     resource: https://www.anthropic.com/research/attack-navigator
-    title: Mapping AI-enabled cyber threats — LLM ATT&CK Navigator
+    title: Mapping AI-enabled cyber threats
     author: organization:Anthropic
   - id: verizon-dbir
     resource: https://www.verizon.com/business/ja-jp/resources/reports/dbir/
-    title: Verizon 2026 Data Breach Investigations Report
+    title: 2026 Data Breach Investigations Report
     author: organization:Verizon
+  - id: ibm-2026
+    resource: https://newsroom.ibm.com/2026-07-29-ibm-study-one-in-four-malicious-breaches-are-ai-enabled%2C-costing-companies-6-million-on-average
+    title: Cost of a Data Breach 2026
+    author: organization:IBM
   - id: mistral-offline
     resource: https://docs.mistral.ai/vibe/code/cli/offline-models
-    title: Mistral Docs — Using offline models
+    title: Using offline models
     author: organization:Mistral AI
-  - id: mistral-open-license
-    resource: https://help.mistral.ai/en/articles/347393-under-which-license-are-mistral-s-open-models-available
-    title: Mistral Help Center — open model licensing
-    author: organization:Mistral AI
+  - id: times-third
+    resource: https://www.park24.co.jp/news/2026/09/20260929-1.html
+    title: タイムズカーWebシステムへの不正アクセスに関する調査結果および今後の対応について（第3報）
+    author: organization:Park24
 ---
 
-# 30秒で分かる結論
+# PART I — 約2ページで把握する経営サマリー
 
-> **企業が向き合うべき変化は、攻撃者が超高性能AIを使うために巨大な専用計算基盤を自前で所有する必要がなくなったことである。外部の超高性能計算資源は必要な時間だけ借りられ、さらに十分なGPU/VRAMを持つハードウェアを一度確保すれば、open-weightモデルをローカルへ保持し、外部APIの利用制限・拒否・監視・従量課金から独立したAI処理基盤を継続運用できる。**
+## まず知ってほしいこと
 
-2026年のDenno Watch corpusには、日本企業・組織の重大インシデント42件が含まれる。ランサムウェア、脆弱性悪用、VPN/認証情報悪用、クラウド・SaaS、BI/分析基盤、API/業務ロジック、大規模共有基盤、委託先・サプライチェーン、データ破壊、開発基盤の秘密情報管理不備が繰り返し観測されている。[Denno Watch incident index](../incidents/index.md)
+企業が直面している変化は、突然まったく新しい種類の攻撃が生まれたことではない。
 
-AIはこれらの既存攻撃経路を消してはいない。むしろ、**探索、優先順位付け、文章生成、コード支援、脆弱性調査、対象別適応、取得データの分析、長期キャンペーンの状態管理、複数作業の並列化**に必要だった人間の時間と専門知識を圧縮する。
+これまでにも、パスワードの窃取、古いシステムの弱点、委託先からの侵入、身代金要求型の攻撃、顧客データの持ち出し、偽メールやなりすましは存在した。
 
-Microsoftは2026年、AIが偵察、脆弱性探索、フィッシング、マルウェア/エクスプロイト開発、データ分析、侵害後活動を高速化していると報告している。Google Threat Intelligence Groupは2026年Q2、侵害したクラウド資源からagent-enabled mass credential-harvesting campaignを6時間未満で計画・構築・実行した活動を報告した。[^microsoft][^gtig]
+変わったのは、**それらを探し、試し、失敗を整理し、次の候補へ移り、得られた情報を分析するために必要だった「人間の時間」が急速に安くなっていること**である。
 
-Anthropicは悪用で停止した832アカウントの分析で、AI利用がMITRE ATT&CK全14 tactic、482 sub-techniqueへ広がったと報告している。[^anthropic]
+AIは、調査、文章作成、翻訳、コード作成の補助、大量情報の整理、優先順位付け、長時間の監視などを高速に処理できる。攻撃者が全工程をAIだけに任せられるわけではないが、機械に任せやすい仕事を24時間365日続け、人間は重要な判断だけを行う形が現実になりつつある。
 
-一方で、**高度な実侵害がすべて完全自律化したとは扱わない**。複雑な判断には依然として人間が必要な場合が多い。変化の本質は、人間が全作業を行う必要がなくなり、機械化しやすい部分を24時間365日継続させ、人間を価値の高い判断へ集中させられることにある。
+その結果、企業側は「自社が有名だから狙われる」「一度防げば相手は諦める」「攻撃者も平日の日中に人手で調査している」といった前提を置けなくなった。
 
-# 経営層向けワンページ
+**攻撃側は、1000社を浅く調べて1社の弱点を見つければよい。防御側は、自社の全ての入口を毎日守らなければならない。**
 
-| 企業が知るべきこと | 2026年時点の意味 |
+この非対称性が、AIによってさらに大きくなっている。
+
+## 高性能なAIを使うために巨大設備を所有する必要もない
+
+高性能なAIは、大規模な計算設備を自社で建設しなくても、外部の計算資源やAIサービスを必要な時間だけ借りられる。
+
+もう一つの経路もある。十分な性能のGPU等を一度確保すれば、公開・配布されている高性能モデルを自己管理環境で動かすことができる。公式ドキュメントでも、高性能なコード・agent用途のmodelを一般に入手可能なGPU級でlocal実行し、外部通信を切ったoffline運用が可能な例が示されている。[^mistral]
+
+したがって、防御側は「危険な命令ならAI会社が拒否する」「大量に使えば利用上限で止まる」「異常ならaccountが停止される」ことを、自社の防衛策として期待してはいけない。
+
+攻撃者の能力を判断するときに見るべきなのは、相手が巨大なdata centerを所有しているかではない。**どれだけの計算資源、人員、自動化、時間を組み合わせられるか**である。
+
+## 小さな費用でも、人間一人の処理量はすでに大きく増幅できる
+
+実利用の一例として、月数千円規模のAI利用料で、単独の開発者がGitHub上で15万行を超える規模の開発を扱えたケースがある。
+
+コードの行数は品質や攻撃能力そのものを示す尺度ではない。しかし、従来は複数人の時間を必要とした調査、設計、実装、修正、レビュー、文書化を、一人で大規模に処理できるようになったという点は重要である。
+
+ここから企業が考えるべき問いは単純である。
+
+> **月数千円でも一人の知識労働を大きく増幅できるなら、悪意ある複数人が数百万円、数千万円という資金を投じ、外部の高性能計算資源、自己管理AI、多数の実行環境、24時間365日の自動化を組み合わせた場合、従来の攻撃者像のままで十分か。**
+
+これは「AIなら何でも侵入できる」という意味ではない。むしろ逆である。**今まで放置されていた普通の弱点を、より多く、より速く、より粘り強く探される**と考えるべきである。
+
+## 日本では、すでに「一度の侵害で数百万人」が珍しくない
+
+Denno Watchが2026年の公開情報から整理した42件には、数百万から数千万record規模の情報影響、身代金要求型攻撃、物流・交通・小売・医療に近い業務停止、委託先から複数企業へ広がる被害が含まれる。[42件のincident corpus](../incidents/index.md)
+
+代表例だけでも、次の規模が確認されている。
+
+- タイムズカー: 約660万accountの情報取得。うち約160万accountで運転免許証画像等の本人確認書類が漏えい。[^times]
+- EPARK / PeakManager: 約2,218万recordsの外部転送を確認。
+- Helpfeel / Gyazo: 2,000万を超えるuser規模の情報影響。
+- KDDIの共有mail基盤: 約1,223万mail addressと約762万passwordが影響。
+- ムラウチドットコム: 約771万customer records。
+
+金額だけを見ても、大規模ランサムウェア事案では、ASKULのsystem outage対応費としてLY Corporationが**52.62億円**を計上している。これは最終的な全損失ではなく、物流設備維持、調査・復旧、期限切れ商品損失等を含む特定費用項目である。[^askul]
+
+また、過去の国内事例では、大阪急性期・総合医療センターがランサムウェア被害後、基幹system再稼働まで43日、全体の診療system復旧まで73日を要し、調査・復旧費用は数億円以上、診療制限に伴う逸失利益は十数億円以上と見込んだ。[^osaka]
+
+名古屋港ではランサムウェアにより全container terminalの作業が停止した。これは、IT障害が画面上の問題ではなく、**物理物流、診療、製造、交通、社会機能の停止に変わる**ことを示す。[^nagoya]
+
+## タイムズカーの160万件は「パスワード流出」と同じ種類の問題ではない
+
+2026年9月29日、Park24は、タイムズカーの約160万accountで本人確認書類が漏えいしたと公表した。対象には運転免許証画像、現住所確認書類、学生証、家族確認書類が含まれる。[^times]
+
+ここで重要なのは、本人確認書類はpasswordのように単純に変更できる情報ではないことである。氏名、生年月日、顔、住所等の組合せは長期に本人と結び付く。
+
+一方、**2026年10月4日時点で、Times Carから漏えいした情報を使った不正loan、不正credit契約等が実際に発生したという一次公表は確認できない。** 「160万人の信用情報がすでに毀損した」と書くことは事実を超える。
+
+しかし、リスクが抽象的なものでもない。
+
+JICCは、運転免許証画像等が流出し現物が手元にある場合でも「名義の悪用防止」の本人申告を登録できるとしている。全国銀行個人信用情報センターも、本人確認書類の漏えいにより名義冒用のおそれがある場合、本人申告情報を金融機関の与信判断の参考にできるとしている。CICにも同種の制度がある。[^jicc][^ksc][^cic]
+
+そしてPark24の第3報直後、JICCでは本人申告・本人開示の申込みが集中し、2026年10月1日にsmartphone app受付を一時休止した。CICも9月30日、本人申告や信用情報開示の受付番号、call centerへの申込み・問い合わせが通常より増え、つながりにくい状態を公表した。各機関は原因をTimes Carと断定していないため因果関係は断定できないが、**本人確認情報流出後に信用取引上の自己防衛行動が大規模に発生していること自体は確認できる。**[^jicc-load][^cic-load]
+
+本人確認書類が悪用されれば、条件次第で名義を使ったcredit/loan申込み、通信契約、account recovery、より精密なphishing等へ利用される可能性がある。警察庁も、偽造本人確認書類や本人になりすました契約により不正取得された携帯電話が特殊詐欺等へ悪用される事例を記録している。[^npa]
+
+ただし、現代の本人確認には顔照合、liveness、IC、既登録電話番号、追加認証、不正検知等もあるため、**画像を持つだけであらゆる契約が成立するわけではない。**
+
+経営上の教訓は、本人確認書類を「普通の個人情報」と同じ保存期間・同じ場所・同じ権限で扱わないことである。
+
+## 経営層が今すぐ確認すべき7項目
+
+専門製品名を知らなくても、次の7問に答えられればよい。
+
+1. **自社がInternetへ公開しているsystemを、今この瞬間に全部列挙できるか。**
+2. **管理者、VPN、cloud、開発環境へpasswordだけで入れる場所が残っていないか。**
+3. **重大な弱点が今日見つかった場合、夜中でも1日以内に塞ぐか外部から切り離せるか。**
+4. **正しいaccountを盗まれた場合でも、数十万件を一気に読む・送る・変更する異常を止められるか。**
+5. **本当に必要な期間を超えて、本人確認画像、退会者情報、元従業員情報、古いexportを保存していないか。**
+6. **全serverやdatabaseを破壊されても、攻撃者が触れた認証情報を使わずにbackupから戻せるか。実際に復旧試験をしたか。**
+7. **夜間・休日、委託先の事故を含めて、誰が止める権限を持っているか。**
+
+一つでも答えられない場合、問題は「AIそのもの」ではない。**AIによって繰り返し探されやすくなった既存の管理不備**である。
+
+---
+
+# PART II — 経営・情シス・セキュリティ部門向け詳細調査
+
+# 1. 調査範囲と読み方
+
+本報告は、Denno Watchの2026年日本重大incident 42件、被害企業・公的機関の一次公表、Microsoft、Google Threat Intelligence Group、Anthropic、Verizon、IBM、IPA等の2026年脅威資料を横断している。
+
+強い警告を出す一方、次を混同しない。
+
+- `confirmed`: 被害組織、公的機関、調査主体が確認した事実。
+- `supported inference`: 確認事実から合理的に導けるが、その事件で発生確認されていない二次risk。
+- `stress scenario`: 経営上の備えとして想定する最大被害。
+- `unknown`: 公開情報では分からないこと。
+
+根拠のclaim-by-claim対応は[根拠資料台帳](evidence-ledger-ai-cyber-risk-2026-10-04.md)、全業種の最大被害は[全業種最大被害ストレスマトリクス](sector-worst-case-impact-matrix-2026-10-04.md)に分離した。
+
+# 2. AIが変えたのは「攻撃の目的」ではなく「経済性」
+
+攻撃者の目的は大きく変わっていない。侵入、情報窃取、金銭詐取、恐喝、諜報、妨害である。
+
+変化しているのは、そのために必要なexpert timeである。
+
+Microsoftは2026 Digital Defense Reportで、AIがvulnerability discovery、reconnaissance、phishing、malware/exploit development、data analysis、post-compromise activityに利用され、attack speed、scale、consistencyを高めていると報告した。また、実環境でのvulnerability discoveryからweaponizationまでのmedianが24時間を大きく下回るとする。[^microsoft]
+
+GTIGは2026年Q2、侵害したcloud resourceからagent-enabled mass credential-harvesting campaignを6時間未満で計画、構築、実行した活動を観測した。[^google]
+
+Anthropicは2025年3月から2026年3月までの悪用accountのうち詳細を分析できた832件について、13,873 actions、MITRE ATT&CK全14 tactics、482 techniques/sub-techniquesにAI利用をmapした。中risk以上のactor比率は研究期間前半33%から後半56%へ増えた。ただし、この832件はAnthropicが調査・停止したaccountのsubsetで、全攻撃者の母集団ではない。[^anthropic]
+
+Verizon 2026 DBIRでは、software vulnerability exploitationがbreachの31%で侵入経路となり、stolen credentialsを上回る主要vectorになった。[^verizon]
+
+日本でもIPA「情報セキュリティ10大脅威 2026」は、組織向け1位をランサム、2位をサプライチェーン・委託先、3位を初選出の「AIの利用をめぐるサイバーリスク」、4位を脆弱性悪用としている。[^ipa]
+
+これらを合わせると、企業にとって重要なのは「AIだけの新攻撃」を探すことではない。
+
+**既存の入口が、以前より高速・大量・長時間に探索される世界へ防御速度を合わせること**である。
+
+# 3. 攻撃者の計算資源を「所有設備」で評価してはいけない
+
+## 3.1 外部の超高性能計算資源を借りる
+
+高性能GPU、cloud inference、AI API等は、設備を購入せず必要な時間だけ利用できる。
+
+これにより、攻撃者の見た目の規模と利用可能な計算能力は一致しない。小規模なgroupでも、短時間だけ大きな計算能力を利用できる。
+
+## 3.2 高性能AIを自己管理環境へ置く
+
+open-weight modelは自己管理環境でlocal inferenceできる。Mistralのofficial documentationは、agentic/code task向け24B modelについて、24GB VRAM GPUを含むlocal deployment例を示し、fully offline運用も説明している。[^mistral]
+
+Metaもdownloaded Llamaについて、利用者が入力・出力をMetaへ送らない限り、Meta側はそれらへアクセスしないとFAQで説明している。[^meta]
+
+これは特定providerの問題ではない。一般論として、自己管理modelではexternal providerのcentral moderation、API refusal、quota、account suspension、usage monitoringを防御側が期待できない。
+
+ローカル環境は無限ではない。GPU throughput、memory、電力、冷却、故障、network等の制約がある。しかしhardware取得後は、処理ごとのAPI料金ではなく、電力・冷却・保守を中心とする継続費で反復運用できる。
+
+**防御計画は「悪意ある利用ならAI providerが止めてくれる」ことをcontrolとして数えてはいけない。**
+
+# 4. 24時間365日型の攻撃とは何か
+
+「AIが全自動で企業を侵害する」という極端な絵ではない。
+
+より現実的なのは、次のような人間時間を消費する仕事を常時回し、重要な判断だけ人間へ上げることだ。
+
+- 公開assetやservice変更の継続監視
+- 新しい脆弱性と利用technologyの照合
+- 大量候補のpriority付け
+- 公開文書、技術情報、code等の整理
+- 長期campaignの状態保持
+- 失敗対象の再評価
+- 取得した大量情報の分類・検索
+- 多言語での文章処理
+
+この構造では、1回防いだことは「終了」を意味しない。新しい公開asset、設定変更、credential exposure、supplier connection、software vulnerabilityが現れれば、同じ企業が再び候補になる。
+
+防御側も、発見、triage、isolation、credential revoke、restoreを人手の営業時間だけに依存できない。
+
+# 5. 生産性増幅を経営上のcapacity problemとして見る
+
+AIのriskは、個別modelのbenchmarkだけでは理解しにくい。
+
+実利用では、月数千円規模のAI利用で一人の開発者がGitHub上の15万行を超える開発規模を扱えた事例がある。LOCはqualityやoffensive capabilityの尺度ではなく、これ自体が攻撃能力を証明するものではない。
+
+しかし、調査、設計、実装、debug、review、documentationのthroughputを一人でも大きく増幅できることは、組織capacityの変化を示す。
+
+悪意あるgroupについても、防御側は「高度技術者一人が一件ずつ手作業する」モデルを置くべきではない。
+
+資金が数百万円、数千万円へ増え、複数operator、外部compute、local AI、worker node、automationを組み合わせれば、**対象数、監視時間、再試行頻度、分析量を同時に増やせる**。
+
+このときの防御指標は「攻撃者がどれほど賢いか」だけではなく、**何件を同時に追跡できるか、何時間休まず再評価できるか**になる。
+
+# 6. 42件の日本事例から見える反復パターン
+
+Denno Watch corpusからは、少なくとも次の反復が見える。
+
+1. Internet-facing / adjacent toolの脆弱性悪用
+2. credential / VPN / cloud account悪用
+3. ransomware + data theft +業務停止
+4. SaaS / provider / entrusted-data concentration
+5. BI / analyticsを経由したproduction data侵害
+6. 正規API・正常accountを使った大量照会
+7. database deletion等のintegrity破壊
+8. source code / secret / development data漏えい
+9. communications control-planeの悪用
+10. shared infrastructureの大規模failure domain
+11. 退会者・過去data等の長期保持によるblast radius拡大
+12. 復旧不能時のservice retirement
+
+詳細なcontrol mappingとbudget modelは[攻撃類型・防衛予算分析](incident-defense-budget-analysis-2026-10-04.md)を参照する。
+
+ここで最も重要な共通点は、**侵入そのものより、侵入後にどこまで一つの権限で届くかが最終被害を決めている**ことである。
+
+# 7. Case study — Times Car本人確認書類流出をどう評価するか
+
+## 7.1 確認された事実
+
+Park24は2026年9月、Times Car Web systemへの不正accessにより約660万accountの情報が第三者に取得されたと公表した。9月29日の第3報で、そのうち約160万accountに本人確認書類の漏えいがあると確認した。[^times]
+
+公表された本人確認書類は、
+
+- 運転免許証画像
+- 現住所確認書類画像
+- 学生証画像
+- 家族確認書類画像
+
+である。
+
+「160万件すべてが運転免許証画像」とは公表されていないため、そのようには集計しない。
+
+## 7.2 なぜ長期riskなのか
+
+passwordは変更できる。card numberも再発行できる。
+
+一方、氏名、生年月日、顔、過去・現在の住所、家族関係等は簡単には変更できない。本人確認画像を他の漏えいdataと組み合わせれば、target-specificなidentity fraudやsocial engineeringの材料が増える。
+
+JICCは、運転免許証等の現物が手元にあっても、画像などの情報が漏えいした場合に「名義の悪用防止」の本人申告を利用できると明示している。JICC加盟会員はloanやcash advanceの審査時に本人申告commentを確認し、より慎重な与信判断を行える。[^jicc]
+
+全国銀行個人信用情報センターも、本人確認書類の紛失、盗難、**漏えい**により名義冒用の可能性がある場合、本人申告情報を登録し、member financial institutionsの与信判断の参考にできるとしている。ただし判断を拘束せず、悪用防止を保証するものでもなく、預金口座開設時の照会対象ではない。[^ksc]
+
+CICも本人確認書類の紛失・盗難、名義悪用のおそれについて本人申告制度を提供し、credit/loan審査時の参考情報として扱う。[^cic]
+
+したがって、「本人確認書類画像がcredit riskと無関係」という見方は公的な信用情報制度と整合しない。
+
+## 7.3 すでに確認できる二次影響
+
+Times Car由来の不正契約そのものは、10月4日時点の一次情報で確認できない。
+
+一方、Park24第3報の翌日である9月30日、JICCはsmartphone appへのaccessと本人申告・本人開示の申込み集中、処理遅延を公表した。10月1日にはsystem maintenanceのため本人申告・本人開示のapp受付を一時休止した。[^jicc-load]
+
+CICも9月30日、internet開示、internet本人申告等の受付番号取得とcall centerへの問い合わせ・申込みが通常より増え、つながりにくい状態を公表した。[^cic-load]
+
+JICC/CICは原因をTimes Carだと公式には明示していないため、因果関係は`confirmed`としない。しかし時系列上、**大規模な本人確認書類漏えいの直後に、信用情報の確認・名義悪用防止に関する社会的対応負荷が現実に増大した**ことは、企業が二次被害対応costを考えるうえで重要である。
+
+## 7.4 想定すべき二次被害
+
+Times Car incidentで発生確認済みとはしないが、本人確認書類と個人属性の漏えいでは次をstress scenarioへ含めるべきである。
+
+- credit / loan申込みでの名義冒用
+- communication service等の不正契約
+- account recovery / 本人確認を狙う試行
+- 正確な氏名、住所、契約関係を使うphishing / voice fraud
+- 別の漏えいdataとの照合によるidentity profile精密化
+- 不正契約が成立した場合のcredit record調査、異議申立て、訂正、長期monitoring cost
+
+警察庁は、偽造本人確認書類を提示したり本人になりすましたりして不正取得された他人・架空名義の携帯電話が特殊詐欺等に悪用される事例を記録している。[^npa]
+
+金融庁は、Timesとは独立した金融犯罪統計として、令和7年度のinternet banking不正送金3,946件、平均被害額360万円を公表している。[^fsa]
+
+これらをTimes被害額へ足し合わせてはいけない。意味するのは、**identity compromiseが接続し得る後段の犯罪・金融riskが現実の制度設計上も無視できない**ということだけである。
+
+## 7.5 企業が本人確認書類に適用すべき設計
+
+- 本人確認完了後、本当に画像を保持し続ける必要があるかを定期再評価する。
+- 法定・契約上必要な証跡と、画像原本の長期保存を分ける。
+- identity document storeを通常customer DBから分離する。
+- access権を極小化し、bulk read / exportを強く監視する。
+- data retentionをaccount lifecycleと連動させる。
+- incident時には顧客への「漏えい通知」だけでなく、credit bureau、通信、不正契約monitoring等の長期支援をplanする。
+
+# 8. 業種別の最大被害 — 最悪時は「情報漏えい」で終わらない
+
+詳細は[全業種最大被害ストレスマトリクス](sector-worst-case-impact-matrix-2026-10-04.md)に、日本標準産業分類A〜Sを基礎として整理した。
+
+重要な上限だけを抜き出す。
+
+| 業種 | 最大被害の中心 |
 | --- | --- |
-| **超高性能計算資源は所有物でなくサービスになった** | 高性能GPU群や大規模推論基盤はクラウド/レンタルとして必要な時間だけ利用できる。攻撃者の設備投資規模から能力を推定できない。 |
-| **ローカルAIという第二経路がある** | 十分なGPU/VRAMを確保すれば、open-weightモデルを自己管理環境で推論できる。商用APIを使わないため、外部サービス側の拒否、rate limit、account suspension、usage monitoringを防御要素として期待できない。[^mistral-offline][^mistral-license] |
-| **ハードウェア取得後の限界費用は大きく下がる** | ローカル推論ではAPI従量課金が消え、主な継続費は電力、冷却、保守、通信になる。処理能力は有限だが、外部providerのquotaとは独立して反復処理を継続できる。 |
-| **安価な実行ノードを多数並列化できる** | 各nodeで巨大モデルを動かす必要はない。制御・観測・ブラウザ/ネットワーク処理・queue workerを低価格機器/VPSへ分散し、推論だけを外部またはローカルGPUホストへ集約できる。 |
-| **24時間365日、休まない作業が可能** | reconnaissance、公開資産監視、候補の再評価、文章生成、結果分類、長期状態管理、再訪問などを常時自動化できる。 |
-| **対象選定のボトルネックが人員数ではなくなる** | 1社を手作業で深掘りする前に、多数企業を機械的に浅く評価し、価値の高い対象だけを人間へ戻せる。 |
-| **攻撃の入口は古典的なまま** | exposed vulnerability、valid account、VPN、SaaS、API、委託先、GitHub、メール/SMSなど。AIは既存入口の発見・評価・反復を安くする。 |
-| **被害は侵入後のblast radiusで決まる** | 数百万件のPII、共有認証、backup、委託データ、複数tenantへ1つの侵害から届く設計ほど損失が跳ね上がる。 |
-| **防御側も人間速度のままでは負ける** | discovery、patch判断、identity anomaly、rate limit、isolation、credential rotation、restoreを可能な限り機械速度へ近づける必要がある。 |
+| 医療・福祉 | 電子カルテ、検査、処方、手術、救急の制限。最悪時は生命・健康riskへ到達 |
+| 電力・gas・水道 | 広域供給停止が医療、通信、交通、決済へ連鎖。設備条件次第で物理安全・環境risk |
+| 通信・cloud | 自社障害が多数業種へ同時波及する増幅点 |
+| 金融・保険 | 顧客資産、不正送金、credit、決済、市場functionへの直接影響 |
+| 物流・港湾・航空・鉄道 | 人・物の移動停止。工場、食品、医薬品、輸出入へ連鎖 |
+| 製造 | 工場停止、quality data改ざん、設計・製法流出。supplier一社から多数工場へ連鎖 |
+| 小売・EC | 受注、倉庫、配送、POS停止と大規模customer data流出 |
+| 建設 | BIM/設計・工程喪失、支払先改ざん、工期・安全・巨大projectへ影響 |
+| 教育 | 未成年data、成績、研究知財の長期漏えいと授業・学務停止 |
+| 不動産・賃貸・mobility | 本人確認書類、住所、契約、物理accessが同時にrisk化 |
+| 行政 | 住民記録、給付、税、災害、消防・警察等のservice continuityと国民の権利へ波及 |
+| SaaS/BPO/MSP等 | 一社の侵害が多数企業へ同時波及するため、所属業種以上のsystemic risk |
 
-# 脅威モデルを「外部API」だけに限定してはいけない
+過去のKDDI大規模通信障害はcyberattackではないが、音声約2,278万人、data765万人以上に影響し、物流、自動車、行政、銀行、交通等へ波及した。これは通信基盤が停止した場合のdependency impactを示す実例である。[^kddi]
 
-企業がAI攻撃を評価する際、次の二つを同時に想定する必要がある。
+名古屋港ではcyberattackにより全container terminalが停止し、IT停止が物理物流停止へ直結した。[^nagoya]
 
-## 経路A — 外部の超高性能計算資源を必要な時だけ借りる
+大阪急性期・総合医療センターでは、system復旧が数週間〜数か月規模となり、診療実績も大きく低下した。[^osaka]
 
-攻撃者は、高性能GPUクラスタや大規模推論設備を購入・運用しなくても、クラウドGPU、レンタル計算資源、商用AI API等を利用できる。
+**重要インフラやphysical operationを持つ企業では、最大被害を「個人情報漏えい人数」だけで測定してはいけない。**
 
-ここで重要なのは、**攻撃能力と攻撃者の自前設備規模が切り離された**ことである。小規模なactorでも、短時間だけ大きな推論能力を利用できる。
+# 9. 最大被害を作る10の構造
 
-## 経路B — 高性能AIをローカルに保持し、外部providerから独立する
+業種を問わず、次の条件が重なるほどdamage ceilingが急上昇する。
 
-open-weightモデルは自己管理インフラへ配置できる。Mistralの公式ドキュメントは、24B級モデルについて24GB VRAM級GPUで量子化したローカル推論を例示し、より大きなモデルについても複数GPUや大容量GPUを用いたself-hostingを説明している。また、完全offline実行も公式にサポートしている。[^mistral-offline]
+1. 一つのadministrator credentialでproduction、cloud、backup、tenantへ到達できる。
+2. 退会者、元従業員、旧customer等のhistorical dataを大量保持する。
+3. identity document、medical、free-text等の高感度dataを通常PIIと同じ場所へ置く。
+4. internet-facing asset inventoryが不完全。
+5. critical vulnerabilityを塞ぐのに数日〜数週間かかる。
+6. supplier / maintenance remote accessが常設される。
+7. 異常なbulk read/exportが正規accountなら通る。
+8. backupがproduction identityと同じ管理planeにある。
+9. restore testをしていない。
+10. 夜間休日にcontainment decisionを出せない。
 
-open modelには、利用・変更・再配布を広く許可するライセンスで提供されるものもある。[^mistral-license]
+# 10. 現実的な多層防御
 
-このため企業側は、**「危険な用途ならAI providerが拒否する」「大量利用ならAPI quotaで止まる」「異常利用ならaccountが停止される」ことを脅威軽減策として計上してはいけない。**
+AI時代でも、中心は「AI対AI製品」を買うことではない。
 
-自己管理されたローカルモデルでは、provider側のポリシー enforcement、central moderation、API refusal、account suspension、usage monitoringが存在しない構成を取り得る。モデルや周辺policy stackも利用者が管理するため、外部提供者による安全制御を前提にできない。
+## Layer 1 — 公開面を完全に把握する
 
-これは「無限の計算能力」を意味しない。ローカル環境にもGPU throughput、VRAM、電力、熱、故障、ネットワーク等の物理制約がある。しかし、ハードウェア取得後は**1回ごとのAI処理に外部API料金を支払う必要がなく、電力・冷却・保守を中心とする限界費用で長時間反復できる**。
+- Internet-facing asset inventoryとownerを持つ。
+- certificate、domain、cloud endpoint、remote admin、BI/dev surfaceの変化をcontinuous discoveryする。
+- 不明assetを0へ近づける。
 
-したがって、脅威度を決めるのは「巨大なデータセンターを所有できるか」ではなく、次である。
+**経営KPI:** unknown internet-facing assets、critical exposure MTTR。
 
-- 十分な推論性能を持つローカルhardwareへアクセスできるか
-- 外部の高性能計算資源を一時的に利用できるか
-- open-weight / locally deployable modelを保持できるか
-- automationによって作業を長時間継続できるか
-- 多数の実行nodeと推論nodeを組み合わせられるか
+## Layer 2 — Identityを最優先で固める
 
-> **防御側は「攻撃者のAIは外部サービスに依存しているから、どこかで止めてもらえる」という前提を捨てる必要がある。**
+- admin、VPN、cloud、GitHub、SaaSをphishing-resistant MFAへ。
+- legacy/password-only authを廃止。
+- permanent adminを減らし、必要時だけ権限を与える。
+- service account/tokenを短寿命化する。
 
-# 24/365型攻撃で何が変わるか
+**経営KPI:** phishing-resistant MFA coverage、standing privileged account数。
 
-24/365型とは、AIが完全自律で365日高度侵害を成功させ続けるという意味ではない。企業が想定すべきなのは、攻撃ライフサイクルのうち機械化しやすい部分が常時回り、人間は価値の高い判断へ集中できる状態である。
+## Layer 3 — patch対応を「週次作業」から「hours単位のrisk control」へ
 
-常時自動化しやすい作業には次がある。
+Microsoftが示すように、vulnerability discoveryからweaponizationまでが24時間を大きく下回り得るなら、重要なInternet-facing assetに30〜60日の通常change cycleを適用できない。[^microsoft]
 
-- 公開資産・サブドメイン・証明書・サービス変更の継続監視
-- 新しく公開された脆弱性と対象技術スタックの照合
-- 大量候補の危険度分類と優先順位付け
-- 公開文書・求人・技術ブログ・公開コードからの環境推定
-- 多言語文面の生成と対象別調整
-- 失敗結果の分類と再訪問候補管理
-- 大量ファイル/ログ/データの検索・要約・価値分類
-- 長期キャンペーンの状態管理、重複排除、再評価
+- active exploitation / KEVとの自動照合
+- emergency isolation / feature disable / temporary mitigation
+- VPN、mail gateway、BI、network applianceもproduction-equivalent SLA
 
-このため「一度防げば攻撃者が諦める」という期待は弱くなる。今日閉じた入口があっても、明日新しい資産、設定ミス、資格情報、委託先、SaaS連携が出れば再評価される。
+**経営KPI:** exploit-known external exposureのmitigation time。
 
-# AIが攻撃者に与える5つの経済的効果
+## Layer 4 — 「正しいcredentialによる異常」を止める
 
-## 1. 調査単価の低下
+malware signatureだけではvalid account abuseを止められない。
 
-検索結果、ドキュメント、コード、脆弱性情報、企業固有情報の前処理をAIへ渡せるため、対象1社あたりの調査コストが下がる。
+- account/session/APIごとのread/write volume baseline
+- bulk export、mass query、mass sendの制限
+- high-value operationのstep-up authentication
+- account/tenant/function単位のkill switch
 
-## 2. スキル格差の縮小
+**経営KPI:** abnormal bulk action detect-to-block。
 
-低〜中スキルactorでも、コード理解、文書読解、調査整理、言語変換の支援を得られる。[^anthropic]
+## Layer 5 — 盗まれるdataそのものを減らす
 
-## 3. 並列性の向上
+- retention期限をDB、backup、analytics、export、vendor copyまで適用。
+- production PIIをdev/test/BIへ無制限複製しない。
+- identity documentsは別classとして短期化・分離。
+- 委託終了時のdeletion proofを残す。
 
-多数targetの状態を保持し、優先度の高い候補だけを人間へ返せるため、対象選定が人間の同時処理数に縛られにくい。
+**経営KPI:** expired sensitive data volume、ownerless stores、production PII copies。
 
-## 4. 反復コストの低下
+## Layer 6 — blast radiusを分割する
 
-失敗した対象を記録し、設定変更、新脆弱性、新しい公開資産、新しいcredential exposure等を契機に再評価できる。
+- endpoint、server、backup、management plane、tenantを分離。
+- shared credentials / shared keysを減らす。
+- admin pathを通常business networkから分離。
 
-## 5. 外部provider依存の消失
+**経営KPI:** credential一つで到達可能なcritical systems数。
 
-ローカルAIを保有するactorでは、API価格、quota、usage policy、account suspensionが継続運用のボトルネックにならない。
+## Layer 7 — 防御も24時間365日へ
 
-# 42件の日本事例が示す実際の被害
+選択肢はinternal SOCでもMDR/MSSPでもよい。
 
-## 数百万〜数千万件の情報漏えい
+必要なのは、夜間休日にhigh-confidence signalを見つけ、account revoke、endpoint isolation、network block等へ移れること。
 
-- KDDI: 約1,223万メールアドレス、約762万パスワード。
-- Helpfeel/Gyazo: 2,362万ユーザー規模の情報影響。
-- EPARK/PeakManager: 約2,218万recordsの外部転送確認。
-- Murauchi.com: 約771万customer records。
-- アフラック: 約440万人規模の顧客情報、約22万人には口座関連情報。
+**経営KPI:** MTTD、mean time to contain、off-hours containment coverage。
 
-一つの共有基盤、認証、分析環境、委託先の侵害が顧客母数そのものへ届き得る。
+## Layer 8 — backupを「存在」ではなく「復旧能力」で評価する
 
-## 業務停止と供給への波及
+- production identityからbackup control planeを分離。
+- immutable/offline copy。
+- restore drill。
+- clean recovery environment。
+- RTO/RPOの実測。
 
-- ニチレイ: 冷蔵倉庫入出庫・冷凍食品出荷への影響。
-- 日本交通: 配車/予約への影響。
-- マルタケ: 医薬品卸システム障害、代替手段・仮サーバーで供給継続。
-- DotMoney/DotGift: 全面停止、片方は復旧せずサービス終了。
+**経営KPI:** restore success rate、tested RTO/RPO。
 
-cyber incidentはIT部門だけでなく物流、在庫、売上、顧客資産、社会的供給の問題になる。
+## Layer 9 — supplierを自社riskとして扱う
 
-## 下流企業への連鎖
+- supplierが持つ自社dataをinventory化。
+- remote admin pathを把握。
+- tenant/data separationを契約・技術両面で確認。
+- breach notification SLA、credential rotation、exit/deletion planを持つ。
 
-KDDI、両毛システムズ、日本テレネット、ApplyNow、メディア4uなどでは、共有基盤や委託データを通じて一次被害組織の外へ影響が拡大した。
+**経営KPI:** critical vendor data/IR mapping completeness。
 
-## 正規機能の悪用
+## Layer 10 — 人間系high-risk operationを別経路で確認する
 
-アフラックでは通常利用に見える形式の大量照会が問題となり、メディア4uでは正規SMS送信権限が不正利用された。防御はmalware detectionだけでなく、valid account / valid session / valid APIの異常量を見なければならない。
+AIで文章・音声等の社会工学が増幅されても、employeeの見抜く能力だけに依存しない。
 
-## 破壊と復旧
+- 振込先変更
+- admin追加
+- credential reset
+- large export
+- supplier bank account変更
 
-コープやまぐちではDB全削除後にbackupから同日復旧し、日本テレネットではclean network rebuildと全PC reimageが行われた。侵入防止に失敗しても、復旧設計で最終損害は変えられる。
+等をsingle-person / single-channelで完結させない。
 
-# AI時代に最大化しやすい被害シナリオ
+# 11. 防御側もAIを使うべき領域
 
-| Scenario | 最大化要因 | 現実的防衛 |
-| --- | --- | --- |
-| 外部公開脆弱性のmass exploitation | patch SLAが週〜月、asset owner不明 | continuous discovery、KEV/実悪用連動、24h以内mitigation lane |
-| valid-account / credential scaling | password-only、MFAなし、長寿命token | FIDO2、conditional access、PAM/JIT、short-lived token |
-| hyper-personalized social engineering | 重要操作をmail/SMSだけで承認 | 二経路承認、known-number callback、FIDO2 |
-| low-and-slow API extraction | 取得量制限なし、異常量監視なし | per-identity/session/object rate limit、bulk-read budget、step-up auth |
-| SaaS/委託先からの連鎖 | 長期保持copy、tenant分離不足 | tenant boundary、data lineage、delete proof、provider IR SLA |
-| ransomware + data theft | flat network、backup identity共用 | segmentation、EDR/MDR、immutable backup、clean restore、BCP |
+攻撃側の速度だけが上がる状態を避ける。
 
-# 「安価な機器数十台」が意味するもの
+比較的安全に自動化しやすい領域:
 
-安価なnode自体が高性能AIである必要はない。
+- threat intelligenceと自社assetの照合
+- alert triageと関連log収集
+- asset owner特定
+- vulnerability priority付け
+- identity anomaly enrichment
+- incident timeline作成
+- configuration drift検出
+- detection rule候補作成
 
-各nodeは、
+人間承認を残すべき領域:
 
-- queueからjobを受け取る
-- target状態を観測する
-- browser/network taskを処理する
-- 結果をcentral controllerへ返す
-- scheduleに従い再評価する
-- log/artifactを保存する
+- 広域production isolation
+- 全顧客credential reset
+- destructive remediation
+- regulatory/legal notification
+- public attribution
+- service shutdown / retirement
 
-といった軽量役割だけでもよい。
+# 12. 30日・90日・365日の実行計画
 
-その上で推論層を、
+## 最初の30日
 
-- 外部の超高性能計算資源
-- 商用AI API
-- レンタルGPU
-- 自己保有GPU上のローカルAI
+1. Internet-facing assetとownerを確定。
+2. admin/VPN/cloud/GitHubのMFA gapを閉じる。
+3. backupがproduction identityと分離されているか確認。
+4. top 20 critical systemsのrestore可否を確認。
+5. exploited vulnerabilityのemergency processを文書化。
+6. critical vendor / remote access一覧を作る。
+7. identity document、medical、payment、credential等の高感度data所在を把握。
 
-のどれか、または複数へ接続できる。
+## 90日以内
 
-したがって企業が見るべきなのは機器の価格ではなく、**制御node・実行node・推論nodeを低コストで組み合わせ、長期間止めずに回せる攻撃経済性**である。
+1. 24/365 detection / MDR / on-call containmentを成立。
+2. privileged accessをJIT/PAMへ移行開始。
+3. bulk read/export/send anomalyを主要systemへ実装。
+4. immutable backup restore exerciseを実施。
+5. historical data deletionを実行。
+6. supplier compromise tabletopを実施。
+7. CISO/情シスだけでなく法務、広報、経営、現場を含むincident commandを訓練。
 
-# 現実的な多層防御
+## 365日以内
 
-## Layer 1 — Internet-facing assetを完全把握する
+1. network / tenant / management-plane segmentationをarchitectureとして完成。
+2. business-critical processごとにnon-IT fallbackまたはalternate pathを確立。
+3. clean-room recoveryを実地訓練。
+4. third-party data lineageを契約・technical evidenceまで追跡。
+5. security metricを取締役会の定例KPIにする。
 
-asset inventory、owner、criticality、continuous external discovery、公開管理面の原則非公開化、24時間以内のemergency mitigation laneを持つ。
+# 13. 予算判断
 
-## Layer 2 — Identityを最優先の防壁にする
+「何円なら安全」という金額は存在しない。
 
-admin/VPN/cloud/GitHub/SaaSへphishing-resistant MFA/FIDO2、legacy auth廃止、PAM/JIT、short-lived token、device trustを適用する。
+Denno Watchのplanning modelでは、security budgetをIT spendの比率で考える場合、一般企業10〜12%、Internet-facingかつ大量PII/SaaS/EC 12〜15%、金融・通信・物流・医療供給・100万件超data・multi-tenant provider等は15〜18%を一つのstarting rangeとしている。重大incident後のlegacy remediation期には18〜22%を許容する場合もある。[予算モデル](incident-defense-budget-analysis-2026-10-04.md)
 
-## Layer 3 — 脆弱性対応を機械速度へ寄せる
+これはvendor quoteでも「使えば安全」の保証でもない。
 
-KEV/active exploitation feedとの自動照合、internet-facing critical findingのhours単位triage、patch不能時のisolation/feature disable/WAF等を用意する。
+優先順位は、
 
-## Layer 4 — 正規に見える異常を検知する
+1. asset ownership
+2. identity
+3. patch velocity
+4. logging/detection
+5. segmentation
+6. recovery
+7. data minimization
+8. supplier governance
 
-account/session/API単位のread/write量、bulk export、high-rate query、異常な対象分布を監視し、kill switchをtenant/account/function単位で持つ。
+のgapを閉じることであり、tool数を増やすことではない。
 
-## Layer 5 — データを減らす
+IBM 2026では、AI-enabled malicious breachesは平均$6Mでglobal breach average $4.99Mより高く、security operationsにAI/automationを使う組織は使わない組織よりbreach costが平均で約$2M低かったと報告した。[^ibm]
 
-historical/dormant/entrusted dataの保持期限、analytics/devへの本番PII複製制限、委託終了時delete evidenceを実装する。
+# 14. 経営が毎月見るべき10指標
 
-## Layer 6 — Blast radiusを切る
-
-endpoint、server、backup、management plane、tenantを分離し、1 credentialで到達できるcritical systems数を減らす。
-
-## Layer 7 — 24/365検知へ移行する
-
-internal SOC、MDR/MSSP、on-call + automated containment等により、夜間休日でもhigh-confidence signalからisolation/revokeへ進める。
-
-## Layer 8 — Backupを「存在」から「復旧可能」へ変える
-
-production identityからbackup control planeを分離し、immutable/offline copy、restore test、clean-room recovery、RTO/RPO演習を行う。
-
-## Layer 9 — Supply chainを自社資産として扱う
-
-vendor保持copy、tenant isolation、通知SLA、credential rotation、delete proof、exit planを管理する。
-
-## Layer 10 — 高リスク業務操作を別経路で確認する
-
-振込先変更、権限追加、credential reset、重要data export等は二者承認とout-of-band確認を使い、social engineering成功時にも単一操作で被害が確定しない設計にする。
-
-# 経営が毎月見るべき10指標
-
-| 指標 | 目標の方向 |
+| 指標 | 目標方向 |
 | --- | --- |
-| unknown internet-facing assets | 0へ |
-| exploit-known critical external exposure MTTR | hours〜1 dayへ |
-| phishing-resistant MFA coverage | 100%へ |
+| unknown Internet-facing assets | 0 |
+| exploit-known critical external exposure MTTR | hours〜1 day |
+| phishing-resistant MFA coverage | 100% |
 | standing privileged accounts | 最小化 |
-| EDR coverage（server含む） | 100%へ |
-| critical log coverage | 100%へ |
-| abnormal bulk access detect-to-block | 分単位へ |
+| serverを含むEDR coverage | 100% |
+| critical log coverage | 100% |
+| abnormal bulk access detect-to-block | 分単位 |
 | immutable backup restore success | 毎回成功 |
-| expired/unowned sensitive data | 0へ |
-| critical vendor data/IR mapping | 100%へ |
+| expired/unowned sensitive data | 0 |
+| critical vendor data/IR mapping | 100% |
 
-# 防御側もAIを使うべき領域
+# 15. 取締役会で問うべき5問
 
-AIが攻撃者へ速度を与える以上、防御側だけが全判断を手作業にすると時間差が広がる。
+1. **今夜Internetに公開されている自社assetを全部言えるか。**
+2. **明日0-day/critical vulnerabilityが出たら、営業時間外でも隔離できるか。**
+3. **admin credential一つを失ったら、何system・何人分のdataへ届くか。**
+4. **productionとbackupの両方を破壊されても、cleanに復旧できるか。**
+5. **最大supplierが侵害された瞬間、自社dataがどこに何件あり、誰がcredentialを止めるか即答できるか。**
 
-安全に自動化しやすい領域は、vulnerability intelligenceと自社assetの照合、alert triage、関連ログ収集、identity anomalyのcontext enrichment、incident timeline生成、asset owner特定、configuration drift検出、public threat intelligence要約などである。
+# 16. 最終評価
 
-一方、productionの大規模isolation、customer-wide credential reset、destructive remediation、法的通知、attribution、public statement、business shutdown/service retirementにはhuman approvalを残す。
+企業が恐れるべきなのは「万能AI」ではない。
 
-# 経営層が問うべき5問
+より現実的な脅威は、**従来は高価だった専門家の注意力、調査時間、反復作業が安価になり、弱点を探し続ける能力が広く利用可能になったこと**である。
 
-1. **自社のInternet-facing assetを今この瞬間に全部言えるか。**
-2. **今日critical vulnerabilityが出たら、夜中でも24時間以内に隔離できるか。**
-3. **1つのvalid accountが盗まれた時、何万人・何systemへ届くか。**
-4. **全DBを消されても、攻撃者のidentityを使わずcleanに復旧できるか。**
-5. **委託先が侵害された時、自社dataがどこに何件あるか即答できるか。**
+日本企業の公開事例だけでも、一回の侵害から数百万人・数千万recordへ到達し、本人確認書類が大量に失われ、物流や医療に近い業務が止まり、数十億円級の直接費用が発生し得ることは既に示されている。
 
-さらにAI時代には第6問を追加すべきである。
+AIは、これらの被害を生み出す既存の弱点を新しく作る必要すらない。見つけ、整理し、優先順位を付け、再試行するcostを下げるだけで十分に脅威を増幅できる。
 
-6. **防御計画が「攻撃者のAIは外部providerに止められる」という前提へ依存していないか。**
+したがって、防御の目標は「侵入を一度も許さない」だけでは不十分である。
 
-# 最終メッセージ
+> **侵入されても横へ広がらない。盗めるdataが少ない。正規accountでも大量操作を止める。backupは別のidentityで守る。夜中でも封じ込める。委託先が落ちても続けられる。そして復旧を実際に試してある。**
 
-AIは攻撃者へ、かつて大規模組織だけが持っていたような継続性、並列性、言語能力、コード支援、分析能力を低コストで提供し始めている。
+この状態を構造として作ることが、AI時代の企業防衛の中心になる。
 
-その能力は二つの経路で利用できる。**外部の超高性能計算資源を必要な時間だけ借りる経路**と、**十分なハードウェアを一度確保してopen-weight AIをローカルに保持し、外部providerから独立して長期間回す経路**である。
+# Related analysis
 
-後者では処理能力自体は有限だが、API利用料、rate limit、provider側の拒否、account停止を前提とせず、主として電力・冷却・保守の限界費用で反復利用できる。したがって、防御側が「危険なAI利用は外部providerが止めるだろう」と期待することはできない。
-
-> **攻撃者の設備規模を見る時代から、攻撃者が利用可能な総計算資源・自動化能力・継続時間を見る時代へ移った。**
-
-42件の日本事例が示す防御側の勝ち筋は変わらない。Identityを強くする。公開面を減らす。patchを速くする。正規操作の異常量を見る。データを持ちすぎない。ネットワークとtenantを分ける。24/365で検知する。backupを隔離して実際に戻す。委託先を含めて守る。そして、止まっても事業を続ける。
-
-これからの企業防衛は、machine-speed pressureに対して、machine-assisted defenseと構造的resilienceで応えることが中心になる。
-
-# Related Denno Watch analysis
-
-- [42件のincident corpus](../incidents/index.md)
+- [2026年42件incident corpus](../incidents/index.md)
+- [根拠資料台帳](evidence-ledger-ai-cyber-risk-2026-10-04.md)
+- [全業種サイバー侵害・最大被害ストレスマトリクス](sector-worst-case-impact-matrix-2026-10-04.md)
+- [攻撃類型・最大被害・防衛予算model](incident-defense-budget-analysis-2026-10-04.md)
 - [2026 corpus audit](../methodology/corpus-audit-2026-10-04.md)
-- [攻撃類型・最大被害・防衛予算モデル](incident-defense-budget-analysis-2026-10-04.md)
 
-[^microsoft]: Microsoft, “2026 Digital Defense Report — AI is changing the physics of cybersecurity,” 2026.
-[^gtig]: Google Threat Intelligence Group, “From Prompting to Autonomy — The Evolution of Adversarial AI,” 2026. GTIG reports a Q2 2026 case in which a compromised cloud resource was used to plan, build and execute an agent-enabled mass credential-harvesting campaign in under six hours.
-[^anthropic]: Anthropic, “Mapping AI-enabled cyber threats: Insights from the LLM ATT&CK Navigator,” 2026. Analysis of 832 malicious cyber accounts found AI use across all 14 MITRE ATT&CK tactics and 482 sub-techniques.
-[^mistral-offline]: Mistral AI, “Using offline models,” checked 2026-10-04. Official documentation describes self-hosted local inference, including a 24B model on 24GB-VRAM-class hardware at reduced precision, larger multi-GPU options, and fully offline operation.
-[^mistral-license]: Mistral AI Help Center, “Under which license are Mistral’s open models available?”, 2026-08-12. Mistral states that most open-source models are released under Apache 2.0 and may be used, modified and redistributed subject to the applicable model license.
+[^ipa]: IPA「情報セキュリティ10大脅威 2026」2026-01-29 / updated 2026-05-21. https://www.ipa.go.jp/security/10threats/10threats2026.html
+[^microsoft]: Microsoft, “2026 Digital Defense Report — AI is changing the physics of cybersecurity,” 2026-10-01. https://www.microsoft.com/en-us/security/security-insider/threat-landscape/2026-digital-defense-report
+[^google]: Google Threat Intelligence Group, “From Prompting to Autonomy — The Evolution of Adversarial AI,” 2026-09-08. https://cloud.google.com/blog/topics/threat-intelligence/from-prompting-to-autonomy-the-evolution-of-adversarial-ai
+[^anthropic]: Anthropic, “Mapping AI-enabled cyber threats: Insights from the LLM ATT&CK Navigator,” 2026-06-03. https://www.anthropic.com/research/attack-navigator
+[^verizon]: Verizon, 2026 DBIR. https://www.verizon.com/business/ja-jp/resources/reports/dbir/
+[^ibm]: IBM, “Cost of a Data Breach Report 2026,” 2026-07-29. https://newsroom.ibm.com/2026-07-29-ibm-study-one-in-four-malicious-breaches-are-ai-enabled%2C-costing-companies-6-million-on-average
+[^mistral]: Mistral AI, “Using offline models.” https://docs.mistral.ai/vibe/code/cli/offline-models
+[^meta]: Meta, “Llama FAQs.” https://ai.meta.com/llama/faq/
+[^times]: Park24「タイムズカーWebシステムへの不正アクセスに関する調査結果および今後の対応について（第3報）」2026-09-29. https://www.park24.co.jp/news/2026/09/20260929-1.html
+[^jicc]: JICC「不正利用防止の届け出」およびFAQ「運転免許証等の現物は手元にあるが画像など情報が流出してしまった場合…」. https://www.jicc.co.jp/comment/ ; https://www.jicc.co.jp/faq/detail/a095i000000LtgMAAS
+[^ksc]: 全国銀行個人信用情報センター「本人申告の手続き」. https://www.zenginkyo.or.jp/pcic/return/
+[^cic]: CIC「本人申告とは」. https://www.cic.co.jp/mydata/declaration/index.html
+[^jicc-load]: JICC「スマホアプリのご利用について（アクセス集中のお知らせ）」2026-09-30、および「本人申告コメントおよび本人開示のスマホアプリ一時休止について」2026-10-01. https://www.jicc.co.jp/news/a04TL00001VXvGUYA1 ; https://www.jicc.co.jp/notes/a04TL00001VnQBtYAN
+[^cic-load]: CIC「インターネット開示・本人申告などの受付番号の取得およびコールセンターへのお電話がつながりにくい状況について」2026-09-30. https://www.cic.co.jp/news/info/2026/09/3d8511719448f94d3c888099a326c14a77855800.html
+[^npa]: 警察庁「警察白書 第1項 犯罪捜査に関する各種取組」— 偽造本人確認書類やなりすましにより取得された携帯電話が特殊詐欺等へ悪用される実態を記載. https://www.npa.go.jp/hakusyo/r05/honbun/html/z2221000.html
+[^fsa]: 金融庁「預貯金の不正送金被害等の発生状況（令和8年3月末）」2026-06-30. https://www.fsa.go.jp/news/r7/ginkou/20260630.html
+[^osaka]: 大阪急性期・総合医療センター「情報セキュリティインシデント調査報告書 概要」2023-03-28. https://www.gh.opho.jp/incident/1.html
+[^nagoya]: NISC「名古屋港コンテナターミナルのサイバー攻撃におけるインシデント対応について」2024-07-26. https://www.nisc.go.jp/pdf/policy/infra/shiryo2.pdf
+[^kddi]: KDDI「7月2日に発生した通信障害について」2022-07-29. https://news.kddi.com/kddi/corporate/newsrelease/2022/07/29/6200.html
+[^askul]: LY Corporation, FY2025 Q3 Results, Note 12 System Failure Response Costs — JPY 5,262 million. https://www.lycorp.co.jp/en/ir/news/auto_20260204546714/pdfFile.pdf
