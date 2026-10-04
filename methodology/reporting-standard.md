@@ -42,6 +42,8 @@ Denno Watch は、日本の組織に影響する重大なサイバーインシ�
 
 二次報道を、後から公表された一次情報による訂正より優先してはならない。匿名の攻撃者主張、リークサイト上の主張、SNS投稿は、独立した裏付けがある場合、または「その主張・掲載自体が存在した」ことを記録する場合に限って扱う。
 
+情報源の再確認、更新検知、置換・撤回、長期追跡は [情報源の監視・鮮度・再確認基準](source-monitoring-and-freshness-standard.md) に従う。
+
 # 事実状態
 
 「証拠が見つからない」ことを「発生していない」と読み替えない。
@@ -83,11 +85,85 @@ Denno Watch は、日本の組織に影響する重大なサイバーインシ�
 | `business_continuity` | 影響システムを制限している間も業務継続に寄与した代替経路、手作業、非影響サービス等。 |
 | `data_sensitivity` | 認証情報、本人確認書類、雇用、健康、金融など、防御上の重要性を左右するデータの性質。公表されていないデータ種別を追加しない。 |
 
-末尾5項目は、公開記録に根拠がある場合に使う Denno Watch 独自の追加メタデータである。主な影響フィールドとは分離し、たとえば「サービス提供事業者の侵害」と「顧客企業側のデータ影響」、「サービス復旧」と「代替経路による業務継続」を区別できるようにする。
+末尾6項目は、公開記録に根拠がある場合に使う Denno Watch 独自の追加メタデータである。主な影響フィールドとは分離し、たとえば「サービス提供事業者の侵害」と「顧客企業側のデータ影響」、「サービス復旧」と「代替経路による業務継続」を区別できるようにする。
 
 `incident` 内の日付は公表された精度をそのまま使い、時刻が公表されていない場合は作らない。`public_record_checked_at`、`generated.at`、`verified[].at`、`stale_after` などの時刻値は、UTC オフセット付き ISO 8601 を使う。[^okf-v02]
 
 後日の確認で新しい公表がなかっただけなら、`latest_public_update` を更新してはならない。その確認日時は `public_record_checked_at` に記録する。これにより「X日時点で新情報がなかった」と「最後の公表後に誰も確認していない」を区別できる。
+
+# 条件付きで追加する横断メタデータ
+
+以下はすべての事例で必須ではない。既存レコードへ空欄を機械的に追加せず、公開根拠があり、横断比較へ意味がある場合だけ追加する。
+
+## 報告・通知・公表
+
+詳細は [サイバーインシデントの報告・通知・公表マップ](../analysis/regulatory-reporting-and-disclosure-map-2026-10-04.md) に従う。
+
+| フィールド | 意味 |
+| --- | --- |
+| `incident_known_at` | 組織が報告対象となり得る事故として認識した日時・日付。検知時刻と同一とは限らない。 |
+| `regulatory_initial_reported_at` | 公表資料で確認できる速報・初回報告日。 |
+| `regulatory_final_reported_at` | 公表資料で確認できる確報・最終報告日。 |
+| `regulatory_channels` | 公表された報告先。個人情報保護委員会、所管省庁、監督当局等。 |
+| `law_enforcement_contact` | 警察等への相談・届出・連携。 |
+| `market_disclosure` | TDnet等の市場向け開示。 |
+| `contractual_notifications` | 委託元、顧客、取引先等への契約上又は業務上の通知。 |
+| `notification_started_at` | 本人・顧客等への通知開始。 |
+| `notification_completed_at` | 通知完了が明示された場合のみ。 |
+| `disclosure_corrections` | 件数、影響、原因等の重要な訂正履歴。 |
+
+報告先が公表されていない場合、報告していないと推定しない。
+
+## データ被害プロファイル
+
+高感度又は長期悪用可能なデータを含む場合は、[データ被害・感度・保持期間の評価](../analysis/data-harm-sensitivity-and-retention-taxonomy-2026-10-04.md) を用いて、件数とは別に被害の性質を整理できる。
+
+```yaml
+data_harm_profile:
+  data_classes: []
+  revocability: unknown
+  expected_value_lifetime: unknown
+  linkability: unknown
+  integrity_impact: unknown
+  retention_amplifier: unknown
+  secondary_abuse: unknown
+```
+
+これは法的評価や数値スコアではない。公開情報だけから確認できる範囲を共通軸へ写像する。
+
+## 統制に関する証拠
+
+事故前後の統制が組織自身の公表等から確認できる場合は、[失敗モードと防御統制の対応表](../analysis/control-failure-mode-crosswalk-2026-10-04.md) に従って区別する。
+
+```yaml
+control_evidence:
+  confirmed_existing: []
+  confirmed_gap: []
+  post_incident_changes: []
+  defensive_inference: []
+```
+
+事故が起きたことだけから「MFAがなかった」「EDRがなかった」等を推定して `confirmed_gap` へ入れてはならない。一般的な推奨策は `defensive_inference` とし、事故原因の確定事実から分離する。
+
+## OT・重要インフラ
+
+物理プロセス、制御系、安全又は重要インフラの操業へ意味のある影響が確認される場合は、[OT・重要インフラの安全・復旧リスク](../analysis/ot-critical-infrastructure-safety-and-recovery-2026-10-04.md) を用いる。
+
+```yaml
+ot_impact:
+  physical_process_affected: unknown
+  safety_impact: unknown
+  control_integrity: unknown
+  remote_access_involved: unknown
+  manual_operation_available: unknown
+  degraded_operation_used: unknown
+  engineering_backups_available: unknown
+  safety_validation_completed_at: null
+  normal_operations_restored_at: null
+  cross_infrastructure_dependency: []
+```
+
+鉄道、物流、医薬、データセンター等の社会的重要性だけを理由に、制御系が侵害されたと推定してはならない。
 
 # 必須レポート構成
 
@@ -101,6 +177,13 @@ Denno Watch は、日本の組織に影響する重大なサイバーインシ�
 6. **現在の状況と予後** - 推測による将来予測ではなく、最新の運用・調査状態。
 7. **防御上の教訓** - 公開事実から直接支えられる範囲に限定した教訓。
 8. **不明点・未公表事項** - 公表されていない重要事項を明示し、沈黙を確定事実と誤読させない。
+
+次は条件付きで独立節を追加する。
+
+- **報告・通知・公表** - 複数の規制・契約・市場開示経路が重要な場合。
+- **データ被害の性質** - 本人確認、認証、医療、金融、長期保持等が重要な場合。
+- **安全・操業** - OT、重要インフラ、物理プロセスへ影響する場合。
+- **事故前後の統制** - 事故前の統制又は事故後の具体的対策が一次資料から確認できる場合。
 
 # 件数と訂正
 
@@ -130,6 +213,8 @@ Denno Watch は、日本の組織に影響する重大なサイバーインシ�
 
 したがって、サービスが稼働していてもインシデント全体は `investigating` のままの場合がある。また、一つのインシデントで一方のサービスが復旧し、別のサービスが廃止されることもある。結果が分岐する場合は、影響サービスごとに復旧状態を記録する。
 
+OT・重要インフラでは、サービスや通信の再開と、制御系・安全確認・通常操業の復旧を分離する。
+
 # 鮮度とレビュー
 
 機械生成レポートには `generated` を付け、独立確認されるまで `status: draft` を維持する。同じ生成主体が情報源を再読しただけで `verified` を追加してはならない。OKF の `verified` は生成とは別の実際の確認事象を表す。[^okf-v02]
@@ -144,6 +229,8 @@ Denno Watch は、日本の組織に影響する重大なサイバーインシ�
 - 継続監視に意味がある場合だけ `stale_after` を先へ進める。
 - 「新情報なし」という確認自体が現在状態の理解に重要な場合だけ、本文にも記録する。
 
+再確認の優先順位、情報源の状態、長期追跡、差分更新の条件は [情報源の監視・鮮度・再確認基準](source-monitoring-and-freshness-standard.md) を参照する。
+
 # 言語・専門用語の基準
 
 人が読む本文、見出し、表の説明、索引、更新履歴は**日本語を既定**とする。英単語を混在させるのは、一般的な AI・IT・サイバーセキュリティ分野でその表記自体が定着している場合、固有名詞、規格名、製品名、または原文の正式名称を保持する必要がある場合に限る。
@@ -157,5 +244,14 @@ Denno Watch は、日本の組織に影響する重大なサイバーインシ�
 # 安全性と公開範囲
 
 本事例集は防御目的かつ公開情報のみを対象とする。公表済みの侵入経路や統制上の失敗は記録できるが、未公表の攻撃手順、シークレット、認証情報、個人情報の実例、その他悪用を容易にするだけの運用詳細を追加しない。
+
+# 関連資料
+
+- [情報源の監視・鮮度・再確認基準](source-monitoring-and-freshness-standard.md)
+- [海外比較ケース記録基準](international-comparative-case-standard.md)
+- [サイバーインシデントの報告・通知・公表マップ](../analysis/regulatory-reporting-and-disclosure-map-2026-10-04.md)
+- [データ被害・感度・保持期間の評価](../analysis/data-harm-sensitivity-and-retention-taxonomy-2026-10-04.md)
+- [失敗モードと防御統制の対応表](../analysis/control-failure-mode-crosswalk-2026-10-04.md)
+- [OT・重要インフラの安全・復旧リスク](../analysis/ot-critical-infrastructure-safety-and-recovery-2026-10-04.md)
 
 [^okf-v02]: Open Knowledge Format v0.2 specification. Denno Watch では本ナレッジベースの参照版を `ad30107c31c06aec8a7d5636e0d1058118604e6f` に固定している。
