@@ -1,7 +1,7 @@
 ---
 type: Corpus Audit
-title: 2026 major-incident corpus audit — 2026-10-04
-description: Primary-source consistency review of the Denno Watch corpus, expansion to 42 material Japanese incidents, OKF revision pinning and cross-incident defensive findings.
+title: 2026年 重大インシデント事例集監査 — 2026-10-04
+description: Denno Watch事例集を一次情報と再照合し、国内の重大事例42件への拡張、OKF参照版の固定、事例横断の防御上の知見を整理した監査記録。
 resource: https://github.com/4i7/Denno-Watch
 status: draft
 tags: [audit, japan, cybersecurity, incidents, okf, 2026]
@@ -13,203 +13,203 @@ sources:
     author: organization:GoogleCloudPlatform
 ---
 
-# Scope
+# 監査範囲
 
-This audit re-checked the 25 incident records that formed the original expanded corpus, reviewed the 12 records added in the first 2026 audit expansion, and performed another public-source sweep for material incidents that were still absent. Five additional incidents were added, bringing `incidents/2026/` to **42 incident reports**.
+本監査では、従来の拡張済み事例集を構成していた25件を一次情報と再照合し、最初の2026年監査拡張で追加した12件を再確認した上で、未収録の重大事例を追加調査した。さらに5件を追加し、`incidents/2026/` の収録数は **42件** となった。
 
-Selection requires at least one of: material operational disruption, sensitive or large-scale data exposure, downstream/supply-chain blast radius, destructive integrity impact, unusually significant long-term outcome, or unusually reusable defensive findings. Inclusion is not a severity ranking and the corpus is not claimed to enumerate every Japanese security notice.
+収録には、重大な業務停止、機微または大規模なデータ影響、顧客・委託先・サプライチェーンへの波及、破壊による完全性への重大影響、長期的に重要な予後、または他組織でも再利用価値の高い防御上の知見のうち、少なくとも一つを公開情報で確認できることを求める。収録は深刻度ランキングではなく、日本国内の全セキュリティ公表を網羅した一覧であるとも主張しない。
 
-The audit is limited to publicly observable information. It does not claim that unpublished facts do not exist.
+監査対象は公開情報に限る。非公表の事実が存在しないとはみなさない。
 
-# Method
+# 監査方法
 
-Each incident was reviewed using the reporting standard with the following checks:
+各事例は記録基準に従い、次の観点で確認した。
 
-1. Locate the latest affected-organization or responsible-provider disclosure and compare it with the current record.
-2. Check regulator/law-enforcement or directly affected customer disclosures where they materially refine scope.
-3. Separate `earliest_known_activity`, detection, first disclosure, latest public incident update, and the date this public record was checked.
-4. Preserve evidence progression rather than silently rewriting history: possible → confirmed; estimate → corrected count; no evidence initially → later external-leak confirmation.
-5. Preserve source units. A record/account/item count is not converted into people without source support, and potentially overlapping populations are not summed into a unique-person total.
-6. Separate containment, service restoration, security-state restoration, data-impact determination, investigation closure, long-term remediation, and service retirement.
-7. Do not infer a CVE, attacker, ransomware family, exploit path, DDoS intent, or credential-theft mechanism unless a public source establishes it.
-8. Treat affected-customer/partner notices as downstream evidence, not as proof that the downstream organization itself was directly breached.
-9. Treat destructive data loss, unauthorized message sending and other integrity impact separately from confidentiality impact.
-10. Preserve a public service/business outcome even when technical root cause remains undisclosed.
+1. 被害組織または責任を持つサービス提供事業者による最新公表を探し、現在の記録と照合する。
+2. 規制当局、捜査機関、直接影響を受けた顧客組織の公表が影響範囲を重要な形で補足する場合は併せて確認する。
+3. `earliest_known_activity`、検知、最初の公表、最新のインシデント公表、今回の公開記録確認日を分離する。
+4. 過去の認識を黙って上書きせず、証拠状態の変化を保持する。例: possible → confirmed、概算 → 訂正値、当初証拠なし → 後日外部流出を確認。
+5. 情報源の単位を保持する。レコード数、アカウント数、項目数を根拠なく人数へ変換せず、重複し得る母集団をユニーク人数として合算しない。
+6. 封じ込め、サービス復旧、安全な運用状態への復旧、データ影響範囲の確定、調査完了、中長期の再発防止、サービス廃止を分離する。
+7. 公開根拠がない限り、CVE、攻撃主体、ランサムウェアの系統、攻撃手順、DDoSの意図、認証情報の窃取方法を推測しない。
+8. 被害を受けた顧客・取引先側の通知は下流影響の根拠として扱い、その組織自体が直接侵害された証拠とはみなさない。
+9. データ破壊、不正送信など完全性への影響を、機密性への影響とは別に記録する。
+10. 技術的な根本原因が非公表でも、公開されているサービス・事業上の結果は保持する。
 
-# OKF conformance note
+# OKF適合性に関する注記
 
-Denno Watch targets OKF v0.2. The canonical specification is the `GoogleCloudPlatform/open-knowledge-format` repository. The specification describes Markdown concepts with YAML frontmatter and permits producer-defined fields in addition to the standardized provenance/trust/lifecycle families.[^okf-spec]
+Denno Watch は OKF v0.2 を対象とする。標準仕様は `GoogleCloudPlatform/open-knowledge-format` リポジトリにあり、YAMLフロントマターを持つMarkdown概念文書と、標準化された出典・信頼・ライフサイクル情報に加えて生成側独自のフィールドを利用できる。[^okf-spec]
 
-The v0.2 text has evolved while retaining the same version label. The current reviewed revision requires timestamp-valued keys to use ISO 8601 datetimes with an explicit UTC offset. To make bundle semantics reproducible, root `index.md` now records:
+v0.2 は同じ版番号を保ったまま本文が更新されている。今回確認した版では、時刻値をUTCオフセット付きISO 8601で記録する必要がある。ナレッジベースの意味を再現可能にするため、ルートの `index.md` には次を記録した。
 
 - `okf_version: "0.2"`
 - `okf_spec_revision: "ad30107c31c06aec8a7d5636e0d1058118604e6f"`
-- a commit-pinned `okf_spec_resource`
+- 当該コミットへ固定した `okf_spec_resource`
 
-The extra revision keys are producer-defined metadata; the canonical OKF version remains `0.2`.
+後者2項目はDenno Watch側で追加したメタデータであり、標準のOKF版番号は引き続き `0.2` である。
 
-# Existing 25-record consistency audit
+# 既存25件の整合性監査
 
-No material contradiction was located between the existing record and the reviewed public record for the following 25 concepts. Where later disclosures changed certainty or counts, the existing record already preserved the progression rather than erasing the earlier state.
+以下25件について、既存記録と今回確認した公開情報の間に重大な矛盾は見つからなかった。後続公表で確度や件数が変わった事例では、既存記録が過去の状態を消さず、変化の過程を保持していることも確認した。
 
-| Existing record | Audit result | Material point preserved |
+| 既存事例 | 監査結果 | 保持すべき重要点 |
 | --- | --- | --- |
-| セイコーマート | consistent | initial ~570k possibility → 572,022 confirmed viewed members; payment/card data separation maintained |
-| OZmall / スターツ出版 | consistent | initial max 447,610 → corrected max 442,779; former members included |
-| 東京メトロ / メトポ | consistent | about 59k delivery-suspended email addresses; affected server data separation preserved |
-| 京王電鉄 | consistent | ransomware affects group/business systems; railway operation excluded from impact; no newer disclosure located in the fresh check |
-| ファインズ | consistent with count-semantics caution | 1,536,322 records retained as source unit; extraction-vs-affected-population semantics not overstated |
-| タイムズモビリティ / パーク２４ | consistent | ~6.6M account data acquisition and later ~1.6M identity-document impact kept separate |
-| JCOM | consistent | external high-volume traffic and DNS overload recorded without inferring malicious DDoS intent |
-| Helpfeel / Gyazo | consistent | 23.62M-user data impact and staged visibility/service recovery through 2026-09-29 maintained |
-| LEAN BODY | consistent | vulnerable Metabase environment and confirmed acquisition recorded without inventing a CVE |
-| イエローハット Web作業予約 | consistent | up to 1,801,499 potential scope remains distinct from the separate 2りんかん incident |
-| さくらインターネット | consistent | unauthorized access/malware and potential customer-management exposure; external exfiltration not promoted to confirmed |
-| REXT | consistent | initial low-leak-risk assessment → later online publication observation preserved |
-| シーイーシー | consistent | data-center ransomware and service outage retained as publicly closed report |
-| イノベーション | consistent | 62,691 → 62,689 correction preserved; repository leak distinguished from production-DB compromise |
-| Ｅストアー / ショップサーブ | consistent | purchase-data exfiltration remains under investigation where final public closure is absent |
-| ムラウチドットコム | consistent | 7,716,811-customer-record scope and completed public investigation retained |
-| ファイブフォックス / コムサ | consistent | first-report ransomware suspicion not upgraded beyond later public evidence |
-| ニチレイ | consistent | July logistics availability recovery separated from September personal-data leak confirmation |
-| アフラック生命 | consistent | large-scale personal-data incident and later service-recovery state retained |
-| KDDI | consistent | 12,231,954 email-address population and 7,616,173 password subset; shared-ISP downstream scope; regulatory follow-up retained |
-| 名鉄協商 | consistent | multiple-server attack, long recovery and widening notification retained while actual external leak remains unconfirmed |
-| ハンズホールディングス | consistent | ransomware and employee/My Number exposure risk retained without unsupported attacker attribution |
-| フェースグループ | consistent | VPN-associated ransomware/encryption/deletion evidence retained at published granularity |
-| 日本資産総研 | consistent | credential-related intrusion → ransomware → possible exfiltration → confirmed attacker-site publication progression retained |
-| 2りんかんイエローハット | consistent | API-related incident and 3,179,454-member confirmed exposure kept separate from later Yellow Hat reservation incident |
+| セイコーマート | 整合 | 当初約57万件の可能性 → 閲覧確認572,022人。決済・カード情報が分離されていた点も保持。 |
+| OZmall / スターツ出版 | 整合 | 当初最大447,610人 → 訂正後最大442,779人。退会者の一部を含む。 |
+| 東京メトロ / メトポ | 整合 | 配信停止済みメールアドレス約5.9万件。影響サーバーのデータ分離を保持。 |
+| 京王電鉄 | 整合 | ランサムウェアはグループ・業務システムへ影響。鉄道運行は影響対象外。今回の再確認でも新公表なし。 |
+| ファインズ | 件数の意味に注意した上で整合 | 1,536,322レコードを情報源の単位のまま保持し、「抽出された件数」と「影響対象人数」を混同していない。 |
+| タイムズモビリティ / パーク２４ | 整合 | 約660万アカウントの情報取得と、後に判明した約160万アカウントの本人確認書類影響を分離。 |
+| JCOM | 整合 | 外部からの大量通信とDNS過負荷を記録し、悪意あるDDoSとは断定していない。 |
+| Helpfeel / Gyazo | 整合 | 2,362万ユーザー規模の影響と、2026-09-29までの段階的な公開範囲・サービス復旧を保持。 |
+| LEAN BODY | 整合 | 脆弱なMetabase環境と情報取得確認を記録し、非公表のCVEは推定していない。 |
+| イエローハット Web作業予約 | 整合 | 最大1,801,499人の可能性を、別件の2りんかん事案と分離。 |
+| さくらインターネット | 整合 | 不正アクセス／マルウェアと顧客管理情報への影響可能性を保持し、外部持ち出しを確認済みに格上げしていない。 |
+| REXT | 整合 | 当初の「漏えい可能性は低い」評価から、後日のオンライン掲載確認までの証拠状態の変化を保持。 |
+| シーイーシー | 整合 | データセンターへのランサムウェアとサービス停止。公表上の調査完了状態を保持。 |
+| イノベーション | 整合 | 62,691件 → 62,689件の訂正を保持。リポジトリ流出と本番DB侵害を混同していない。 |
+| Ｅストアー / ショップサーブ | 整合 | 購買データ持ち出しについて、公表上の最終終了がない範囲は調査継続として保持。 |
+| ムラウチドットコム | 整合 | 顧客レコード7,716,811件と、公表上の調査完了を保持。 |
+| ファイブフォックス / コムサ | 整合 | 初報のランサムウェア疑いを、その後の公表根拠以上には強めていない。 |
+| ニチレイ | 整合 | 7月の物流可用性復旧と、9月の個人情報流出確認を分離。 |
+| アフラック生命 | 整合 | 大規模個人情報事案と、その後のサービス復旧状態を保持。 |
+| KDDI | 整合 | メールアドレス12,231,954件、うちパスワード7,616,173件。共有ISP基盤の下流影響と規制対応も保持。 |
+| 名鉄協商 | 整合 | 複数サーバーへの攻撃、長期復旧、通知対象拡大を保持し、実際の外部流出は未確認のまま。 |
+| ハンズホールディングス | 整合 | ランサムウェアと従業員・マイナンバー影響可能性を保持し、根拠のない攻撃主体は付与していない。 |
+| フェースグループ | 整合 | VPNに関連するランサムウェア、暗号化、削除を公表粒度のまま保持。 |
+| 日本資産総研 | 整合 | 認証情報に関連する侵入 → ランサムウェア → 持ち出し可能性 → 攻撃者サイト掲載確認の進行を保持。 |
+| 2りんかんイエローハット | 整合 | API関連事案と3,179,454人の確認済み影響を、後発のイエローハット予約事案と分離。 |
 
-## Existing-record maintenance debt
+## 既存事例の保守上の負債
 
-Some earlier concepts were created before `public_record_checked_at` and the five extended fields became canonical Denno Watch metadata. This audit is itself a dated corpus-level consistency check, but it does not falsely stamp every old concept as freshly re-generated. Future material edits to those concepts should add/update `public_record_checked_at` and the extended fields where public evidence supports them, while leaving `latest_public_update` unchanged when no new incident disclosure exists.
+一部の古い事例は、`public_record_checked_at` と5つの拡張フィールドがDenno Watchの標準メタデータになる前に作成されている。本監査自体は日付付きの事例集レベル再確認だが、すべての古い事例を「今回再生成した」と偽装するものではない。今後それらを実質的に更新する際は、公開根拠がある範囲で `public_record_checked_at` と拡張フィールドを追加・更新する。新公表がない場合は `latest_public_update` を変更しない。
 
-# First expansion: 12 material incidents
+# 第1次拡張: 重大事例12件
 
-| Concept | Why it is material |
+| 事例 | 重大と判断した理由 |
 | --- | --- |
-| 第一生命グループ | ~120,000 current/former employee population; former office employees back to 1967; shared HR system |
-| 佐川急便 | package sender/recipient data including roughly 100 days of logistics records; Web-service shutdown while physical delivery continued |
-| ヤマト運輸 / クロネコ代金後払い | purchase/credit/billing context with strong social-engineering value; service remains suspended |
-| 池上通信機 | unauthorized server access + file encryption + attacker-site publication observation; internal network isolation |
-| ロート製薬 | direct-sales customer data and customer-support call audio potentially acquired |
-| 日本トレクス | business-facing systems stopped, alternative channels used, later no external leak observed and full restart |
-| ApplyNow | recruitment SaaS downstream impact across organizations; high-sensitivity employment/identity data possible depending on service |
-| VOISING | ~170,000 confirmed records; BI known vulnerability; compromised environment discarded instead of restored |
-| 両毛システムズ | VPN-account abuse → ransomware; multiple entrusted organizations affected by retained data copies |
-| EPARKリラク＆エステ / PeakManager | initial ~33M records → confirmed external transfer of ~22.18M records; sensitive health data and free-text schema escape |
-| 日本交通 | malware-driven dispatch/reservation disruption followed by confirmed external leakage of company-held files |
-| 日本テレネット | ransomware with entrusted BPO/CSS data populations; clean-network rebuild, full endpoint reimaging and SOC/MFA/EDR hardening |
+| 第一生命グループ | 現職・退職者約12万人。事務職の退職者は1967年まで遡る。共有人事システム。 |
+| 佐川急便 | 荷送人・受取人を含む約100日分の配送関連情報。Webサービスを停止する一方、物理配送は継続。 |
+| ヤマト運輸 / クロネコ代金後払い | 購買・与信・請求情報を含み、標的型詐欺へ転用され得る文脈。サービス停止が継続。 |
+| 池上通信機 | サーバー不正アクセス、ファイル暗号化、攻撃者サイト掲載確認。社内ネットワーク隔離。 |
+| ロート製薬 | 通販顧客情報とカスタマーサポート通話音声が取得された可能性。 |
+| 日本トレクス | 企業向けシステム停止、代替経路利用、後続調査で外部流出未確認、全面再開まで公表。 |
+| ApplyNow | 採用SaaSを介して複数組織へ下流影響。利用状況によって雇用・本人属性に関する機微情報を含み得る。 |
+| VOISING | 約17万レコードの流出確認。BIツールの既知脆弱性。侵害環境を復旧せず廃棄。 |
+| 両毛システムズ | VPNアカウント悪用 → ランサムウェア。保持されていた委託データにより複数組織へ影響。 |
+| EPARKリラク＆エステ / PeakManager | 当初約3,300万レコード → 分析後、約2,218万レコードの外部転送を確認。健康情報や自由記述欄の機微情報を含む。 |
+| 日本交通 | マルウェアによる配車・予約障害の後、保有ファイルの外部流出を確認。 |
+| 日本テレネット | 大規模な受託BPO/CSSデータを含むランサムウェア。独立クリーンネットワーク、全端末再構築、SOC/MFA/EDR強化まで公表。 |
 
-# Second expansion: 5 material incidents
+# 第2次拡張: 重大事例5件
 
-| Concept | Why it is material |
+| 事例 | 重大と判断した理由 |
 | --- | --- |
-| コープやまぐち | destructive DB compromise: all data deleted, same-day backup restoration, >212k main member records at possible confidentiality risk; separates integrity recovery from exfiltration uncertainty |
-| メディア4u | communications-control-plane compromise: 95,412 customer-management records leaked, 22,928 records potentially containing personal information, and 280 unauthorized SMS messages via one customer account; OEM/reseller downstream scope |
-| 扶桑電通 | shared-cloud credential misuse with 26,489 potentially exposed records; public remediation explicitly adds MFA for external users and periodic account/access review |
-| ドットマネー / ドットギフト | whole-service shutdown after unauthorized access; DotMoney later restored with stronger exchange authentication while DotGift was permanently terminated, adding service retirement as an incident outcome |
-| マルタケ | pharmaceutical-wholesale ransomware with confirmed exfiltration and attacker-site publication; alternate procedures and temporary servers used to preserve medicine supply |
+| コープやまぐち | DB全削除という破壊的侵害。同日バックアップ復旧。主要な組合員レコード21.2万件超で機密性影響を否定できず、「完全性の復旧」と「情報持ち出しの未解決」を分離できる事例。 |
+| メディア4u | 通信基盤の制御機能が悪用され、顧客管理レコード95,412件の流出、うち22,928件で個人情報を含む可能性、1顧客アカウントから不正SMS280件を送信。OEM・再販先への下流影響も存在。 |
+| 扶桑電通 | 共有クラウドの認証情報悪用で26,489件が影響した可能性。再発防止で外部利用者MFAと定期的なアカウント・権限棚卸しを明示。 |
+| ドットマネー / ドットギフト | 不正アクセス後にサービス全体を長期停止。ドットマネーは認証強化後に段階復旧した一方、ドットギフトは恒久終了し、「サービス廃止」を復旧結果の一つとして扱う必要を示す。 |
+| マルタケ | 医薬品卸へのランサムウェア。情報持ち出しと攻撃者サイト掲載を確認しつつ、代替手順・仮サーバーで医薬品供給を維持。 |
 
-# Screened candidate not promoted to the core corpus in this pass
+# 今回コア事例へ昇格しなかった監視候補
 
-| Candidate | Public evidence | Decision |
+| 候補 | 公開根拠 | 判断 |
 | --- | --- | --- |
-| スマレジEC | management-login vulnerability exploited in four customer environments; some customer/order/admin/WordPress information may have been viewed/acquired; vulnerability fixed and Personal Information Protection Commission notified | retain as watch candidate rather than core material-incident report in this pass because public scope is limited to four customer environments and no broader operational/supply-chain impact was disclosed; revisit if later disclosure materially expands scope |
+| スマレジEC | 管理画面ログインに関する脆弱性が4顧客環境で悪用され、顧客・注文・管理者・WordPress情報の一部が閲覧・取得された可能性。脆弱性修正と個人情報保護委員会への報告を公表。 | 現在公表された範囲が4顧客環境に限られ、より広い事業・サプライチェーン影響も公表されていないため、今回はコア事例ではなく監視候補とする。後続公表で影響が重大に拡大した場合は再評価する。 |
 
-This exclusion is a corpus-priority decision, not a claim that the incident is unimportant.
+この除外は事例集内の優先順位判断であり、事故自体が重要でないという意味ではない。
 
-# Cross-incident findings
+# 事例横断の知見
 
-## 1. Availability recovery and confidentiality closure run on different clocks
+## 1. サービス復旧と機密性調査の完了時期は一致しない
 
-Nichirei, REXT, Nihon Kotsu, Meitetsu Kyosho and Co-op Yamaguchi show the same pattern: services can be restored while the confidentiality investigation remains open, and later external evidence can materially change the incident state. Denno Watch therefore treats “service restored” as one recovery phase, never as automatic incident closure.
+ニチレイ、REXT、日本交通、名鉄協商、コープやまぐちは、サービスが復旧しても機密性調査が継続し、後から外部証拠によって事故状態が大きく変わり得ることを示す。Denno Watchでは「サービス復旧」を復旧工程の一段階として扱い、自動的な事故終了とはみなさない。
 
-## 2. Analytics and BI systems are production-data boundaries
+## 2. 分析・BIシステムも本番データ境界である
 
-LEAN BODY (Metabase), ApplyNow (data analytics tool) and VOISING (BI tool) independently show that internal analytics environments can hold enough production-derived personal data to create a major breach. Patch urgency, internet exposure, least privilege, data minimization, audit logging and credential isolation must apply to analytics tooling at the same rigor as customer-facing production services.
+LEAN BODY（Metabase）、ApplyNow（データ分析ツール）、VOISING（BIツール）は、社内分析環境にも重大侵害を起こすだけの本番由来個人情報が存在し得ることを独立に示している。パッチ適用の緊急度、インターネット公開範囲、最小権限、データ最小化、監査ログ、認証情報分離は、顧客向け本番サービスと同程度の厳格さで分析基盤にも適用すべきである。
 
-## 3. Historical and dormant data amplify blast radius
+## 3. 古いデータ・休眠データが被害範囲を拡大する
 
-The corpus contains multiple forms of stale-but-sensitive data:
+事例集には、利用頻度が低下していても機微性を失っていないデータが複数形態で残っていた。
 
-- Tokyo Metro: email addresses already suspended from delivery.
-- ApplyNow downstream customers: historical applicant data after the original recruitment period and, in some cases, after service use had ended.
-- Dai-ichi Life: former office employees dating back to 1967.
-- Nippon Telenet / Ryomo Systems: entrusted copies retained in service-provider environments.
-- PeakManager: duplicate/historical customer ledgers maintained independently by stores.
-- Co-op Yamaguchi: some member information was present in the mini-app database regardless of mini-app use.
+- 東京メトロ: すでに配信停止されていたメールアドレス。
+- ApplyNowの下流顧客: 採用期間終了後、場合によってはサービス利用終了後も残った過去応募者データ。
+- 第一生命: 1967年まで遡る事務職退職者データ。
+- 日本テレネット / 両毛システムズ: サービス提供事業者環境に残る委託データの複製。
+- PeakManager: 店舗ごとに独立して保持された重複・過去顧客台帳。
+- コープやまぐち: ミニアプリを使っていない一部組合員の情報もミニアプリDBに存在。
 
-Retention and deletion verification should therefore be modeled as security controls, not merely privacy administration.
+保持期限と削除確認は、プライバシー管理だけでなくセキュリティ統制として扱う必要がある。
 
-## 4. Free-text fields defeat schema-based sensitivity assumptions
+## 4. 自由記述欄はスキーマだけに基づく機微情報分類を破る
 
-PeakManager is a strong example: the product had no designed card-data field, yet five note entries contained values that could be card information, and the same notes could include health-status information. A data inventory that classifies only formal columns will miss sensitive values embedded in free text, attachments, recordings and logs.
+PeakManagerでは、カード情報用の正式な項目が存在しないにもかかわらず、自由記述欄5件にカード情報である可能性のある値が入り、同じ欄に健康状態を含み得た。正式な列だけを分類するデータ棚卸しでは、自由記述、添付、録音、ログに入り込んだ機微情報を見落とす。
 
-## 5. Provider compromises create a second data topology
+## 5. サービス提供事業者の侵害は「もう一つのデータ構造」を生む
 
-ApplyNow, KDDI, Ryomo Systems, Nippon Telenet and Media4u show that the organization holding the data at incident time may not be the organization the data subjects or downstream customers interacted with. Incident modeling needs both the compromised provider/system boundary and the downstream customer/entrusted-data ownership boundary.
+ApplyNow、KDDI、両毛システムズ、日本テレネット、メディア4uでは、事故時点でデータを保持していた組織と、本人・顧客が直接やり取りしていた組織が異なる。インシデント分析では、侵害された提供事業者・システムの境界と、下流顧客・委託データ所有者の境界の両方を記録する必要がある。
 
-This is why downstream counts must not be automatically summed into a provider-level unique-person total.
+このため、下流の件数を提供事業者全体のユニーク人数へ自動合算してはならない。
 
-## 6. Data separation and non-retention produce observable damage reduction
+## 6. データ分離と「保持しない」設計は実際に被害を減らす
 
-Several incidents show real scope reduction because some data simply was not in the affected system:
+複数事例で、影響システムに特定データが存在しなかったこと自体が被害範囲を縮小した。
 
-- Tokyo Metro's affected server held delivery-suspended email addresses rather than the full membership dataset.
-- ApplyNow downstream notices indicate videos/images/PDFs were held separately from the attacked analytics scope.
-- VOISING did not retain card credentials or login passwords in the affected data.
-- Yamato's current postpay scope excludes card data and passwords.
-- Media4u did not keep a persistent end-user address-book dataset in the leaked account-management file; SMS recipient phone numbers/text were not in the confirmed leaked file.
+- 東京メトロの影響サーバーには、全会員情報ではなく配信停止済みメールアドレスだけが存在した。
+- ApplyNowの下流通知では、動画・画像・PDFが攻撃対象の分析領域とは別に保持されていた。
+- VOISINGの影響データにはカード認証情報・ログインパスワードが保持されていなかった。
+- ヤマトのクロネコ代金後払い事案では、現在公表された範囲にカード情報・パスワードを含まない。
+- メディア4uでは、漏えい確認済みの顧客管理ファイルにエンドユーザーのアドレス帳を恒常保存しておらず、SMS宛先電話番号・本文は当該ファイルに含まれていなかった。
 
-“Do not collect / do not co-locate” is often stronger than attempting to protect every field after aggregation.
+「収集しない」「同じ場所へ置かない」は、集約後の全データを守ろうとするより強い統制になり得る。
 
-## 7. Corrected counts must remain historical facts
+## 7. 訂正された件数も過去の事実として残す
 
-The corpus includes several corrections or refinements that should never be silently overwritten:
+事例集には次のような訂正・精査がある。
 
-- OZmall: 447,610 maximum → 442,779 maximum.
-- Innovation: 62,691 → 62,689.
-- Seicomart: initial roughly 570,000 possible → 572,022 confirmed viewed.
-- PeakManager: initial roughly 33 million records at risk → about 22.18 million records after deduplication/analysis, with external transfer confirmed.
+- OZmall: 最大447,610人 → 最大442,779人。
+- イノベーション: 62,691件 → 62,689件。
+- セイコーマート: 当初約57万人の可能性 → 572,022人の閲覧確認。
+- PeakManager: 当初約3,300万レコードが影響可能性 → 重複排除・分析後約2,218万レコード、外部転送確認。
 
-The earlier number describes the state of knowledge at that point; the later number describes a different evidence state.
+古い値はその時点の知識状態を、新しい値は後続調査による別の証拠状態を示す。前者を黙って消してはならない。
 
-## 8. “No leak observed” is not “no sensitive data was exposed to risk”
+## 8. 「流出痕跡なし」は「機微情報が危険にさらされなかった」ではない
 
-Nippon Telenet's forensics found no external-transfer trace, yet the compromised environment contained very large entrusted-data populations. Japan Trex and Co-op Yamaguchi likewise demonstrate that availability/integrity recovery can coexist with unresolved confidentiality. Denno Watch records both the data-at-risk population and final evidence state rather than collapsing them into a binary breach/no-breach label.
+日本テレネットの調査では外部転送の痕跡は確認されなかったが、侵害環境には非常に大規模な受託データが存在した。日本トレクス、コープやまぐちも、可用性・完全性の復旧と機密性の未解決が同時に成立し得ることを示す。Denno Watchでは、危険にさらされた可能性のある母集団と最終的な証拠状態を両方保持し、単純な「漏えい／非漏えい」の二値へ潰さない。
 
-## 9. Clean rebuild can be a security-state restoration milestone
+## 9. クリーン再構築は安全な運用状態への復旧を示す重要な節目になり得る
 
-Nippon Telenet created an independent clean network and reimaged all business PCs. VOISING discarded the compromised environment and invalidated/rotated credentials rather than returning it to service. These are stronger, observable security-state restoration milestones than “system restarted”.
+日本テレネットは独立したクリーンネットワークを構築し、全業務PCを再構築した。VOISINGは侵害環境を再利用せず廃棄し、認証情報を無効化・更新した。これらは単なる「システム再起動」より強い、観測可能な安全状態復旧の証拠である。
 
-## 10. Business continuity should be recorded independently from cyber root cause
+## 10. 事業継続はサイバー攻撃の根本原因とは独立して記録する
 
-Japan Trex used FAX/alternative procedures, Nihon Kotsu retained unaffected taxi-order channels, and Marutake used alternative procedures and then temporary servers while prioritizing stable pharmaceutical supply. The ability to deliver core business through an alternate channel is a separate defensive property from whether the intrusion itself has been eradicated.
+日本トレクスはFAX等の代替手段を利用し、日本交通では影響を受けないタクシー注文経路が残り、マルタケは医薬品供給を優先して代替手順と仮サーバーを使った。侵入を完全排除できたかとは別に、代替経路で中核業務を届け続けられる能力は独立した防御特性である。
 
-## 11. Destructive integrity impact needs its own recovery evidence
+## 11. 破壊による完全性への影響には独立した復旧証拠が必要
 
-Co-op Yamaguchi had every database record deleted, yet restored service the same day from backup. That does not answer whether the data had first been copied externally. A complete report must independently track:
+コープやまぐちはDB内の全データを削除されたが、バックアップから同日復旧した。ただし、削除前にデータを外部へコピーされたかどうかは別問題である。完全な記録では次を独立して追跡する。
 
-- integrity destruction;
-- backup/restoration success;
-- confidentiality/exfiltration evidence.
+- 完全性の破壊。
+- バックアップ・復元の成功。
+- 機密性・情報持ち出しに関する証拠。
 
-## 12. Communications platforms have a control-plane abuse dimension
+## 12. 通信サービスでは送信制御機能の悪用も被害になる
 
-Media4u shows that a platform can avoid a mass end-user database leak yet still suffer serious abuse when a legitimate sending path is commandeered. For communication services, incident impact should therefore include unauthorized outbound actions, not only stolen recipient data.
+メディア4uでは、大量のエンドユーザーデータベースが漏えいしなくても、正規の送信経路を奪われることで重大な悪用が成立した。通信サービスでは、盗まれた宛先情報だけでなく、不正な外向き送信・操作もインシデント影響として記録すべきである。
 
-## 13. Credential misuse and credential-acquisition root cause are separate facts
+## 13. 認証情報の「悪用」と「取得経路」は別の事実である
 
-Fuso Dentsu confirmed authentication-credential misuse but could not identify how those credentials were obtained. The remediation included MFA for external cloud-storage users. The corpus should preserve both facts without backfilling an unsupported phishing/malware/password-reuse narrative.
+扶桑電通は認証情報の悪用を確認したが、その認証情報がどう取得されたかは特定できなかった。再発防止では外部クラウドストレージ利用者へMFAを追加した。フィッシング、マルウェア、パスワード再利用など、根拠のない取得経路を後から埋めてはならない。
 
-## 14. Service retirement is a valid recovery outcome
+## 14. サービス廃止も有効な復旧結果である
 
-DotMoney/DotGift demonstrates a divergent outcome from one incident: DotMoney was rebuilt and resumed, while DotGift was permanently terminated. Incident lifecycle models need a terminal `service retirement` state alongside restoration and closure.
+ドットマネー／ドットギフトでは、一つの事故から結果が分岐した。ドットマネーは再構築して再開した一方、ドットギフトは恒久終了した。インシデントのライフサイクルモデルには、復旧・終了だけでなく、最終状態としての `service retirement`（サービス廃止）も必要である。
 
-# Recommended incident metadata extensions
+# 推奨するインシデントメタデータ拡張
 
-The following producer-defined fields are used where public evidence requires them:
+公開根拠がある場合、次のDenno Watch独自フィールドを利用する。
 
 - `downstream_impact`
 - `regulatory_response`
@@ -217,15 +217,15 @@ The following producer-defined fields are used where public evidence requires th
 - `business_continuity`
 - `data_sensitivity`
 
-These are additive OKF producer fields. They do not change the meaning of the existing canonical Denno Watch fields.
+これらはOKFへ追加する生成側フィールドであり、既存のDenno Watch標準フィールドの意味を変更しない。
 
-# Follow-up rule
+# 後続確認ルール
 
-For active incidents, a future recheck must distinguish:
+進行中の事例を再確認する場合は、次を区別する。
 
-- a new incident disclosure: update `latest_public_update` and `public_record_checked_at`;
-- no new disclosure found: update only `public_record_checked_at` (and `stale_after` if needed);
-- a corrected count or certainty change: preserve the prior state in the timeline and update the canonical current state;
-- a service outcome change: record restoration, continued restriction, replacement or retirement per affected service rather than collapsing the whole incident into one boolean.
+- 新しいインシデント公表があった: `latest_public_update` と `public_record_checked_at` を更新する。
+- 新しい公表が見つからなかった: `public_record_checked_at` のみ更新する。必要なら `stale_after` も更新する。
+- 件数訂正または確度変更があった: 時系列に以前の状態を残し、現在値を更新する。
+- サービス結果が変わった: インシデント全体を単一の真偽値へ潰さず、影響サービスごとに復旧、制限継続、置換、廃止を記録する。
 
-[^okf-spec]: GoogleCloudPlatform, Open Knowledge Format v0.2 specification, pinned to `ad30107c31c06aec8a7d5636e0d1058118604e6f`, checked 2026-10-04.
+[^okf-spec]: GoogleCloudPlatform, Open Knowledge Format v0.2 specification. Denno Watchでは `ad30107c31c06aec8a7d5636e0d1058118604e6f` に固定し、2026-10-04に確認した。
