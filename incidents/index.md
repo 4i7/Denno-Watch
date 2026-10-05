@@ -6,15 +6,21 @@
 
 2026年中心の事例集を、一般利用者が実用的なオープンウェイトLLMをローカル運用できる時代へ入った2023年7月前後まで遡って補完する。個別攻撃へのAI/LLM利用は公開証拠がある場合だけ認定し、時代背景と因果関係を分離する。
 
-詳細な年代監査は[2023〜2025年補助コーパス監査](../methodology/historical-corpus-audit-2023-2025-2026-10-05.md)、事故前セキュリティ資料と株主・規制向けPDFは[PDF証拠台帳](../analysis/pre-incident-security-and-ir-pdf-ledger-2023-2025.md)を参照。
+補助コーパスは2023年7件、2024年7件、2025年12件の計26件。全収録68件の再調査は[2026-10-05全収録事例再調査](../methodology/full-corpus-reaudit-2026-10-05.md)、事故前の統制と実侵害の比較は[統制ギャップ比較](../analysis/pre-incident-control-gap-comparison-2023-2025-2026-10-05.md)、一次PDF・IR・規制資料は[既存台帳](../analysis/pre-incident-security-and-ir-pdf-ledger-2023-2025.md)と[追加台帳](../analysis/pre-incident-security-and-ir-evidence-ledger-extension-2026-10-05.md)を参照。
 
 ### 2025年
 
 | 組織 | 類型 | 比較上の主題 |
 | --- | --- | --- |
+| [快活CLUB / FiT24](2025/kaikatsu-club-unauthorized-access.md) | 会員システム不正アクセス | 729万件の漏えい可能性、即時隔離、約1か月のアプリ制限、実流出未確認 |
 | [NTTコミュニケーションズ](2025/ntt-communications-unauthorized-access.md) | 不正アクセス | EDR/NDR/UEBA等の事故前公表、初動と全侵害範囲確定の時間差 |
 | [保険見直し本舗グループ](2025/hoken-minaoshi-honpo-ransomware.md) | ランサムウェア | ネットワーク機器、即時隔離、保険会社への下流影響、24時間監視・CISO体制 |
+| [損保ジャパン](2025/sompo-japan-web-system-breach.md) | Webサブシステム不正アクセス | Zero Trust/SASE/SOC等の事故前公表、大規模保険データ、金融庁報告徴求 |
+| [PR TIMES](2025/pr-times-unauthorized-access.md) | 管理者画面侵害 | IP許可例外、共有アカウント、残存プロセス、発表前情報、2026年まで段階是正 |
 | [IIJ / IIJセキュアMX](2025/iij-secure-mx-zero-day.md) | 未公知脆弱性悪用 | 8か月超の潜伏、メール・認証情報、通信の秘密、行政指導 |
+| [審調社](2025/shinchosa-ransomware.md) | ランサムウェア | ネットワーク機器脆弱性、保護ソフト無効化、医療情報、委託先波及 |
+| [ハウステンボス](2025/huis-ten-bosch-breach.md) | 不正アクセス・暗号化 | リモートアクセス機器、約150万人規模の顧客情報、機微な従業員情報、BCP |
+| [ローレルバンクマシン / Jijilla](2025/laurel-bank-machine-jijilla-breach.md) | 身代金要求を伴う不正アクセス | AI-OCR、反復認証攻撃、DB削除・窃取可能性、CSIRT/ISO等の平時公表 |
 | [アサヒグループHD](2025/asahi-group-ransomware.md) | ランサムウェア | 約10日前の侵入、ゼロトラスト移行前端末、権限管理、物流・会計・内部統制 |
 | [ASKUL](2025/askul-ransomware.md) | ランサムウェア | 約4か月半の潜伏、MFA例外、EDR/監視カバレッジ、バックアップ、物流・IR |
 | [サンリオエンターテイメント](2025/sanrio-entertainment-ransomware.md) | ランサムウェア | リモートアクセス機器、初期最大約200万件→最終漏えい未確認、約6か月復旧 |
@@ -26,18 +32,22 @@
 | [富士通](2024/fujitsu-stealth-malware.md) | 検知回避型マルウェア | CISO等の事故前ガバナンス、49台、未知・回避型挙動への検知適応 |
 | [HOYA](2024/hoya-cyberattack.md) | サイバー攻撃・データ流出 | 複数業務停止、復旧後約1年を経た個人データ流出確定 |
 | [DMM Bitcoin](2024/dmm-bitcoin-tradertraitor.md) | 社会工学・取引完全性侵害 | TraderTraitor、約4,502.9 BTC、事業終了と顧客資産移管 |
-| [KADOKAWA / ドワンゴ](2024/kadokawa-ransomware.md) | ランサムウェア | private cloud、遠隔再起動、出版・Web・教育、翌年度財務影響 |
+| [イセトー](2024/iseto-ransomware.md) | ランサムウェア | VPN、便宜保存・削除不徹底、ISO 27001/27017・PrivacyMark停止→再開、経営体制再構築 |
+| [ニデックインスツルメンツ](2024/nidec-instruments-ransomware.md) | ランサムウェア | 管理者資格情報、EDR即応、翌日バックアップ復旧、国内外グループ波及 |
+| [KADOKAWA / ドワンゴ](2024/kadokawa-ransomware.md) | ランサムウェア | private cloud、遠隔再起動、出版/Web/教育、翌年度財務影響 |
 | [カシオ計算機](2024/casio-ransomware.md) | ランサムウェア | 事故前の訓練・監視・ゼロトラスト・ISO 27001と、海外を含む実装不足の比較 |
 
 ### 2023年
 
 | 組織 | 類型 | 比較上の主題 |
 | --- | --- | --- |
+| [エムケイシステム / 社労夢](2023/mk-system-sharomu-ransomware.md) | SaaSランサムウェア | 最大約2,242万人管理、弱い認証・パッチ・ログ監視不備、数千の委託元報告・IR影響 |
 | [名古屋港NUTS](2023/nagoya-port-nuts-ransomware.md) | ランサムウェア | 2023-07-18直前比較、保守VPN、港湾物流、約60時間の復旧 |
 | [セイコーグループ](2023/seiko-group-ransomware.md) | ランサムウェア | 約6万人、EDR/MFA等の事故後強化 |
+| [LINEヤフー](2023/line-yahoo-shared-auth-breach.md) | 委託先・共有認証侵害 | 共通認証・ネットワーク、第三者集中、2026年規制当局向け最終報告 |
+| [JAXA](2023/jaxa-vpn-m365-breach.md) | VPN装置侵害→Microsoft 365 | 外部通報、未知マルウェア、資格情報窃取、情報分離、2025年度まで恒久対策 |
 | [カシオ ClassPad.net](2023/casio-classpad-development-environment.md) | 開発環境DB侵害 | 開発環境の設定・運用、翌年の別系統ランサムウェアとの長期比較 |
 | [NTT西日本グループ](2023/ntt-west-insider-data-exfiltration.md) | 内部不正 | 約10年、特権アクセス、初期調査失敗、2026年までの長期是正 |
-| [LINEヤフー](2023/line-yahoo-shared-auth-breach.md) | 委託先・共有認証侵害 | 共通認証・ネットワーク、第三者集中、2026年規制当局向け最終報告 |
 
 ## 2026年
 
@@ -86,8 +96,8 @@
 | [２りんかんイエローハット](2026/yellowhat-2rinkan-breach.md) | 2026-04-23 | API関連不正アクセス／会員3,179,454人 | 公表上の調査完了／サービス再構築待ち |
 | [日本テレネット](2026/nippon-telenet-ransomware-bpo-breach.md) | 2026-03-17 | ネットワーク機器からの侵入／ランサムウェア／大規模受託データ | 調査完了／監視中 |
 
-証拠状態と各フィールドの意味は[インシデント記録基準](/methodology/reporting-standard.md)、最新の整合性確認と事例横断の知見は[2026年事例集監査](/methodology/corpus-audit-2026-10-04.md)を参照。
+証拠状態と各フィールドの意味は[インシデント記録基準](/methodology/reporting-standard.md)、2026年42件の基準監査は[2026年事例集監査](/methodology/corpus-audit-2026-10-04.md)、全68件の最新再調査は[2026-10-05全収録事例再調査](/methodology/full-corpus-reaudit-2026-10-05.md)を参照。
 
 ## 海外比較ケース
 
-海外事例は国内42件の集計には含めず、長期予後、第三者・認証・集中リスク、訴訟・保険・規制等を補う比較資料として分離する。詳細は[海外比較インシデント](international/index.md)を参照。
+海外事例は国内68件の集計には含めず、長期予後、第三者・認証・集中リスク、訴訟・保険・規制等を補う比較資料として分離する。詳細は[海外比較インシデント](international/index.md)を参照。
