@@ -4,9 +4,11 @@
 
 * [Denno Watch 知識基盤マップ — 事故発生から長期予後まで何をどこで調べるか](knowledge-base-map-2026-10-04.md) - 個別事例、横断分析、方法論、海外比較ケースを一つの知識基盤として辿るための入口。
 * [Denno Watch 知識基盤拡張監査 — 不足領域・補助資料・次の調査経路](knowledge-base-expansion-audit-2026-10-04.md) - 既存資料を多角的に監査し、今回補完した領域と今後の継続調査を優先順位付きで整理。
-* [ローカルLLM実用化以降の重大インシデント再調査 — 2023〜2025年比較](local-llm-era-incident-retrospective-2023-2025-2026-10-05.md) - 2023年を比較開始点、2025年をAI攻撃工程への実運用上の転換点として分け、国内16件の初動・復旧・長期予後・事故前統制を2026年と同じ軸で比較。
-* [2023〜2025年 事故前セキュリティ・株主／規制向けPDF台帳](pre-incident-security-and-ir-pdf-ledger-2023-2025.md) - 事故前の統合報告・セキュリティ資料と、事故後の調査・株主・財務・行政資料を分離し、宣言された統制と実際の失敗面を比較。
-* [AIで攻撃コストが崩れた時代の企業サイバーリスク](executive-ai-amplified-cyber-risk-report-2026-10-04.md) - AIによる攻撃経済性の変化、国内42件、多層防御、30/90/365日計画を統合した経営・実務向け総合レポート。
+* [ローカルLLM実用化以降の重大インシデント再調査 — 2023〜2025年比較](local-llm-era-incident-retrospective-2023-2025-2026-10-05.md) - ローカルLLM時代の比較境界、初動・復旧・長期予後を整理した第1次歴史比較。
+* [事故前に公表されたセキュリティ統制と実侵害のギャップ — 2023〜2025年比較](pre-incident-control-gap-comparison-2023-2025-2026-10-05.md) - ISO、MFA、EDR、SOC、Zero Trust等の公表・認証と、例外・旧資産・境界機器・データ保持等の実失敗面を重点比較。
+* [2023〜2025年 事故前セキュリティ・株主／規制向けPDF台帳](pre-incident-security-and-ir-pdf-ledger-2023-2025.md) - 第1次調査で収集した統合報告・セキュリティ資料と事故後の調査・株主・財務・行政資料。
+* [事故前セキュリティ・株主／規制向け資料台帳 — 2026-10-05追加調査](pre-incident-security-and-ir-evidence-ledger-extension-2026-10-05.md) - 損保ジャパン、PR TIMES、イセトー等の追加証拠、第三者認証停止・再開、段階的再発防止実装を追補。
+* [AIで攻撃コストが崩れた時代の企業サイバーリスク](executive-ai-amplified-cyber-risk-report-2026-10-04.md) - AIによる攻撃経済性の変化、国内2026年42件、多層防御、30/90/365日計画を統合した経営・実務向け総合レポート。
 
 ## 事故発生から復旧・予後まで
 
@@ -45,4 +47,4 @@
 
 ## 比較事例
 
-* [海外比較インシデント](../incidents/international/index.md) - Change Healthcare、Snowflake顧客アカウント侵害、Caesars Entertainment、MOVEit Transferを国内42件と分離して詳細記録。第三者集中、共有責任、数年単位の訴訟・保険・財務影響を補完。
+* [海外比較インシデント](../incidents/international/index.md) - Change Healthcare、Snowflake顧客アカウント侵害、Caesars Entertainment、MOVEit Transferを国内事例集と分離して詳細記録。第三者集中、共有責任、数年単位の訴訟・保険・財務影響を補完。
