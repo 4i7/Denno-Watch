@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ja" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Denno Watch — 日本の重大サイバーインシデントを公開情報から追跡する防御側ナレッジベース">
+  <meta name="color-scheme" content="light dark">
+  <title>Denno Watch — Cyber Incident Knowledge Browser</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#results">検索結果へ移動</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="./" aria-label="Denno Watch ホーム">
+        <span class="brand-mark" aria-hidden="true">DW</span>
+        <span>
+          <strong>Denno Watch</strong>
+          <small>Cyber Incident Knowledge Browser</small>
+        </span>
+      </a>
+      <nav class="topnav" aria-label="外部リンク">
+        <a href="https://github.com/4i7/Denno-Watch" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://github.com/4i7/Denno-Watch/blob/main/methodology/reporting-standard.md" target="_blank" rel="noreferrer">記録基準</a>
+        <button id="theme-toggle" class="icon-button" type="button" aria-label="表示テーマを切り替える" title="表示テーマを切り替える">◐</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">OPEN DEFENSIVE KNOWLEDGE BASE</p>
+        <h1 id="hero-title">何が起き、何が効かず、<br>どう復旧したかを辿る。</h1>
+        <p class="hero-description">日本の重大サイバーインシデント、事故前統制、復旧、長期予後、横断分析を同じ入口から検索できます。Markdown / OKF が正本で、この画面は自動生成された閲覧レイヤーです。</p>
+      </div>
+      <div class="hero-status" aria-label="ナレッジベース概要">
+        <div class="status-row">
+          <span>DATA SOURCE</span><strong>Repository main</strong>
+        </div>
+        <div class="status-row">
+          <span>UPDATE</span><strong id="generated-at">読み込み中</strong>
+        </div>
+        <div class="status-row">
+          <span>MODE</span><strong>Source-backed / Read-only</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="収録件数">
+      <button class="metric-card" type="button" data-preset-category="incident">
+        <span class="metric-label">INCIDENTS</span>
+        <strong id="metric-incidents">—</strong>
+        <small>個別インシデント</small>
+      </button>
+      <button class="metric-card" type="button" data-preset-category="analysis">
+        <span class="metric-label">ANALYSIS</span>
+        <strong id="metric-analysis">—</strong>
+        <small>横断分析・比較</small>
+      </button>
+      <button class="metric-card" type="button" data-preset-category="methodology">
+        <span class="metric-label">METHODOLOGY</span>
+        <strong id="metric-methodology">—</strong>
+        <small>記録・評価基準</small>
+      </button>
+      <button class="metric-card" type="button" data-preset-category="all">
+        <span class="metric-label">TOTAL</span>
+        <strong id="metric-total">—</strong>
+        <small>検索可能文書</small>
+      </button>
+    </section>
+
+    <section class="quick-access" aria-labelledby="quick-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">QUICK ACCESS</p>
+          <h2 id="quick-title">知りたい観点から入る</h2>
+        </div>
+      </div>
+      <div class="quick-grid">
+        <button type="button" class="quick-card" data-preset='{"category":"incident","year":"2026","sort":"updated-desc"}'>
+          <span class="quick-index">01</span>
+          <strong>直近の重大インシデント</strong>
+          <small>2026年の公開・更新が新しい事例から確認</small>
+        </button>
+        <button type="button" class="quick-card" data-preset='{"category":"analysis","query":"事故前 統制"}'>
+          <span class="quick-index">02</span>
+          <strong>事故前統制と実侵害</strong>
+          <small>公表済み対策と実際の失敗面を比較</small>
+        </button>
+        <button type="button" class="quick-card" data-preset='{"category":"analysis","query":"復旧 予後"}'>
+          <span class="quick-index">03</span>
+          <strong>復旧・長期予後</strong>
+          <small>技術復旧、業務復旧、再発防止の時間軸</small>
+        </button>
+        <button type="button" class="quick-card" data-preset='{"query":"AI LLM local-ai"}'>
+          <span class="quick-index">04</span>
+          <strong>AI / ローカルLLM時代</strong>
+          <small>AIとの因果を推測せず、時代背景と実証を分離</small>
+        </button>
+      </div>
+    </section>
+
+    <section class="browser" aria-labelledby="browser-title">
+      <div class="section-heading browser-heading">
+        <div>
+          <p class="eyebrow">KNOWLEDGE BROWSER</p>
+          <h2 id="browser-title">ナレッジを検索</h2>
+        </div>
+        <button id="reset-filters" class="text-button" type="button">条件をリセット</button>
+      </div>
+
+      <div class="search-panel">
+        <label class="search-box" for="search-input">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="search-input" type="search" autocomplete="off" placeholder="組織名、攻撃類型、統制、復旧、MFA、EDR…" aria-describedby="search-help">
+          <kbd>/</kbd>
+        </label>
+        <p id="search-help" class="sr-only">タイトル、概要、タグ、本文抜粋を横断検索します。</p>
+
+        <div class="filter-row">
+          <div class="segmented" role="group" aria-label="文書カテゴリ">
+            <button type="button" data-category="all" class="is-active">すべて</button>
+            <button type="button" data-category="incident">インシデント</button>
+            <button type="button" data-category="analysis">横断分析</button>
+            <button type="button" data-category="methodology">基準</button>
+          </div>
+          <div class="select-group">
+            <label>年
+              <select id="year-filter"><option value="all">すべて</option></select>
+            </label>
+            <label>状態
+              <select id="status-filter"><option value="all">すべて</option></select>
+            </label>
+            <label>並び順
+              <select id="sort-filter">
+                <option value="updated-desc">更新が新しい</option>
+                <option value="year-desc">年が新しい</option>
+                <option value="title-asc">タイトル順</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div id="active-tags" class="active-tags" aria-live="polite"></div>
+      </div>
+
+      <div class="results-toolbar">
+        <p><strong id="result-count">0</strong> 件を表示</p>
+        <p id="result-context" class="muted"></p>
+      </div>
+
+      <div id="results" class="results-grid" aria-live="polite" aria-busy="true"></div>
+      <div id="empty-state" class="empty-state" hidden>
+        <strong>一致する文書がありません。</strong>
+        <p>検索語を短くするか、カテゴリ・年・状態の条件を外してください。</p>
+      </div>
+      <div id="load-error" class="empty-state error-state" hidden>
+        <strong>カタログを読み込めませんでした。</strong>
+        <p>GitHub Pages のビルド状態を確認するか、リポジトリ上の Markdown を直接参照してください。</p>
+        <a href="https://github.com/4i7/Denno-Watch">GitHub リポジトリを開く</a>
+      </div>
+    </section>
+
+    <section class="principles" aria-labelledby="principles-title">
+      <div class="principles-copy">
+        <p class="eyebrow">READING PRINCIPLES</p>
+        <h2 id="principles-title">確定事実と不明事項を混ぜない。</h2>
+      </div>
+      <div class="principles-grid">
+        <article><span>01</span><strong>一次情報を優先</strong><p>被害組織、規制当局、権限ある公的機関の記録を優先します。</p></article>
+        <article><span>02</span><strong>時間軸を分離</strong><p>侵入、検知、封じ込め、技術復旧、業務復旧、長期予後を別の節目として扱います。</p></article>
+        <article><span>03</span><strong>未知を未知のまま保持</strong><p>公開根拠のない侵入経路、被害規模、AI利用、欠落統制を推測で埋めません。</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <strong>Denno Watch</strong>
+      <p>公開情報から防御上の再利用可能な知見を残すオープンナレッジベース。</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/4i7/Denno-Watch/blob/main/README.md">README</a>
+      <a href="https://github.com/4i7/Denno-Watch/blob/main/incidents/index.md">Incident Index</a>
+      <a href="https://github.com/4i7/Denno-Watch/blob/main/analysis/index.md">Analysis Index</a>
+    </div>
+  </footer>
+
+  <template id="document-card-template">
+    <article class="document-card">
+      <div class="card-topline">
+        <span class="category-badge"></span>
+        <span class="year-badge"></span>
+        <span class="freshness-badge" hidden></span>
+      </div>
+      <h3></h3>
+      <p class="card-summary"></p>
+      <dl class="incident-facts" hidden></dl>
+      <div class="tag-list"></div>
+      <div class="card-footer">
+        <span class="updated-at"></span>
+        <a class="source-link" target="_blank" rel="noreferrer">GitHubで原文を開く <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+  </template>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
