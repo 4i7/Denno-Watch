@@ -1,15 +1,15 @@
 ---
 type: Cybersecurity Incident
-title: イセトー — 2024年ランサムウェア、VPN侵入と受託データ管理不備、認証一時停止
+title: イセトー — 2024年ランサムウェア、VPN侵入と受託データ管理不備、認証・経営体制への長期影響
 resource: https://www.iseto.co.jp/news/news_202410.html
-tags: [japan, bpo, ransomware, vpn, data-retention, iso27001, iso27017, privacy-mark, supply-chain, 2024]
+tags: [japan, bpo, ransomware, vpn, data-retention, iso27001, iso27017, privacy-mark, governance, supply-chain, 2024]
 status: draft
 generated: { by: openai/gpt-5.6-sol, at: 2026-10-05T09:34:00+09:00 }
 incident:
   organization: 株式会社イセトー
   sector: information-processing-bpo
   jurisdiction: JP
-  incident_status: restored_with_certification_followup
+  incident_status: restored_with_certification_and_governance_followup
   attack_type: ransomware and data exfiltration
   earliest_known_activity: "2024-05-26"
   detected_at: "2024-05-26"
@@ -20,8 +20,9 @@ incident:
   affected_services: "情報処理センター、全国営業拠点の端末・サーバー、受託業務データ"
   data_exposure: confirmed
   availability_impact: "複数端末・サーバーが暗号化され、一部業務へ影響"
-  restoration_state: "侵入VPNの不使用、認証強化、データ管理区域・保持削除ルールの是正を実施。ISO/IEC 27001・27017とプライバシーマークは一時停止後に再開"
+  restoration_state: "侵入VPNの不使用、認証強化、データ管理区域・保持削除ルールの是正を実施。ISO/IEC 27001・27017とプライバシーマークは一時停止後に再開。2025年にガバナンス再構築を目的とする新経営体制へ移行"
   regulatory_response: "JIPDECによるプライバシーマーク一時停止。ISMS審査機関によるISO/IEC 27001・27017一時停止・特別審査"
+  executive_accountability: "2025-03、会社は本件による顧客情報漏えいを踏まえ、ガバナンス再構築による事業再生のため新経営体制へ移行すると公表"
   ai_relation: era_context_only
   pre_incident_control_disclosure:
     state: confirmed
@@ -41,6 +42,9 @@ sources:
   - id: iseto-iso-resume
     resource: https://www.iseto.co.jp/news/news_202502.html
     title: ISO27001認証及びISO27017認証の一時停止解除について
+  - id: iseto-governance
+    resource: https://www.iseto.co.jp/news/news_202503.html
+    title: 役員体制のお知らせ
   - id: iseto-pmark-resume
     resource: https://www.iseto.co.jp/news/news_202503-1.html
     title: プライバシーマーク付与の再開について
@@ -76,17 +80,20 @@ sources:
 
 さらにJIPDECは同年12月、プライバシーマーク付与を3か月間一時停止した。[^iseto-pmark-suspension] これは、事故発生だけを理由に「認証が無意味」と評価する材料ではない。むしろ、**認証された管理システムが存在していても、VPN境界、データの実配置、保存期限・削除といった具体的運用で不適合が起き得る**ことを示す。
 
-# 長期予後
+# 長期予後 — 認証、ガバナンス、経営体制
 
 ISO/IEC 27001・27017は特別審査後の2025年2月に一時停止解除となった。[^iseto-iso-resume] プライバシーマークも是正措置・再発防止策が有効に機能していると認められ、同年3月25日から付与再開となった。[^iseto-pmark-resume]
 
-2026年2月13日付でISO/IEC 27001:2022およびISO/IEC 27017:2015の認証更新も行われている。[^iseto-iso-2026] そのため本件は、事故発生→認証停止→是正→認証再開→次回更新まで約2年を追える長期予後ケースである。
+同年3月19日、会社は2024年5月の不正アクセスによる顧客情報漏えいを明示的に挙げ、**ガバナンスの再構築による事業再生を図るため新経営体制へ移行する**と公表した。経営陣の意思決定・伝達強化、拠点集約、人員配置最適化も説明している。[^iseto-governance] これは技術対策や第三者認証の回復だけでなく、事故後の経営ガバナンスまで予後に含めるべき例である。
+
+2026年2月13日付でISO/IEC 27001:2022およびISO/IEC 27017:2015の認証更新も行われている。[^iseto-iso-2026] そのため本件は、事故発生→認証停止→是正→認証再開→経営体制再構築→次回認証更新まで約2年を追える長期予後ケースである。
 
 # 防御上の教訓
 
 - VPN/MFA等の入口防御と、侵入後に読めるデータ量を制限するデータ配置・保持管理を別々に評価する。
 - 作業効率のための一時コピーや検証データを、正式な保存領域・削除期限の例外にしない。
 - ISO 27001、ISO 27017、プライバシーマークは取得有無だけでなく、事故後の特別審査・停止・是正・再開まで追跡する。
+- 技術的再発防止が経営ガバナンス・役員体制へ波及した場合、その変化も事故の長期予後として記録する。
 - 委託業務では事故主体と委託元の通知を分離し、重複する人数・レコードを単純合算しない。
 - 個別攻撃へのAI/LLM利用を示す公開証拠は確認していない。
 
@@ -94,5 +101,6 @@ ISO/IEC 27001・27017は特別審査後の2025年2月に一時停止解除とな
 [^iseto-iso-suspension]: イセトー「ISO27001認証及びISO27017認証の一時停止について」2024-09-02.
 [^iseto-pmark-suspension]: イセトー「プライバシーマーク付与の一時停止について」2024-12-24.
 [^iseto-iso-resume]: イセトー「ISO27001認証及びISO27017認証の一時停止解除について」2025-02-10.
+[^iseto-governance]: イセトー「役員体制のお知らせ」2025-03-19.
 [^iseto-pmark-resume]: イセトー「プライバシーマーク付与の再開について」2025-03-24.
 [^iseto-iso-2026]: イセトー「ISMS認証『ISO/IEC 27001:2022』および『ISO/IEC 27017:2015』更新のお知らせ」2026-03-06.
