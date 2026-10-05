@@ -1,0 +1,66 @@
+---
+type: Cybersecurity Incident
+title: 審調社 — 2025年ランサムウェアと保険調査データ流出
+resource: https://scs-21.co.jp/20251205-1/
+tags: [japan, insurance-supply-chain, ransomware, sensitive-data, privacy-mark, 2025]
+status: draft
+generated: { by: openai/gpt-5.6-sol, at: 2026-10-05T09:34:00+09:00 }
+incident:
+  organization: 株式会社審調社
+  sector: insurance-investigation-bpo
+  jurisdiction: JP
+  incident_status: restored_with_followup
+  attack_type: ransomware, encryption and data exfiltration
+  earliest_known_activity: "2025-06-27"
+  detected_at: "2025-06-27"
+  first_disclosed_at: "2025-07-11"
+  latest_public_update: "2026-06-30"
+  public_record_checked_at: "2026-10-05T09:34:00+09:00"
+  intrusion_vector: "ネットワーク機器の脆弱性を悪用した侵入。導入済みセキュリティソフトの無効化も確認"
+  affected_services: "社内端末・サーバー、保険・共済等の受託調査データ"
+  data_exposure: confirmed
+  regulatory_response: "警察・個人情報保護委員会への報告、プライバシーマーク付与一時停止"
+  downstream_impact: "複数の保険会社・共済等が委託元として通知。医療情報を含む影響あり"
+  ai_relation: era_context_only
+sources:
+  - id: shinchosa-initial
+    resource: https://scs-21.co.jp/20250711-2/
+    title: 不正アクセスに関するご報告とお詫び
+  - id: shinchosa-final
+    resource: https://scs-21.co.jp/20251205-1/
+    title: 不正アクセスに関する最終報告
+---
+
+# 概要
+
+2025年6月27日、審調社のネットワークが第三者から不正アクセスを受け、端末・サーバーの一部ファイルが暗号化・窃取された。会社は認識直後に対策本部を設置し、警察・個人情報保護委員会への報告、外部専門家による調査、被害拡大防止と復旧を進めた。[^shinchosa-final]
+
+12月5日の最終報告では、委託元から受けた調査データについて、医療情報を含む約1,200件、氏名等を含む約12,500件、番号のみ約89,000件等の漏えいを公表した。件数には同一人物の重複が含まれる可能性がある。[^shinchosa-final]
+
+# 原因と発生時環境
+
+外部専門会社の調査では、第三者がネットワーク機器の脆弱性を悪用して内部ネットワークへ侵入した。また、導入済みのセキュリティソフトが第三者により無効化されていたことも確認された。[^shinchosa-final]
+
+したがって本件は、境界機器の脆弱性管理と、端末保護製品の導入有無を分けて評価する必要がある事例である。
+
+# 機微情報と下流影響
+
+委託元は保険会社・共済等であり、対象には事案管理番号・証券番号、氏名・連絡先、生年月日等に加え医療情報が含まれた。一方、マイナンバーカードやクレジットカード等の情報は保有していないと公表された。[^shinchosa-final]
+
+委託元ごとの通知件数は母集団が重複し得るため、ユニーク人数として単純合算しない。
+
+# 再発防止と長期予後
+
+会社は、セキュリティ規程・教育、悪用されたネットワーク機器の排除、ネットワーク管理・アクセス制限、インシデント対応策、セキュリティ担当部門の強化を再発防止策として示した。[^shinchosa-final]
+
+事故後にはプライバシーマーク付与の一時停止も公表され、2026年6月には一時停止期間終了が案内された。技術復旧後も第三者認証上の対応が約1年続いた点を長期予後として保持する。
+
+# 防御上の教訓
+
+- ネットワーク機器もサーバー同様に資産・脆弱性・更新状態を継続管理する。
+- セキュリティ製品の導入有無だけでなく、侵害時に保護機能が維持されていたかを確認する。
+- 委託先に渡す機微情報は必要最小限、保存期間、アクセス範囲を明確化する。
+- 下流組織の通知と事故主体の確報を分離し、重複件数を合算しない。
+- 個別攻撃へのAI/LLM利用を示す公開証拠は確認していない。
+
+[^shinchosa-final]: 審調社「不正アクセスに関する最終報告」2025-12-05.
