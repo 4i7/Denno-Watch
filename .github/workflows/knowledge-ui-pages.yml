@@ -1,0 +1,86 @@
+name: Knowledge UI
+
+on:
+  pull_request:
+    paths:
+      - "incidents/**"
+      - "analysis/**"
+      - "methodology/**"
+      - "site/**"
+      - "tools/build_site_catalog.py"
+      - ".github/workflows/knowledge-ui-pages.yml"
+  push:
+    branches: [main]
+    paths:
+      - "incidents/**"
+      - "analysis/**"
+      - "methodology/**"
+      - "site/**"
+      - "tools/build_site_catalog.py"
+      - ".github/workflows/knowledge-ui-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: knowledge-ui-pages
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate catalog generator
+        run: |
+          python -m py_compile tools/build_site_catalog.py
+          python tools/build_site_catalog.py --output site/catalog.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          catalog = json.loads(Path("site/catalog.json").read_text(encoding="utf-8"))
+          assert catalog["schemaVersion"] == 1
+          assert catalog["counts"]["documents"] == len(catalog["documents"])
+          assert catalog["counts"]["incidents"] > 0
+          assert catalog["counts"]["analysis"] > 0
+          assert catalog["counts"]["methodology"] > 0
+          assert all(doc["path"].endswith(".md") for doc in catalog["documents"])
+          print(catalog["counts"])
+          PY
+
+      - name: Validate browser JavaScript
+        run: node --check site/app.js
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build knowledge catalog
+        run: python tools/build_site_catalog.py --output site/catalog.json
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
