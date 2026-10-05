@@ -117,7 +117,7 @@ def first_paragraph(body: str) -> str:
         candidate = block.strip()
         if not candidate or candidate.startswith("#") or candidate.startswith("|"):
             continue
-        if candidate.startswith("[\^") or candidate.startswith("-"):
+        if candidate.startswith("[^") or candidate.startswith("-"):
             continue
         cleaned = clean_text(candidate)
         if len(cleaned) >= 24:
