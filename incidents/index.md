@@ -2,11 +2,11 @@
 
 重大な業務影響、機微・大規模なデータ影響、顧客・委託先・サプライチェーンへの波及、または他組織でも再利用価値の高い防御上の知見が確認できる事例を収録する。収録は深刻度ランキングではなく、日本国内の全セキュリティ公表を網羅した一覧とも主張しない。
 
-## 2023〜2025年 — ローカルLLM時代の補助比較コーパス
+## 2023〜2025年 — ローカルLLM時代の比較コーパス
 
-2026年中心の事例集を、一般利用者が実用的なオープンウェイトLLMをローカル運用できる時代へ入った2023年7月前後まで遡って補完する。個別攻撃へのAI/LLM利用は公開証拠がある場合だけ認定し、時代背景と因果関係を分離する。
+一般利用者が実用的なオープンウェイトLLMをローカル運用できる時代へ入った2023年7月前後まで遡って、2026年と共通の観測軸で比較する。個別攻撃へのAI/LLM利用は公開証拠がある場合だけ認定し、時代背景と因果関係を分離する。
 
-補助コーパスは2023年7件、2024年7件、2025年12件の計26件。全収録68件の再調査は[2026-10-05全収録事例再調査](../methodology/full-corpus-reaudit-2026-10-05.md)、事故前の統制と実侵害の比較は[統制ギャップ比較](../analysis/pre-incident-control-gap-comparison-2023-2025-2026-10-05.md)、一次PDF・IR・規制資料は[既存台帳](../analysis/pre-incident-security-and-ir-pdf-ledger-2023-2025.md)と[追加台帳](../analysis/pre-incident-security-and-ir-evidence-ledger-extension-2026-10-05.md)を参照。
+2023年7件、2024年7件、2025年12件の計26件を収録する。年代・初動・復旧・予後の比較は[ローカルLLM実用化以降の重大インシデント比較](../analysis/local-llm-era-incident-retrospective-2023-2025-2026-10-05.md)、事故前の統制と実侵害の比較は[統制ギャップ比較](../analysis/pre-incident-control-gap-comparison-2023-2025-2026-10-05.md)、一次PDF・IR・規制・第三者認証資料は[事故前セキュリティ・株主／規制向け資料台帳](../analysis/pre-incident-security-and-ir-pdf-ledger-2023-2025.md)を参照。
 
 ### 2025年
 
@@ -16,7 +16,7 @@
 | [NTTコミュニケーションズ](2025/ntt-communications-unauthorized-access.md) | 不正アクセス | EDR/NDR/UEBA等の事故前公表、初動と全侵害範囲確定の時間差 |
 | [保険見直し本舗グループ](2025/hoken-minaoshi-honpo-ransomware.md) | ランサムウェア | ネットワーク機器、即時隔離、保険会社への下流影響、24時間監視・CISO体制 |
 | [損保ジャパン](2025/sompo-japan-web-system-breach.md) | Webサブシステム不正アクセス | Zero Trust/SASE/SOC等の事故前公表、大規模保険データ、金融庁報告徴求 |
-| [PR TIMES](2025/pr-times-unauthorized-access.md) | 管理者画面侵害 | IP許可例外、共有アカウント、残存プロセス、発表前情報、2026年まで段階是正 |
+| [PR TIMES](2025/pr-times-unauthorized-access.md) | 管理者画面侵害 | IP許可例外、共有アカウント、残存プロセス、発表前情報、段階的な再発防止実装 |
 | [IIJ / IIJセキュアMX](2025/iij-secure-mx-zero-day.md) | 未公知脆弱性悪用 | 8か月超の潜伏、メール・認証情報、通信の秘密、行政指導 |
 | [審調社](2025/shinchosa-ransomware.md) | ランサムウェア | ネットワーク機器脆弱性、保護ソフト無効化、医療情報、委託先波及 |
 | [ハウステンボス](2025/huis-ten-bosch-breach.md) | 不正アクセス・暗号化 | リモートアクセス機器、約150万人規模の顧客情報、機微な従業員情報、BCP |
@@ -96,7 +96,7 @@
 | [２りんかんイエローハット](2026/yellowhat-2rinkan-breach.md) | 2026-04-23 | API関連不正アクセス／会員3,179,454人 | 公表上の調査完了／サービス再構築待ち |
 | [日本テレネット](2026/nippon-telenet-ransomware-bpo-breach.md) | 2026-03-17 | ネットワーク機器からの侵入／ランサムウェア／大規模受託データ | 調査完了／監視中 |
 
-証拠状態と各フィールドの意味は[インシデント記録基準](/methodology/reporting-standard.md)、2026年42件の基準監査は[2026年事例集監査](/methodology/corpus-audit-2026-10-04.md)、全68件の最新再調査は[2026-10-05全収録事例再調査](/methodology/full-corpus-reaudit-2026-10-05.md)を参照。
+証拠状態と各フィールドの意味は[インシデント記録基準](../methodology/reporting-standard.md)、情報鮮度と再確認方法は[情報源の監視・鮮度・再確認基準](../methodology/source-monitoring-and-freshness-standard.md)を参照。
 
 ## 海外比較ケース
 
