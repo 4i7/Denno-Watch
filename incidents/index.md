@@ -6,7 +6,7 @@
 
 2026年中心の事例集を、一般利用者が実用的なオープンウェイトLLMをローカル運用できる時代へ入った2023年7月前後まで遡って補完する。個別攻撃へのAI/LLM利用は公開証拠がある場合だけ認定し、時代背景と因果関係を分離する。
 
-補助コーパスは2023年5件、2024年6件、2025年12件の計23件。全収録65件の再調査は[2026-10-05全収録事例再調査](../methodology/full-corpus-reaudit-2026-10-05.md)、事故前の統制と実侵害の比較は[統制ギャップ比較](../analysis/pre-incident-control-gap-comparison-2023-2025-2026-10-05.md)、一次PDF・IR・規制資料は[既存台帳](../analysis/pre-incident-security-and-ir-pdf-ledger-2023-2025.md)と[追加台帳](../analysis/pre-incident-security-and-ir-evidence-ledger-extension-2026-10-05.md)を参照。
+補助コーパスは2023年7件、2024年7件、2025年12件の計26件。全収録68件の再調査は[2026-10-05全収録事例再調査](../methodology/full-corpus-reaudit-2026-10-05.md)、事故前の統制と実侵害の比較は[統制ギャップ比較](../analysis/pre-incident-control-gap-comparison-2023-2025-2026-10-05.md)、一次PDF・IR・規制資料は[既存台帳](../analysis/pre-incident-security-and-ir-pdf-ledger-2023-2025.md)と[追加台帳](../analysis/pre-incident-security-and-ir-evidence-ledger-extension-2026-10-05.md)を参照。
 
 ### 2025年
 
@@ -33,18 +33,21 @@
 | [HOYA](2024/hoya-cyberattack.md) | サイバー攻撃・データ流出 | 複数業務停止、復旧後約1年を経た個人データ流出確定 |
 | [DMM Bitcoin](2024/dmm-bitcoin-tradertraitor.md) | 社会工学・取引完全性侵害 | TraderTraitor、約4,502.9 BTC、事業終了と顧客資産移管 |
 | [イセトー](2024/iseto-ransomware.md) | ランサムウェア | VPN、便宜保存・削除不徹底、ISO 27001/27017・PrivacyMark停止→再開、経営体制再構築 |
-| [KADOKAWA / ドワンゴ](2024/kadokawa-ransomware.md) | ランサムウェア | private cloud、遠隔再起動、出版・Web・教育、翌年度財務影響 |
+| [ニデックインスツルメンツ](2024/nidec-instruments-ransomware.md) | ランサムウェア | 管理者資格情報、EDR即応、翌日バックアップ復旧、国内外グループ波及 |
+| [KADOKAWA / ドワンゴ](2024/kadokawa-ransomware.md) | ランサムウェア | private cloud、遠隔再起動、出版/Web/教育、翌年度財務影響 |
 | [カシオ計算機](2024/casio-ransomware.md) | ランサムウェア | 事故前の訓練・監視・ゼロトラスト・ISO 27001と、海外を含む実装不足の比較 |
 
 ### 2023年
 
 | 組織 | 類型 | 比較上の主題 |
 | --- | --- | --- |
+| [エムケイシステム / 社労夢](2023/mk-system-sharomu-ransomware.md) | SaaSランサムウェア | 最大約2,242万人管理、弱い認証・パッチ・ログ監視不備、数千の委託元報告・IR影響 |
 | [名古屋港NUTS](2023/nagoya-port-nuts-ransomware.md) | ランサムウェア | 2023-07-18直前比較、保守VPN、港湾物流、約60時間の復旧 |
 | [セイコーグループ](2023/seiko-group-ransomware.md) | ランサムウェア | 約6万人、EDR/MFA等の事故後強化 |
+| [LINEヤフー](2023/line-yahoo-shared-auth-breach.md) | 委託先・共有認証侵害 | 共通認証・ネットワーク、第三者集中、2026年規制当局向け最終報告 |
+| [JAXA](2023/jaxa-vpn-m365-breach.md) | VPN装置侵害→Microsoft 365 | 外部通報、未知マルウェア、資格情報窃取、情報分離、2025年度まで恒久対策 |
 | [カシオ ClassPad.net](2023/casio-classpad-development-environment.md) | 開発環境DB侵害 | 開発環境の設定・運用、翌年の別系統ランサムウェアとの長期比較 |
 | [NTT西日本グループ](2023/ntt-west-insider-data-exfiltration.md) | 内部不正 | 約10年、特権アクセス、初期調査失敗、2026年までの長期是正 |
-| [LINEヤフー](2023/line-yahoo-shared-auth-breach.md) | 委託先・共有認証侵害 | 共通認証・ネットワーク、第三者集中、2026年規制当局向け最終報告 |
 
 ## 2026年
 
@@ -93,8 +96,8 @@
 | [２りんかんイエローハット](2026/yellowhat-2rinkan-breach.md) | 2026-04-23 | API関連不正アクセス／会員3,179,454人 | 公表上の調査完了／サービス再構築待ち |
 | [日本テレネット](2026/nippon-telenet-ransomware-bpo-breach.md) | 2026-03-17 | ネットワーク機器からの侵入／ランサムウェア／大規模受託データ | 調査完了／監視中 |
 
-証拠状態と各フィールドの意味は[インシデント記録基準](/methodology/reporting-standard.md)、2026年42件の基準監査は[2026年事例集監査](/methodology/corpus-audit-2026-10-04.md)、全65件の最新再調査は[2026-10-05全収録事例再調査](/methodology/full-corpus-reaudit-2026-10-05.md)を参照。
+証拠状態と各フィールドの意味は[インシデント記録基準](/methodology/reporting-standard.md)、2026年42件の基準監査は[2026年事例集監査](/methodology/corpus-audit-2026-10-04.md)、全68件の最新再調査は[2026-10-05全収録事例再調査](/methodology/full-corpus-reaudit-2026-10-05.md)を参照。
 
 ## 海外比較ケース
 
-海外事例は国内65件の集計には含めず、長期予後、第三者・認証・集中リスク、訴訟・保険・規制等を補う比較資料として分離する。詳細は[海外比較インシデント](international/index.md)を参照。
+海外事例は国内68件の集計には含めず、長期予後、第三者・認証・集中リスク、訴訟・保険・規制等を補う比較資料として分離する。詳細は[海外比較インシデント](international/index.md)を参照。
