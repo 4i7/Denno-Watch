@@ -1,5 +1,13 @@
 # 2026年
 
+* [MrMax — アプリ・オンラインストア侵害／最大1,735,154人の会員情報流出](mrmax-app-online-store-breach.md)
+* [スカラコミュニケーションズ / i-ask — 管理サイト不正ログイン・不正プログラム設置／最大5社・713,126問い合わせ](scala-iask-supply-chain-breach.md)
+* [楽天ドライブ — 管理用認証情報侵害／保存ファイルを含む最大15,382アカウント](rakuten-drive-management-account-breach.md)
+* [旭化成セラピューティクス / Pharma DIGITAL — 委託先運用DB侵害／医療従事者最大約51.4万人](asahi-kasei-pharma-digital-breach.md)
+* [物語コーポレーション / 焼肉きんぐ — 公式アプリ会員管理システム侵害／10,788,963件の個人情報漏えい](monogatari-yakiniku-king-app-breach.md)
+* [GMOリサーチ&AI / infoQ — 最大948,498件の個人情報持ち出し／ポイント不正交換](gmo-infoq-breach-point-theft.md)
+* [大起水産 — 公式アプリ不正アクセス／174,933人の個人情報に漏えい可能性](daiki-suisan-app-breach.md)
+* [大阪公立大学 — ランサムウェア攻撃疑い／約500台停止・13万人超に漏えい可能性](osaka-metropolitan-university-ransomware.md)
 * [第一生命グループ — 共有人事システム侵害／現職・退職者約12万人](daiichi-life-hr-system-breach.md)
 * [佐川急便 — 荷物追跡システム侵害／約100日分の配送関連情報に影響可能性](sagawa-package-tracking-breach.md)
 * [ヤマト運輸 — クロネコ代金後払い侵害／請求・購買関連情報に影響可能性](yamato-kuroneko-postpay-breach.md)
@@ -13,6 +21,7 @@
 * [JCOM — 外部大量通信によるDNS過負荷／大規模障害](jcom-dns-external-traffic-outage.md)
 * [Helpfeel / Gyazo — 大規模なユーザー情報・画像メタデータ侵害](helpfeel-gyazo-breach.md)
 * [LEAN BODY — Metabase脆弱性悪用／顧客データ取得を確認](lean-body-metabase-breach.md)
+* [デジタル庁 / GSS — 既知VPN脆弱性悪用／約24.6万件の個人情報に漏えい可能性](digital-agency-gss-vpn-breach.md)
 * [ロート製薬 — 通販システム侵害／顧客情報・通話音声が取得された可能性](rohto-direct-sales-system-breach.md)
 * [日本トレクス — 不正アクセス／業務システム停止／代替経路で事業継続](japan-trex-unauthorized-access-outage.md)
 * [ApplyNow — 採用SaaS侵害／応募者・従業員関連データへ下流影響](applynow-recruitment-platform-breach.md)

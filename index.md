@@ -10,7 +10,7 @@ okf_spec_resource: "https://github.com/GoogleCloudPlatform/open-knowledge-format
 
 ## 最初に読む
 
-* [国内インシデントレポート](incidents/index.md) - 2023〜2026年の国内68件について、公開根拠に基づく時系列、影響、技術事項、初動、復旧、規制・財務・長期予後を記録。
+* [国内インシデントレポート](incidents/index.md) - 2023〜2026年の国内77件について、公開根拠に基づく時系列、影響、技術事項、初動、復旧、規制・財務・長期予後を記録。
 * [ローカルLLM実用化以降の重大インシデント比較](analysis/local-llm-era-incident-retrospective-2023-2025-2026-10-05.md) - 2023年7月前後を比較境界とし、2023〜2025年26件を2026年と同じ軸で比較。個別攻撃へのAI利用と時代背景を分離。
 * [事故前に公表されたセキュリティ統制と実侵害のギャップ](analysis/pre-incident-control-gap-comparison-2023-2025-2026-10-05.md) - ISO、MFA、EDR、SOC、Zero Trust、SASE、CSIRT等の公表・認証と、例外・旧資産・境界機器・資格情報・パッチ・ログ・データ保持等の実失敗面を比較。
 * [事故前セキュリティ・株主／規制向け資料台帳](analysis/pre-incident-security-and-ir-pdf-ledger-2023-2025.md) - 事故前の統合報告・セキュリティ資料と、事故後の調査、株主・財務、行政、第三者認証資料を対応付ける。

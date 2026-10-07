@@ -45,5 +45,5 @@
 
 ## 比較事例
 
-* [国内インシデントレポート](../incidents/index.md) - 2023〜2026年の国内68件。
+* [国内インシデントレポート](../incidents/index.md) - 2023〜2026年の国内77件。
 * [海外比較インシデント](../incidents/international/index.md) - Change Healthcare、Snowflake顧客アカウント侵害、Caesars Entertainment、MOVEit Transfer等を国内事例集と分離して記録。
