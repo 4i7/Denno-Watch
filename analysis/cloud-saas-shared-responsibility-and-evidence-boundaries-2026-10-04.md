@@ -268,7 +268,7 @@ shared_responsibility:
 
 # Snowflake型事例との接続
 
-[Snowflake顧客アカウント侵害](../incidents/international/snowflake-customer-account-compromises-2024.md)のように、クラウド/SaaS基盤自体の侵害と、顧客側の認証情報悪用を分けて理解する必要がある事例は、共有責任を検討する比較ケースとして有用である。
+[Snowflake顧客アカウント侵害](../incidents/international/snowflake-unc5537-2024.md)のように、クラウド/SaaS基盤自体の侵害と、顧客側の認証情報悪用を分けて理解する必要がある事例は、共有責任を検討する比較ケースとして有用である。
 
 重要なのは「クラウドは安全／危険」という二択ではなく、**どの責任・証拠・設定がどちら側にあったか**を個別に確認すること。
 

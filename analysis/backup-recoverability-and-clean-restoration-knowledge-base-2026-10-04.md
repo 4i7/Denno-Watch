@@ -282,7 +282,7 @@ recoverability:
 - [失敗モードと防御統制の対応表](control-failure-mode-crosswalk-2026-10-04.md)
 - [OT・重要インフラの安全・復旧リスク](ot-critical-infrastructure-safety-and-recovery-2026-10-04.md)
 - [インシデント対応指標と経営判断トリガー](incident-response-metrics-and-decision-triggers-2026-10-04.md)
-- [知識基盤拡張監査](knowledge-base-expansion-audit-2026-10-04.md)
+- [知識基盤拡張監査](knowledge-base-map-2026-10-04.md)
 
 [^cisa-stopransomware]: CISA, “#StopRansomware Guide” https://www.cisa.gov/stopransomware/ransomware-guide
 [^nist-ir]: NIST, “NIST Revises SP 800-61: Incident Response Recommendations and Considerations for Cybersecurity Risk Management” https://www.nist.gov/news-events/news/2025/04/nist-revises-sp-800-61-incident-response-recommendations-and-considerations

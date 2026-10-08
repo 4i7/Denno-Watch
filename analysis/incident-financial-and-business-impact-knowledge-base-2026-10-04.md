@@ -248,7 +248,7 @@ financial_impact:
 
 # 関連資料
 
-- [知識基盤拡張監査](knowledge-base-expansion-audit-2026-10-04.md)
+- [知識基盤拡張監査](knowledge-base-map-2026-10-04.md)
 - [インシデント後の長期予後](post-incident-long-tail-prognosis-2026-10-04.md)
 - [サイバーインシデントの報告・通知・公表マップ](regulatory-reporting-and-disclosure-map-2026-10-04.md)
 - [第三者・認証・集中リスク](third-party-identity-concentration-risk-2026-10-04.md)

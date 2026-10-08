@@ -12,7 +12,7 @@ sources:
     title: Denno Watch 2026 インシデント事例集 — 42件
     author: project:Denno-Watch
   - id: denno-audit
-    resource: ../methodology/corpus-audit-2026-10-04.md
+    resource: ../internal/audit/corpus-audit-2026-10-04.md
     title: 2026年重大インシデント事例集監査
     author: project:Denno-Watch
   - id: denno-budget
@@ -595,7 +595,7 @@ AIは、これらの被害を生み出す既存の弱点を新しく作る必要
 - [根拠資料台帳](evidence-ledger-ai-cyber-risk-2026-10-04.md)
 - [全業種サイバー侵害・最大被害ストレスマトリクス](sector-worst-case-impact-matrix-2026-10-04.md)
 - [攻撃類型・最大被害・防衛予算モデル](incident-defense-budget-analysis-2026-10-04.md)
-- [2026年事例集監査](../methodology/corpus-audit-2026-10-04.md)
+- [2026年事例集監査](../internal/audit/corpus-audit-2026-10-04.md)
 
 [^ipa]: IPA「情報セキュリティ10大脅威 2026」2026-01-29 / updated 2026-05-21. https://www.ipa.go.jp/security/10threats/10threats2026.html
 [^microsoft]: Microsoft, “2026 Digital Defense Report — AI is changing the physics of cybersecurity,” 2026-10-01. https://www.microsoft.com/en-us/security/security-insider/threat-landscape/2026-digital-defense-report

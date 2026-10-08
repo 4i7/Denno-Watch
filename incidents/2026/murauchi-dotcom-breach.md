@@ -14,6 +14,7 @@ incident:
   earliest_known_activity: unknown
   detected_at: "2026-07-16 during recovery from system failure"
   first_disclosed_at: "2026-07-24"
+  attack_type: "unauthorized-access-via-web-system-vulnerability"
   latest_public_update: "2026-09-15"
   intrusion_vector: "vulnerability in part of a company-managed web system"
   affected_services: "multiple internal systems after initial web-system compromise"
