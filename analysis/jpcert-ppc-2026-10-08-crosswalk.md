@@ -1,10 +1,20 @@
 ---
 type: Analysis
 title: 2026年10月8日 国内侵害多発の公的注意喚起と攻撃面の証拠境界
+description: 国内の不正アクセス増加に関する公的注意喚起と、実際の事故事実を紐付ける際の証拠境界。
 resource: https://www.jpcert.or.jp/at/2026/at260030.html
 tags: [japan, jpcert, ppc, api-security, metabase, vulnerability, 2026]
 status: draft
 generated: { by: openai/gpt-6, at: 2026-10-08T14:54:00+09:00 }
+sources:
+  - id: jpcert
+    resource: https://www.jpcert.or.jp/at/2026/at260030.html
+    title: 直近で相次いでいる国内組織における不正アクセスに関する注意喚起
+    author: organization:JPCERT/CC
+  - id: ppc
+    resource: https://www.ppc.go.jp/news/careful_information/261007_alert/
+    title: 大規模な漏えい等事案を踏まえた対応について（注意喚起）
+    author: organization:個人情報保護委員会
 ---
 
 # 2026年10月8日 国内侵害多発の公的注意喚起と攻撃面の証拠境界

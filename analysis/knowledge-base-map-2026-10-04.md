@@ -63,6 +63,21 @@ Denno Watchは、国内個別事例、海外比較ケース、AI時代の脅威�
 | 再確認 | 新公表、訂正、決算、当局更新が出ていないか | 情報源の監視・鮮度・再確認基準 |
 | 再発追跡 | 過去対策が同型事故の被害範囲・検知・復旧を改善したか | 再発防止策の実効性、個別事例 |
 
+# 具体的な被害類型から事例を選ぶ
+
+個別事例は「漏えい人数の大小」だけで選ばない。次のように、読者の調査目的に合う実際の侵害境界から辿る。
+
+| 読者が比較したい問題 | まず見る国内事例 | 事故のどの事実を検証するか |
+| --- | --- | --- |
+| 個人データの流出確定と可能性を区別したい | [JAEA研究支援サイト](../incidents/2026/jaea-jrr3-research-portal-exfiltration.md)、[関西国際大学](../incidents/2026/kansai-university-international-eportfolio-breach.md) | 実ファイル外部取得、文章の本人識別可能性、健康・身分証の情報感度 |
+| 既知の金銭的二次不正と偽装メールの兆候を比較したい | [infoQ](../incidents/2026/gmo-infoq-breach-point-theft.md)、[ABAHOUSE](../incidents/2026/abahouse-international-order-data-breach.md) | 既遂のポイント不正換金額と、取引内容が一致する不審メールの因果が未確定な状態 |
+| データ漏えいがなくても改ざん・破壊が重大な場合 | [くふう Zaim](../incidents/2026/kufu-zaim-integrity-write-incident.md)、[埼玉県 渋沢MIX](../incidents/2026/saitama-shibusawa-mix-integrity-breach.md) | 14人分の不正書換え、情報閲覧とメール送信、復元・通知の別工程 |
+| クラウド・SaaSの供給者事故による下流影響 | [IDCフロンティア](../incidents/2026/idc-frontier-cloud-ransomware.md)、[i-ask](../incidents/2026/scala-iask-supply-chain-breach.md)、[ApplyNow](../incidents/2026/applynow-recruitment-platform-breach.md) | 顧客組織数と人数の違い、委託先の隔離と顧客の業務復旧、企業別本人通知 |
+| 事故の公表までにデータ照合が長期化した場合 | [HISタイ法人](../incidents/2026/his-thailand-passport-file-server-breach.md)、[NTT西日本](../incidents/2023/ntt-west-insider-data-exfiltration.md) | 検知・当局報告・範囲特定・本人連絡を別の時間軸で比較 |
+| 事故前の統制公表と現実の実装・復旧を照合したい | [アサヒグループ](../incidents/2025/asahi-group-ransomware.md)、[ASKUL](../incidents/2025/askul-ransomware.md)、[イセトー](../incidents/2024/iseto-ransomware.md) | 監査・認証・MFA・EDR・代替運用と、本番資産への適用範囲・業務再開の証拠 |
+
+件数の単位（人数、延べ問い合わせ、アカウント、ファイル、取引、組織）、確認した事実の範囲、公表資料の日時を先に照合し、**全体数・最終確定数・不正取得の実量**を混同しない。
+
 # 比較時の前提
 
 同じ「初動が速い」「復旧済み」「漏えいの可能性」といった表現でも、企業ごとに意味は異なる。比較では少なくとも次を分離する。

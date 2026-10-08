@@ -8,6 +8,7 @@ on:
       - "methodology/**"
       - "site/**"
       - "tools/build_site_catalog.py"
+      - "tools/audit_corpus.py"
       - ".github/workflows/knowledge-ui-pages.yml"
   push:
     branches: [main]
@@ -17,6 +18,7 @@ on:
       - "methodology/**"
       - "site/**"
       - "tools/build_site_catalog.py"
+      - "tools/audit_corpus.py"
       - ".github/workflows/knowledge-ui-pages.yml"
   workflow_dispatch:
 
@@ -53,6 +55,11 @@ jobs:
           assert all(doc["path"].endswith(".md") for doc in catalog["documents"])
           print(catalog["counts"])
           PY
+
+      - name: Audit all Markdown records and evidence references
+        run: |
+          python -m py_compile tools/audit_corpus.py
+          python tools/audit_corpus.py --strict --json-out /tmp/denno-watch-corpus-audit.json
 
       - name: Validate browser JavaScript
         run: node --check site/app.js

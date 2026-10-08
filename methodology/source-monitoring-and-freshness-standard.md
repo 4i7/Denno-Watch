@@ -276,12 +276,12 @@ Denno Watchの個別事例から一般傾向を論じる場合、母集団がDen
 7. 新しい主張へ出典を結び付ける。
 8. 新情報がなくても、能動確認を行った場合だけ `public_record_checked_at` を更新する。
 9. 索引・横断分析へ影響する変更なら関連資料も更新する。
-10. `log.md` に実質的な変更を記録する。
+10. `internal/audit/` に実質的な変更と未確定事項を記録する。
 
 # 関連資料
 
 - [インシデント記録基準](reporting-standard.md)
-- [2026年 重大インシデント事例集監査](corpus-audit-2026-10-04.md)
+- [2026年 重大インシデント事例集監査](../internal/audit/corpus-audit-2026-10-04.md)
 - [報告・通知・公表マップ](../analysis/regulatory-reporting-and-disclosure-map-2026-10-04.md)
 - [インシデント後の長期予後](../analysis/post-incident-long-tail-prognosis-2026-10-04.md)
 - [失敗モードと防御統制の対応表](../analysis/control-failure-mode-crosswalk-2026-10-04.md)
