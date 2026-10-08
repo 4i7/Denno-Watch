@@ -2,6 +2,8 @@
 
 ## 全体像
 
+* [2026年10月8日 新規6件・既存2件の証拠状態差分](incident-status-and-integrity-delta-2026-10-08.md) - 情報流出、閲覧、改ざん、二次悪用、物流停止と復旧予定を区別する比較。
+
 * [2026年10月8日 国内多発侵害・管理API・行政注意喚起](jpcert-ppc-2026-10-08-crosswalk.md) - JPCERT/CCの技術的観測、PPCの注意喚起、個別攻撃帰属の限界と対策。
 
 * [Denno Watch 知識基盤マップ](knowledge-base-map-2026-10-04.md) - 個別事例、横断分析、方法論、海外比較ケースを事故の時間軸と目的から辿る入口。
@@ -47,5 +49,5 @@
 
 ## 比較事例
 
-* [国内インシデントレポート](../incidents/index.md) - 2023〜2026年の国内83件。
+* [国内インシデントレポート](../incidents/index.md) - 2023〜2026年の国内89件。
 * [海外比較インシデント](../incidents/international/index.md) - Change Healthcare、Snowflake顧客アカウント侵害、Caesars Entertainment、MOVEit Transfer等を国内事例集と分離して記録。

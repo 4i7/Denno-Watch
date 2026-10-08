@@ -1,3 +1,10 @@
+* [ABAHOUSE INTERNATIONAL — 注文に一致する不審な返金メール](abahouse-international-order-data-breach.md)
+* [HISタイ法人 — 最大627人の旅券・アレルギー情報](his-thailand-passport-file-server-breach.md)
+* [埼玉県 渋沢MIX — 約2,200人の閲覧と改ざん](saitama-shibusawa-mix-integrity-breach.md)
+* [セレス ポイントインカム — 会員等195件に閲覧可能性](ceres-point-income-breach.md)
+* [くふう Zaim — 14人の登録情報改ざん、漏えい未観測](kufu-zaim-integrity-write-incident.md)
+* [くふう まちトークβ版 — メール流出確認・サービス停止](kufu-machi-talk-beta-breach.md)
+
 # 2026年
 
 * [IDCフロンティア — IDCFクラウドのランサムウェア／495企業・自治体に障害](idc-frontier-cloud-ransomware.md)

@@ -53,6 +53,12 @@
 
 | 組織 | 最初の公表 | インシデント | 公開上の状態 |
 | --- | --- | --- | --- |
+| [ABAHOUSE INTERNATIONAL — 注文に一致する不審な返金メール](2026/abahouse-international-order-data-breach.md) | 2026-10-03 | 受注DB侵害・二次悪用が疑われるメール | 調査・通知 |
+| [HISタイ法人 — 最大627人の旅券・アレルギー情報](2026/his-thailand-passport-file-server-breach.md) | 2026-10-07 | 2025年12月検知、流出可能性・長期調査 | 通知中 |
+| [埼玉県 渋沢MIX — 約2,200人の閲覧と改ざん](2026/saitama-shibusawa-mix-integrity-breach.md) | 2026-10-07 | 閲覧・情報改ざん・メール機能悪用 | 停止・調査 |
+| [セレス ポイントインカム — 会員等195件に閲覧可能性](2026/ceres-point-income-breach.md) | 2026-10-07 | 会員88件＋従業員等107件 | 復旧実績未確認 |
+| [くふう Zaim — 14人の登録情報改ざん、漏えい未観測](2026/kufu-zaim-integrity-write-incident.md) | 2026-09-22 | 登録情報の不正書換え・家計簿データ無影響 | 修正・復元済 |
+| [くふう まちトークβ版 — メール流出確認・サービス停止](2026/kufu-machi-talk-beta-breach.md) | 2026-10-05 | 少なくとも1名のメール流出 confirmed | 停止・調査 |
 | [IDCフロンティア](2026/idc-frontier-cloud-ransomware.md) | 2026-10-07 | IDCFクラウドのランサムウェア／495企業・自治体に障害 | 調査・対応中 |
 | [戸田建設](2026/toda-construction-business-system-breach.md) | 2026-10-07 | 支払管理システム等から取引先・従業員情報流出 | 調査・対応中 |
 | [関西国際大学](2026/kansai-university-international-eportfolio-breach.md) | 2026-09-30 | eポートフォリオ外部取得／個人識別情報は調査中 | 調査・対応中 |
@@ -115,4 +121,4 @@
 
 ## 海外比較ケース
 
-海外事例は国内83件の集計には含めず、長期予後、第三者・認証・集中リスク、訴訟・保険・規制等を補う比較資料として分離する。詳細は[海外比較インシデント](international/index.md)を参照。
+海外事例は国内89件の集計には含めず、長期予後、第三者・認証・集中リスク、訴訟・保険・規制等を補う比較資料として分離する。詳細は[海外比較インシデント](international/index.md)を参照。

@@ -16,15 +16,15 @@ incident:
   earliest_known_activity: "2026-08-09"
   detected_at: "2026-09-07"
   first_disclosed_at: "2026-09-09"
-  latest_public_update: "2026-09-30 downstream customer disclosure"
-  public_record_checked_at: "2026-10-04T05:25:00+09:00"
+  latest_public_update: "2026-10-07 downstream 富士市 confirmed"
+  public_record_checked_at: "2026-10-08T06:48:28.488+00:00"
   intrusion_vector: "vulnerability in a data analytics tool; exact product/CVE and exploitation details not publicly disclosed"
   affected_services: "Interview Cloud, ApplyNow, ApplyNow Sign data handled through the affected analytics environment"
   data_exposure: confirmed
   availability_impact: not_publicly_disclosed
   restoration_state: "affected route blocked and security update applied; customer-by-customer impact identification and notification continue"
   secondary_abuse: not_observed_in_reviewed_downstream_disclosures
-  downstream_impact: "multiple customer organizations, including public-sector recruitment and private employers"
+  downstream_impact: "所沢市1,701件、富士市815件など顧客別流出確認。全体の重複とユニーク人数は未確定"
   regulatory_response: "customer organizations are conducting notifications; provider response includes investigation and remediation"
   notification_state: "provider and affected customers are notifying identified individuals"
   business_continuity: "image, PDF and interview-video data were reportedly stored in a separate area outside the attacked scope"
@@ -38,6 +38,10 @@ sources:
     resource: https://www.city.tokorozawa.saitama.jp/tokoronews/press/r8/9gatu/kojinjyohou.html
     title: 職員採用試験動画投稿型面接システム事業者における個人情報の漏えいについて
     author: organization:所沢市
+  - id: fuji-20261007
+    resource: https://www.city.fuji.shizuoka.jp/1005250000/p007783.html
+    title: 富士市職員採用試験個人情報の不正流出【続報】
+    author: organization:静岡県富士市
   - id: yoshinoya
     resource: https://www.yoshinoya.com/
     title: ApplyNow採用管理プラットフォームへの不正アクセスによる個人情報漏えいに関するお知らせとお詫び
@@ -62,6 +66,7 @@ ApplyNow Signでは利用状況によって雇用契約情報、マイナンバ�
 | 2026-09-16 | 所沢市が、同市受験者情報の漏えいを確認した日として公表。[^tokorozawa] |
 | 2026-09-19 | 所沢市が1,701件の漏えいと対象項目、動画が別領域で対象外であることを公表。[^tokorozawa] |
 | 2026-09-30 | 吉野家など顧客企業側の通知が継続していることを公式サイトで確認。[^yoshinoya] |
+| 2026-10-07 | 富士市が採用試験申込者情報815件の**外部流出確定**を発表。動画データは別領域で対象外。[^fuji-20261007] |
 
 # 影響
 
@@ -70,6 +75,8 @@ ApplyNow Signでは利用状況によって雇用契約情報、マイナンバ�
 本件は採用管理SaaSの供給者側で発生したため、影響単位は「ApplyNow自身の従業員」ではなく、同基盤を利用した顧客組織と応募者・採用者である。顧客ごとに保存項目・利用期間・サービスが異なるため、各社の公表数を無条件に合算しない。
 
 所沢市の確定事例では1,701件、対象は氏名、メールアドレス、電話番号。動画は別領域で対象外だった。[^tokorozawa]
+
+**2026年10月7日、富士市は2022〜2026年度の職員採用試験（プレゼンテーション動画試験）申込情報815件が外部へ漏えいしたと確定公表**。氏名（漢字・カナ）、メールアドレス、電話番号、受験番号が対象。動画ファイルは別領域で対象外。所沢市1,701件と富士市815件を、同一ユニーク対象人数や供給者全体の人数として無検証に合算しない。[^fuji-20261007]
 
 ## 機微性の高い雇用関連データ
 
@@ -93,7 +100,7 @@ ApplyNow Signのデータ範囲には、利用状況により雇用契約情報�
 
 # 現在の状況と予後
 
-2026年10月4日時点でも顧客組織ごとの通知が続いており、全顧客横断の最終対象人数、各データ項目の実漏えい件数、最終調査報告は確認できない。そのため `downstream_notification_and_investigation` とする。
+2026年10月8日の確認では富士市の815件の外部流出確定という追加公表があり、依然として顧客組織ごとの通知が続いており、全顧客横断の最終対象人数、各データ項目の実漏えい件数、最終調査報告は確認できない。そのため `downstream_notification_and_investigation` とする。
 
 # 防御上の教訓
 
@@ -114,3 +121,5 @@ ApplyNow Signのデータ範囲には、利用状況により雇用契約情報�
 [^applynow-primary]: 株式会社ApplyNow「採用管理プラットフォームへの不正アクセスに関するお知らせ」2026-09-09.
 [^tokorozawa]: 所沢市「職員採用試験動画投稿型面接システム事業者における個人情報の漏えいについて」2026-09-19.
 [^yoshinoya]: 吉野家公式サイト「ApplyNow採用管理プラットフォームへの不正アクセスによる個人情報漏えいに関するお知らせとお詫び」2026-09-30.
+
+[^fuji-20261007]: 静岡県富士市「本市職員採用試験（プレゼンテーション動画試験）を受験された方の個人情報の不正流出ついて【続報】」2026-10-07. https://www.city.fuji.shizuoka.jp/1005250000/p007783.html
