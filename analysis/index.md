@@ -2,6 +2,8 @@
 
 ## 全体像
 
+* [2026年10月8日 国内多発侵害・管理API・行政注意喚起](jpcert-ppc-2026-10-08-crosswalk.md) - JPCERT/CCの技術的観測、PPCの注意喚起、個別攻撃帰属の限界と対策。
+
 * [Denno Watch 知識基盤マップ](knowledge-base-map-2026-10-04.md) - 個別事例、横断分析、方法論、海外比較ケースを事故の時間軸と目的から辿る入口。
 * [ローカルLLM実用化以降の重大インシデント比較](local-llm-era-incident-retrospective-2023-2025-2026-10-05.md) - 2023年7月前後から2025年までの国内26件を、初動、復旧、長期予後、事故前統制、株主・規制資料の軸で比較。
 * [事故前に公表されたセキュリティ統制と実侵害のギャップ](pre-incident-control-gap-comparison-2023-2025-2026-10-05.md) - ISO、MFA、EDR、SOC、Zero Trust等の公表・認証と、実際の適用範囲、例外、旧資産、境界機器、資格情報、パッチ、ログ、データ保持等の失敗面を比較。
@@ -45,5 +47,5 @@
 
 ## 比較事例
 
-* [国内インシデントレポート](../incidents/index.md) - 2023〜2026年の国内77件。
+* [国内インシデントレポート](../incidents/index.md) - 2023〜2026年の国内83件。
 * [海外比較インシデント](../incidents/international/index.md) - Change Healthcare、Snowflake顧客アカウント侵害、Caesars Entertainment、MOVEit Transfer等を国内事例集と分離して記録。

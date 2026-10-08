@@ -1,5 +1,12 @@
 # 2026年
 
+* [IDCフロンティア — IDCFクラウドのランサムウェア／495企業・自治体に障害](idc-frontier-cloud-ransomware.md)
+* [戸田建設 — 支払管理システム等から取引先・従業員情報流出](toda-construction-business-system-breach.md)
+* [関西国際大学 — eポートフォリオ外部取得／個人識別情報は調査中](kansai-university-international-eportfolio-breach.md)
+* [日本原子力研究開発機構 — JRR-3研究支援サイト／175人の身分証・健診情報流出](jaea-jrr3-research-portal-exfiltration.md)
+* [日本経済新聞社 M365 — Microsoft 365アカウント侵害／偽装メール約9000通と日経BPへの連鎖](nikkei-m365-phishing-mail-breach.md)
+* [日本経済新聞社 Workspace — Google Workspace不正ログイン／1646人に漏えい疑い](nikkei-google-workspace-breach.md)
+
 * [MrMax — アプリ・オンラインストア侵害／最大1,735,154人の会員情報流出](mrmax-app-online-store-breach.md)
 * [スカラコミュニケーションズ / i-ask — 管理サイト不正ログイン・不正プログラム設置／最大5社・713,126問い合わせ](scala-iask-supply-chain-breach.md)
 * [楽天ドライブ — 管理用認証情報侵害／保存ファイルを含む最大15,382アカウント](rakuten-drive-management-account-breach.md)

@@ -5,7 +5,7 @@ description: FAQシステムi-askの管理サイトへ不正ログインされ�
 resource: https://scala-com.jp/news/2026/10-1/
 tags: [japan, saas, faq, supply-chain, credential-abuse, malware, personal-data, shared-hosting, 2026]
 status: draft
-stale_after: 2026-10-10T00:00:00+09:00
+stale_after: 2026-10-11T00:00:00+09:00
 generated: { by: openai/gpt-5.6-sol, at: 2026-10-07T08:39:00+09:00 }
 incident:
   organization: 株式会社スカラコミュニケーションズ
@@ -16,15 +16,15 @@ incident:
   earliest_known_activity: "2026-10-02 20:30 JST"
   detected_at: "2026-10-03 morning"
   first_disclosed_at: "2026-10-06"
-  latest_public_update: "2026-10-06"
-  public_record_checked_at: "2026-10-07T08:39:00+09:00"
+  latest_public_update: "2026-10-07"
+  public_record_checked_at: "2026-10-08T14:54:00+09:00"
   intrusion_vector: "unauthorized login to the i-ask administration site; exact credential acquisition route not publicly disclosed"
   affected_services: "FAQシステム i-ask の同一サーバー上にある最大5社の利用環境"
   data_exposure: possible
   availability_impact: "不正アクセス遮断と環境保全を実施、顧客別サービス影響は公開情報上で一様ではない"
   restoration_state: "不正ログインアカウント変更、IP遮断、不正プログラム隔離、管理者パスワード全変更、実行制御変更、フォレンジック継続"
   secondary_abuse: not_observed
-  downstream_impact: "最大5社、問い合わせ単位で最大713,126件。シチズン時計は約10万人、大和証券でも顧客情報への影響可能性を別途公表"
+  downstream_impact: "最大5社・問い合わせ最大713,126件（供給者母数）。シチズン約10万人、大和証券約11万人、損保ジャパン約6万問い合わせ（合算禁止）"
   regulatory_response: "個人情報保護委員会へ報告、警察へ相談"
   notification_state: "利用企業と連携して対象者対応中"
   data_sensitivity: "氏名、メールアドレス、問い合わせ内容等。利用企業により項目が異なり、自由記述に追加情報が含まれる場合がある"
@@ -41,6 +41,10 @@ sources:
     resource: https://www.daiwa.jp/
     title: 外部委託先への不正アクセスによるお客さま情報の漏洩の可能性について
     author: organization:大和証券株式会社
+  - id: sompo-downstream
+    resource: https://www.sompo-japan.co.jp/-/media/SJNK/files/news/2026/20261007_1.pdf?la=ja-JP
+    title: 事業者向け通信機能付きドライブレコーダーの委託先不正アクセスによる漏えい可能性について
+    author: organization:損害保険ジャパン株式会社
   - id: shikoku-daiwa-downstream
     resource: https://www.shikokubank.co.jp/info/post_195.html
     title: 大和証券の外部委託先への不正アクセスによるお客さま情報の漏洩の可能性について
@@ -61,6 +65,7 @@ sources:
 | 2026-10-03 朝 | DB監視アラートを契機に調査開始。[^scala-primary] |
 | 2026-10-03 08:00頃 | 不正アクセスを遮断。該当利用企業へ同日中に報告。[^scala-primary] |
 | 2026-10-06 | 供給者側とシチズン時計等が影響を公表。[^scala-primary][^citizen-downstream] |
+| 2026-10-07 | 損保ジャパンがSMILING ROADの下流影響を公式PDFで追加公表。[^sompo-downstream] |
 
 # 影響
 
@@ -73,6 +78,12 @@ sources:
 シチズン時計は、自社システムへの侵入ではなく委託先i-askの侵害であると明示し、約10万人分の氏名、住所、電話番号、メールアドレス等が対象となる可能性を公表した。自由記述の問い合わせ内容に銀行口座情報やクレジットカード情報を記載していた場合、それらも対象となる可能性がある。[^citizen-downstream]
 
 シチズンのEC、会員制サービス、生産システム、社内ネットワークへのアクセスは確認されておらず、漏えい可能性情報だけではそれらへログインできないとしている。[^citizen-downstream]
+
+## 損保ジャパン（10月7日新たな下流影響）
+
+損保ジャパンは事業者向け通信機能付きドライブレコーダー「SMILING ROAD」のFAQ・お問い合わせサービスをi-askで提供していたと公表。**約6万件の問い合わせ**が漏えいした可能性がある。これは同一顧客の重複を含む延べ件数であり、**実人数ではない**。氏名、住所、電話番号、メールアドレス、勤務先、ドライバーID、運転アラート、機器シリアル番号、申込番号、問い合わせ本文等が対象となり得る。金融口座・クレジットカード・マイナンバーカード情報は含まれない。[^sompo-downstream]
+
+同社は10月3日に委託先から連絡を受け、同社自体のシステムへの侵害は確認していないと説明。対象顧客に原則個別連絡し、原因究明、委託先管理の検証と強化策の策定を進める。実際の情報不正利用・インターネット公開は未確認。供給者側の最大713,126件に新たな約6万件を**加算しない**。[^sompo-downstream]
 
 ## 大和証券
 
@@ -116,4 +127,5 @@ sources:
 [^scala-primary]: 株式会社スカラコミュニケーションズ「FAQシステム『i-ask』への不正アクセスによる個人情報漏えいに関するお詫びとお知らせ」2026-10-06.
 [^citizen-downstream]: シチズン時計株式会社「委託先事業者に対する不正アクセスによるお客様情報の漏えいの可能性について」2026-10-06.
 [^daiwa-home]: 大和証券株式会社公式サイト「外部委託先への不正アクセスによるお客さま情報の漏洩の可能性について」2026-10-05確認.
+[^sompo-downstream]: 損害保険ジャパン株式会社「当社事業者向けサービスで使用する外部委託先システムへの不正アクセスによるお客さま情報漏えいの可能性について」2026-10-07、公式2頁PDF。
 [^shikoku-daiwa-downstream]: 四国銀行「大和証券の外部委託先への不正アクセスによるお客さま情報の漏洩の可能性について」2026-10-05.

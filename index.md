@@ -10,7 +10,7 @@ okf_spec_resource: "https://github.com/GoogleCloudPlatform/open-knowledge-format
 
 ## 最初に読む
 
-* [国内インシデントレポート](incidents/index.md) - 2023〜2026年の国内77件について、公開根拠に基づく時系列、影響、技術事項、初動、復旧、規制・財務・長期予後を記録。
+* [国内インシデントレポート](incidents/index.md) - 2023〜2026年の国内83件について、公開根拠に基づく時系列、影響、技術事項、初動、復旧、規制・財務・長期予後を記録。
 * [ローカルLLM実用化以降の重大インシデント比較](analysis/local-llm-era-incident-retrospective-2023-2025-2026-10-05.md) - 2023年7月前後を比較境界とし、2023〜2025年26件を2026年と同じ軸で比較。個別攻撃へのAI利用と時代背景を分離。
 * [事故前に公表されたセキュリティ統制と実侵害のギャップ](analysis/pre-incident-control-gap-comparison-2023-2025-2026-10-05.md) - ISO、MFA、EDR、SOC、Zero Trust、SASE、CSIRT等の公表・認証と、例外・旧資産・境界機器・資格情報・パッチ・ログ・データ保持等の実失敗面を比較。
 * [事故前セキュリティ・株主／規制向け資料台帳](analysis/pre-incident-security-and-ir-pdf-ledger-2023-2025.md) - 事故前の統合報告・セキュリティ資料と、事故後の調査、株主・財務、行政、第三者認証資料を対応付ける。
@@ -18,6 +18,8 @@ okf_spec_resource: "https://github.com/GoogleCloudPlatform/open-knowledge-format
 * [知識基盤マップ](analysis/knowledge-base-map-2026-10-04.md) - 事故の発生前条件から長期予後まで、目的別に参照すべき資料を一覧化。
 
 ## ナレッジ
+
+* [2026年10月8日 国内多発侵害・管理API・行政注意喚起](analysis/jpcert-ppc-2026-10-08-crosswalk.md) - JPCERT/CC・個人情報保護委員会の公表を踏まえた防御側の証拠対照。
 
 * [海外比較インシデント](incidents/international/index.md) - 国内事例集とは別枠で、長期予後、第三者集中、SaaS共有責任、ゼロデイ一斉悪用、数年単位の財務・訴訟尾部を補完する比較ケース。
 * [横断分析](analysis/index.md) - ライフサイクル、制度・報告、公表品質、財務、データ被害、完全性、バックアップ、OT安全、第三者・認証・集中リスク、事故前統制と実侵害のギャップ、長期予後、対応指標、防衛予算等を整理。
