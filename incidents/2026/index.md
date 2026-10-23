@@ -1,3 +1,14 @@
+# 2026年
+
+* [Studio — クラウド・暗号鍵・フォーム・デジタル庁下流](studio-multitenant-credentials-form-breach.md)
+* [GMOお名前.comデスクトップクラウド — 26,739環境と取引口座の不正操作報告](gmo-onamae-desktopcloud-transaction-breach.md)
+* [ソースネクスト — 会員取得APIから最大22,519,960件](sourcenext-membership-api-exfiltration.md)
+* [大阪大学・NEC — 契約外クラウド共有の77,851人](osaka-university-nec-subcontractor-storage-breach.md)
+* [PingCAP・TiDB — 日本約5万件の社内情報流出](pingcap-tidb-internal-credential-breach.md)
+* [Commune — 約30.7万人会員流出と144人の仮パスワード改ざん](commune-community-platform-data-exposure.md)
+* [H2O／阪急阪神百貨店 — H2O ID約126万件・3サイト侵害](h2o-retailing-hankyu-multisite-account-breach.md)
+* [リクルート／カーセンサー・C-MATCH — 最大3,709,551件](recruit-carsensor-cmatch-possible-data-exposure.md)
+
 * [ABAHOUSE INTERNATIONAL — 注文に一致する不審な返金メール](abahouse-international-order-data-breach.md)
 * [HISタイ法人 — 最大627人の旅券・アレルギー情報](his-thailand-passport-file-server-breach.md)
 * [埼玉県 渋沢MIX — 約2,200人の閲覧と改ざん](saitama-shibusawa-mix-integrity-breach.md)
@@ -5,7 +16,6 @@
 * [くふう Zaim — 14人の登録情報改ざん、漏えい未観測](kufu-zaim-integrity-write-incident.md)
 * [くふう まちトークβ版 — メール流出確認・サービス停止](kufu-machi-talk-beta-breach.md)
 
-# 2026年
 
 * [IDCフロンティア — IDCFクラウドのランサムウェア／495企業・自治体に障害](idc-frontier-cloud-ransomware.md)
 * [戸田建設 — 支払管理システム等から取引先・従業員情報流出](toda-construction-business-system-breach.md)

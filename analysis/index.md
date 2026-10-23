@@ -2,6 +2,8 @@
 
 ## 全体像
 
+* [2026年10月23日 国内侵害の認証・API・暗号鍵・バックアップ・委託先比較](credential-recoverability-and-supply-chain-cyber-cases-2026-10-23.md) - Studio、GMO、ソースネクスト、大阪大学、PingCAP、Commune、H2O、カーセンサー、IDC、焼肉きんぐの具体例を機密性・完全性・可用性・復元・鍵失効で横断照合。
+
 * [2026年10月8日 新規6件・既存2件の証拠状態差分](incident-status-and-integrity-delta-2026-10-08.md) - 情報流出、閲覧、改ざん、二次悪用、物流停止と復旧予定を区別する比較。
 
 * [2026年10月8日 国内多発侵害・管理API・行政注意喚起](jpcert-ppc-2026-10-08-crosswalk.md) - JPCERT/CCの技術的観測、PPCの注意喚起、個別攻撃帰属の限界と対策。

@@ -11,17 +11,17 @@ incident:
   organization: 株式会社IDCフロンティア
   sector: cloud-infrastructure
   jurisdiction: JP
-  incident_status: ongoing_incident_response
+  incident_status: partial_backup_recovery_vm_restoration_unresolved
   attack_type: ransomware-confirmed
   detected_at: "2026-10-07 03:40 JST"
   first_disclosed_at: "2026-10-07"
-  latest_public_update: "2026-10-07"
-  public_record_checked_at: "2026-10-08T06:48:28.488+00:00"
+  latest_public_update: "2026-10-18"
+  public_record_checked_at: "2026-10-23T09:48:30.992+00:00"
   intrusion_vector: "specific initial vector not confirmed by public sources"
   affected_services: "IDCFクラウドのランサムウェア／495企業・自治体に障害"
-  data_exposure: unknown
+  data_exposure: "VM-data-exfiltration-not_observed; portal-data-access-confirmed; personally-identifying-email-possible"
   availability_impact: "東日本リージョン1遮断と他リージョンの管理コンソール停止、契約495組織への影響"
-  restoration_state: "封じ込め実施、侵入経路特定中、全面復旧は未確認"
+  restoration_state: "2026-10-18非影響ゾーン向けバックアップサービス再開。スナップショット機能は停止、影響4ゾーンの全面VM復旧は未確認"
   downstream_impact: "ファイバーゲートはIDCF基盤利用を明示、ニッスイは日水物流の入出荷停止を公表するが一次資料には委託先名なし"
   secondary_abuse: not_publicly_disclosed
 sources:
@@ -41,6 +41,14 @@ sources:
     resource: https://www.nissui.co.jp/news/2026100702.html
     title: 日水物流株式会社におけるシステム障害について（第1報）
     author: organization:株式会社ニッスイ
+  - id: idcf-fifth
+    resource: https://www.idcf.jp/news/topics/20261014001/
+    title: 〖第5報〗不正アクセスによる障害に関する調査の進捗について
+    author: organization:IDCフロンティア
+  - id: idcf-sixth
+    resource: https://www.idcf.jp/news/topics/20261018001/
+    title: 〖第6報〗バックアップサービスの提供再開について
+    author: organization:IDCフロンティア
   - id: source-2
     resource: https://www.idcf.jp/pdf/cloud/pdf/IDCFCloud_security_WP.pdf
     title: 2026年4月1日発行IDCFクラウドセキュリティホワイトペーパー第13版
@@ -69,6 +77,38 @@ sources:
 
 これは平時の**制度・機能の説明**であって、今回の侵害経路が管理コンソールだった証明でも、当該対策が破られた証明でも、通知目標の遵守実績でもない。後続の調査と通知実測値で対照する必要がある。
 
+## 10月14日第5報：顧客VMと運営ポータルの被害は別
+
+外部の専門企業と協力してアクセスログ、認証・操作ログ、不正プログラム、外部持ち出しの痕跡を調査した結果、影響を受けた東日本リージョン1のtesla／henry／pascal／joule各ゾーンにおいて、**顧客VM内データの不正照会・外部持ち出し痕跡は確認されず、会社は外部流出なしと判断**した。これは**調査対象と期間についての会社判断**であり、ランサムウェアによる可用性侵害まで否定するものではない。[^idcf-fifth]
+
+一方、**IDCFクラウドポータルでは48社の登録情報に対する不正照会を確認**。企業名、ログインID、強いランダムハッシュ化済みのログインパスワード、通知先、月額料金合計等を含み、**2社の各1メールアドレスは担当者の個人名を含む可能性**がある。不正照会は確定するが、外部への持ち出し痕跡は確認されていない。[^idcf-fifth]
+
+| 事象 | 10月14日時点の状態 | 誤認を避ける単位 |
+| --- | --- | --- |
+| 影響4ゾーンの顧客VMファイル流出 | 調査で痕跡未確認、会社は流出なしと判断 | 仮想サーバー内データ |
+| クラウドポータルの不正閲覧 | **確認** | 顧客48**社** |
+| 個人名を含む可能性のあるメール | **可能性** | 2社、各1アドレス |
+| ポータル登録情報の外部持ち出し | 痕跡未確認 | 閲覧と持ち出しを混同しない |
+| ランサムウェアによる停止 | **確定** | 影響495**組織** |
+
+## バックアップの存在と復元可能性は別
+
+影響495社・自治体のうち**194組織**がIDCFのスナップショット機能を使っており、専門家の安全確認により**保存バックアップの取り出しが可能**と判明。しかしその時点では**取り出したデータを復元できるか・具体的な提供方法は検証中**である。**194社を復旧完了と数えず、495−194をデータ永久消失確定と数えない**。顧客自身の別環境バックアップも独立して評価する。[^idcf-fifth]
+
+## 10月18日第6報：非影響ゾーンのバックアップサービス再開
+
+IDCFが再開した**「IDCFクラウド バックアップ」**はradian／newtonゾーン、東日本リージョン2・3、西日本リージョン1など**VMが動作している非影響ゾーンの顧客向け**。このバックアップで別クラウドやオンプレミスへ復元できる。一方、**スナップショット機能は安全確認のため停止継続**、影響4ゾーンのVM全面復旧ではない。[^idcf-sixth]
+
+| 復旧の境界 | 確認した状態 | 残る検証 |
+| --- | --- | --- |
+| 非影響ゾーンVM | 動作継続 | 顧客個別の安全確認 |
+| 非影響ゾーンのバックアップ機能 | 10月18日再開 | 顧客環境での復元テスト |
+| 全ゾーンのスナップショット機能 | 10月18日時点停止継続 | 安全確認・再開時刻 |
+| 影響194組織の保存バックアップ | 取り出し可能 | **復元可能性と業務データ整合** |
+| 495組織の業務 | 利用者ごとに異なる | 物流、決済、顧客向けサービスの正常化 |
+
+事故前ホワイトペーパーの二段階認証・IP制限・監視体制に関する**制度・機能の説明**だけから、今回の初期侵入経路が管理コンソールだったと断定できない。[^source-2]
+
 ## 未確定
 
 正確な侵入口、データ流出、別リージョンへの侵害、全顧客の復旧、財務影響、身代金要求はいずれも未確定。
@@ -78,3 +118,6 @@ sources:
 [^fibergate]: ファイバーゲート「クラウドサーバー停止に伴うサービス影響について」2026-10-07. https://www.fibergate.co.jp/news/14742/
 [^nissui]: ニッスイ「日水物流株式会社におけるシステム障害について（第1報）」2026-10-07. https://www.nissui.co.jp/news/2026100702.html
 [^source-2]: 2026年4月1日発行IDCFクラウドセキュリティホワイトペーパー第13版 — https://www.idcf.jp/pdf/cloud/pdf/IDCFCloud_security_WP.pdf （2026-10-08確認）。
+
+[^idcf-fifth]: IDCフロンティア「〖第5報〗不正アクセスによる障害に関する調査の進捗について」2026-10-14. https://www.idcf.jp/news/topics/20261014001/
+[^idcf-sixth]: IDCフロンティア「〖第6報〗バックアップサービスの提供再開について」2026-10-18. https://www.idcf.jp/news/topics/20261018001/

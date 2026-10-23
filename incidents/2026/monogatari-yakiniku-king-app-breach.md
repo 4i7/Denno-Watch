@@ -11,18 +11,18 @@ incident:
   organization: 株式会社物語コーポレーション
   sector: food-service
   jurisdiction: JP
-  incident_status: investigating
+  incident_status: investigating_postincident_controls_and_data_minimization_planned
   attack_type: unauthorized-access
   earliest_known_activity: "2026-10-02"
   detected_at: "2026-10-02"
   first_disclosed_at: "2026-10-05"
-  latest_public_update: "2026-10-05"
-  public_record_checked_at: "2026-10-07T08:39:00+09:00"
+  latest_public_update: "2026-10-20"
+  public_record_checked_at: "2026-10-23T09:48:51.532+00:00"
   intrusion_vector: "not publicly disclosed; third-party unauthorized access to the Yakiniku King app membership management system confirmed"
   affected_services: "焼肉きんぐ公式アプリ会員管理システム"
   data_exposure: confirmed
   availability_impact: "アプリは防御措置を講じた上で提供継続"
-  restoration_state: "通信遮断・防御措置実施済み、原因と侵入経緯を調査中"
+  restoration_state: "侵入経路遮断済、監視強化継続。2027年上半期のグループ11アプリ氏名・電話番号非保有化を計画（実装未完了）"
   secondary_abuse: not_observed
   downstream_impact: "10,788,963件の会員情報が漏えい"
   regulatory_response: "個人情報保護委員会への報告および警察への被害届提出等を進行"
@@ -30,6 +30,10 @@ incident:
   business_continuity: "焼肉きんぐ公式アプリは防御措置後も継続提供、他ブランドアプリでは漏えいを確認せず"
   data_sensitivity: "会員番号、氏名、メールアドレス、電話番号"
 sources:
+  - id: monogatari-followup
+    resource: https://www.monogatari.co.jp/news/261020_news/
+    title: 焼肉きんぐ公式アプリにおける今後のセキュリティおよび個人情報保護強化策について
+    author: organization:株式会社物語コーポレーション
   - id: monogatari-primary
     resource: https://www.monogatari.co.jp/news/261005_news/
     title: 『焼肉きんぐ』公式アプリ 会員管理システムへの第三者からの不正アクセスによる個人情報漏えいに関するお詫び
@@ -86,3 +90,5 @@ sources:
 - 二次悪用の長期評価
 
 [^monogatari-primary]: 株式会社物語コーポレーション「『焼肉きんぐ』公式アプリ 会員管理システムへの第三者からの不正アクセスによる個人情報漏えいに関するお詫び」2026-10-05.
+
+[^monogatari-followup]: 物語コーポレーション「焼肉きんぐ公式アプリにおける今後のセキュリティおよび個人情報保護強化策について」2026-10-20. https://www.monogatari.co.jp/news/261020_news/
